@@ -109,10 +109,12 @@ export default function Home({navigation}) {
           <Text style={styles.titulo}>WorkPlus</Text>
         </View>
         <View style={styles.divLogout}>
+        <TouchableOpacity onPress={() => navigation.navigate('Login')}>
           <Image
-            style={styles.iconeLogout}
+            style={{ width: 58, height: 58}}
             source={require("../assets/logout.png")}
           />
+          </TouchableOpacity>
         </View>
       </View>
 
