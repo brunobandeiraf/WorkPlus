@@ -94,6 +94,9 @@ export default function Login({navigation}) {
 
             </View>
 
+              
+
+
             <TouchableOpacity
               style={styles.forgotPasswordButton}
               onPress={handleForgotPassword}
@@ -118,6 +121,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     width: "80%",
+
   },
   input: {
     height: 45,
@@ -153,6 +157,8 @@ const styles = StyleSheet.create({
   viewButton: {
     alignItems: "center",
     justifyContent: "center",
+    
+    
   },
   engrenagem: {
     marginLeft: '8%',

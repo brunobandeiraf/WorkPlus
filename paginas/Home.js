@@ -391,13 +391,13 @@ export default function Home({navigation}) {
           <TouchableOpacity
             onPress={() => navigation.navigate('Trabalho')}
           >
-            <Text style={styles.botaoSeustrabalhos}>Seus Trabalhos</Text>
+            <Text style={styles.botaoMeustrabalhos}>Meus Trabalhos</Text>
           </TouchableOpacity>
         </View>
         <View style={styles.casinha}>
         <TouchableOpacity onPress={() => navigation.navigate('Servico')}>
           <Image
-            style={{ width: 35, height: 40, left: 18 }}
+            style={{ width: 35, height: 40, left: 16.5 }}
             source={require("../assets/casinha.png")}
           />
           </TouchableOpacity>
@@ -405,7 +405,7 @@ export default function Home({navigation}) {
         <View style={styles.suasDemandas}>
           <TouchableOpacity onPress={() => navigation.navigate('Servico')}>
 
-            <Text style={styles.botaoSeusServicos}>Seus Servicos</Text>
+            <Text style={styles.botaoMeusServicos}>Meus Servicos</Text>
 
           </TouchableOpacity>
         </View>
@@ -752,8 +752,9 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
   },
-  botaoSeustrabalhos: {
+  botaoMeustrabalhos: {
     width: "100%",
+    left: 18,
     fontSize: 16,
     borderRadius: 12,
     paddingLeft: 10,
@@ -771,7 +772,7 @@ const styles = StyleSheet.create({
     height: "73%",
     width: "70%",
   },
-  botaoSeusServicos: {
+  botaoMeusServicos: {
     width: "100%",
     fontSize: 16.5,
     borderRadius: 12,

@@ -217,7 +217,7 @@ export default function Trabalho({navigation}) {
           <View style={styles.baixo}>
               <View style={styles.suasOfertas}>
                 <TouchableOpacity
-                  onPress={() => navigation.navigate('Home')}
+                  onPress={() => navigation.navigate('Trabalho')}
                 >
                   <Text style={styles.botaoSeustrabalhos}>Seus Trabalhos</Text>
                 </TouchableOpacity>
@@ -601,7 +601,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
   },
-  botaoSeustrabalhos: {
+  botaoMeustrabalhos: {
     width: "100%",
     fontSize: 16,
     borderRadius: 12,
@@ -620,7 +620,7 @@ const styles = StyleSheet.create({
     height: "73%",
     width: "70%",
   },
-  botaoSeusServicos: {
+  botaoMeusServicos: {
     width: "100%",
     fontSize: 16.5,
     borderRadius: 12,

@@ -218,7 +218,7 @@ export default function Servico({navigation}) {
                 <TouchableOpacity
                   onPress={() => navigation.navigate('Trabalho')}
                 >
-                  <Text style={styles.botaoSeustrabalhos}>Seus Trabalhos</Text>
+                  <Text style={styles.botaoMeustrabalhos}>Meus Trabalhos</Text>
                 </TouchableOpacity>
               </View>
               <View style={styles.casinha}>
@@ -232,7 +232,7 @@ export default function Servico({navigation}) {
               <View style={styles.suasDemandas}>
                 <TouchableOpacity onPress={() => navigation.navigate('Servico')}>
 
-                  <Text style={styles.botaoSeusServicos}>Seus Servicos</Text>
+                  <Text style={styles.botaoMeusServicos}>Meus Servicos</Text>
 
                 </TouchableOpacity>
               </View>
@@ -593,7 +593,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
   },
-  botaoSeustrabalhos: {
+  botaoMeustrabalhos: {
     width: "100%",
     fontSize: 16,
     borderRadius: 12,
@@ -612,7 +612,7 @@ const styles = StyleSheet.create({
     height: "73%",
     width: "70%",
   },
-  botaoSeusServicos: {
+  botaoMeusServicos: {
     width: "100%",
     fontSize: 16.5,
     borderRadius: 12,
