@@ -8,7 +8,7 @@ import {
   Image,
 } from "react-native";
 
-export default function LoginScreen() {
+export default function Login() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [showForgotPassword, setShowForgotPassword] = useState(false);
@@ -34,7 +34,7 @@ export default function LoginScreen() {
 
       <Image
         style={styles.logo}
-        source={require('./assets/logo.png')}
+        source={require('../assets/logo.png')}
       />
 
       <Text style={{ fontSize: 50 }}>Work Plus</Text>
@@ -87,7 +87,7 @@ export default function LoginScreen() {
                 <Text style={styles.buttonText}>Login</Text>
                 <Image
                   style={styles.engrenagem}
-                  source={require('./assets/engrenagem.png')}
+                  source={require('../assets/logo.png')}
                 />
               </TouchableOpacity>
 

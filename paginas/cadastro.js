@@ -8,7 +8,7 @@ import {
   Image,
 } from "react-native";
 
-export default function CadastroScreen() {
+export default function Cadastro() {
   const [nomeCompleto, setNomeCompleto] = useState("");
   const [email, setEmail] = useState("");
   const [cpf, setCpf] = useState("");
@@ -31,7 +31,7 @@ export default function CadastroScreen() {
 
         <View style={styles.viewImage}>
 
-          <Image style={styles.logo} source={require('./assets/logo.png')} />
+          <Image style={styles.logo} source={require('../assets/logo.png')} />
 
         </View>
 
@@ -100,7 +100,7 @@ export default function CadastroScreen() {
             <Text style={styles.buttonTextCadastrar}>Cadastrar</Text>
             <Image
               style={styles.engrenagem}
-              source={require('./assets/engrenagem.png')}
+              source={require('../assets/engrenagem.png')}
             />
           </TouchableOpacity>
         </View>
