@@ -219,7 +219,7 @@ export default function Trabalho({navigation}) {
                 <TouchableOpacity
                   onPress={() => navigation.navigate('Trabalho')}
                 >
-                  <Text style={styles.botaoSeustrabalhos}>Seus Trabalhos</Text>
+                  <Text style={styles.botaoMeustrabalhos}>Seus Trabalhos</Text>
                 </TouchableOpacity>
               </View>
               <View style={styles.casinha}>
@@ -234,7 +234,7 @@ export default function Trabalho({navigation}) {
               <View style={styles.suasDemandas}>
                 <TouchableOpacity onPress={() => navigation.navigate('Servico')}>
 
-                  <Text style={styles.botaoSeusServicos}>Seus Servicos</Text>
+                  <Text style={styles.botaoMeusServicos}>Seus Servicos</Text>
 
                 </TouchableOpacity>
               </View>
