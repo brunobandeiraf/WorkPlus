@@ -8,7 +8,7 @@ import {
   Image,
 } from "react-native";
 
-export default function Cadastro() {
+export default function Cadastro({navigation}) {
   const [nomeCompleto, setNomeCompleto] = useState("");
   const [email, setEmail] = useState("");
   const [cpf, setCpf] = useState("");
@@ -108,7 +108,7 @@ export default function Cadastro() {
 
           <TouchableOpacity
             style={styles.buttonLogin}
-            onPress={() => console.log("Login pressed")}
+            onPress={() => navigation.navigate('Home')}
           >
             <Text style={styles.buttonTextLogin}>Login</Text>
 

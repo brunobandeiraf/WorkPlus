@@ -130,6 +130,7 @@ export default function Home({navigation}) {
 
       <SafeAreaView style={styles.containerPosts}>
         <ScrollView>
+
         <View style={styles.postPremiumTrabalhador}>
        
             <View style={styles.DivFotoUsuario}>
@@ -193,6 +194,7 @@ export default function Home({navigation}) {
             </View>
           </View>
           
+
           <View style={styles.postPremiumEmpregador}>
             <View style={styles.DivFotoUsuario}>
             <Image
@@ -257,6 +259,8 @@ export default function Home({navigation}) {
               />
             </View>
           </View>
+
+
           <View style={styles.postTrabalhador}>
             
             <View style={styles.DivFotoUsuario}>
@@ -378,27 +382,22 @@ export default function Home({navigation}) {
               />
             </View>
           </View>
-          
-
-          
-          
-          
-      
         </ScrollView>
       </SafeAreaView>
       
+
       <View style={styles.baixo}>
         <View style={styles.suasOfertas}>
           <TouchableOpacity
             onPress={() => navigation.navigate('Trabalho')}
           >
-            <Text style={styles.botaoSuasOfertas}>Seus Trabalhos</Text>
+            <Text style={styles.botaoSeustrabalhos}>Seus Trabalhos</Text>
           </TouchableOpacity>
         </View>
         <View style={styles.casinha}>
-        <TouchableOpacity>
+        <TouchableOpacity onPress={() => navigation.navigate('Servico')}>
           <Image
-            style={{ width: 35, height: 40 }}
+            style={{ width: 35, height: 40, left: 18 }}
             source={require("../assets/casinha.png")}
           />
           </TouchableOpacity>
@@ -406,7 +405,7 @@ export default function Home({navigation}) {
         <View style={styles.suasDemandas}>
           <TouchableOpacity onPress={() => navigation.navigate('Servico')}>
 
-            <Text style={styles.botaoSuasPrestacoes}>Seus Servicos</Text>
+            <Text style={styles.botaoSeusServicos}>Seus Servicos</Text>
 
           </TouchableOpacity>
         </View>
@@ -417,6 +416,8 @@ export default function Home({navigation}) {
           />
         </View>
       </View>
+
+
     </View>
   );
 }
@@ -751,13 +752,13 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
   },
-  botaoSuasPrestacoes: {
+  botaoSeustrabalhos: {
     width: "100%",
-    fontSize: 16.5,
+    fontSize: 16,
     borderRadius: 12,
-    paddingLeft: 5,
-    paddingRight: 5,
-    paddingTop: 14,
+    paddingLeft: 10,
+    paddingRight: 10,
+    paddingTop: 15,
     borderBottomColor: "#1A397B",
     borderBottomWidth: 2,
     backgroundGradient: {
@@ -770,13 +771,13 @@ const styles = StyleSheet.create({
     height: "73%",
     width: "70%",
   },
-  botaoSuasOfertas: {
+  botaoSeusServicos: {
     width: "100%",
-    fontSize: 16,
+    fontSize: 16.5,
     borderRadius: 12,
-    paddingLeft: 10,
-    paddingRight: 10,
-    paddingTop: 15,
+    paddingLeft: 5,
+    paddingRight: 5,
+    paddingTop: 14,
     borderBottomColor: "#1A397B",
     borderBottomWidth: 2,
     backgroundGradient: {

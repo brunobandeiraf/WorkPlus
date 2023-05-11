@@ -8,7 +8,7 @@ import {
   Image,
 } from "react-native";
 
-export default function Login() {
+export default function Login({navigation}) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [showForgotPassword, setShowForgotPassword] = useState(false);
@@ -82,13 +82,14 @@ export default function Login() {
 
               <TouchableOpacity
                 style={styles.button}
-                onPress={handleLogin}
-              >
+                onPress={() => navigation.navigate('Home')}
+                //onPress={handleLogin}
+                >
                 <Text style={styles.buttonText}>Login</Text>
                 <Image
                   style={styles.engrenagem}
-                  source={require('../assets/logo.png')}
-                />
+                  source={require('../assets/engrenagem.png')}
+                  />
               </TouchableOpacity>
 
             </View>

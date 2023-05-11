@@ -215,37 +215,36 @@ export default function Trabalho({navigation}) {
             </ScrollView>
           </SafeAreaView>
           <View style={styles.baixo}>
-        <View style={styles.suasOfertas}>
-          <TouchableOpacity
-            onPress={() => console.log("Custom button pressed")}
-          >
-            <Text style={styles.botaoSuasOfertas}>Suas Ofertas</Text>
-          </TouchableOpacity>
-        </View>
-        <View style={styles.casinha}>
-        <TouchableOpacity
-            onPress={() => navigation.navigate('Home')}
-          >
-          <Image
-            style={{ width: 35, height: 40 }}
-            source={require("../assets/casinha.png")}
-          />
-          </TouchableOpacity>
-        </View>
-        <View style={styles.suasDemandas}>
-          <TouchableOpacity
-            onPress={() => console.log("Custom button pressed")}
-          >
-            <Text style={styles.botaoSuasPrestacoes}>Suas Prestações</Text>
-          </TouchableOpacity>
-        </View>
-        <View style={styles.usuarioBaixo}>
-          <Image
-            style={styles.iconeUsuario}
-            source={require("../assets/usuario.png")}
-          />
-        </View>
-      </View> 
+              <View style={styles.suasOfertas}>
+                <TouchableOpacity
+                  onPress={() => navigation.navigate('Home')}
+                >
+                  <Text style={styles.botaoSeustrabalhos}>Seus Trabalhos</Text>
+                </TouchableOpacity>
+              </View>
+              <View style={styles.casinha}>
+              <TouchableOpacity onPress={() => navigation.navigate('Home')}>
+                <Image
+                onPress={() => navigation.navigate('Home')}
+                  style={{ width: 35, height: 40, left: 18 }}
+                  source={require("../assets/casinha.png")}
+                  />
+                </TouchableOpacity>
+              </View>
+              <View style={styles.suasDemandas}>
+                <TouchableOpacity onPress={() => navigation.navigate('Servico')}>
+
+                  <Text style={styles.botaoSeusServicos}>Seus Servicos</Text>
+
+                </TouchableOpacity>
+              </View>
+              <View style={styles.usuarioBaixo}>
+                <Image
+                  style={styles.iconeUsuario}
+                  source={require("../assets/usuario.png")}
+                />
+              </View>
+            </View> 
     </View>
   );
 }
@@ -315,12 +314,9 @@ const styles = StyleSheet.create({
     width: "9%",
     marginLeft:"2%"
   },
-  containerPosts:{
-    paddingButton: 50,
-    paddingTop:10,
-    paddingLeft:'1%',
-    height: "69%",
-    width: "100%",
+  containerPosts: {
+    paddingTop: 5,
+    flex: 11,
     justifyContent: "center",
     
   },
@@ -578,6 +574,7 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: "row",
     backgroundColor: "#A5C4FF",
+    borderRadius:10,
   },
   suasOfertas: {
     height: "100%",
@@ -604,13 +601,13 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
   },
-  botaoSuasPrestacoes: {
+  botaoSeustrabalhos: {
     width: "100%",
-    fontSize: 16.5,
+    fontSize: 16,
     borderRadius: 12,
-    paddingLeft: 5,
-    paddingRight: 5,
-    paddingTop: 14,
+    paddingLeft: 10,
+    paddingRight: 10,
+    paddingTop: 15,
     borderBottomColor: "#1A397B",
     borderBottomWidth: 2,
     backgroundGradient: {
@@ -623,13 +620,13 @@ const styles = StyleSheet.create({
     height: "73%",
     width: "70%",
   },
-  botaoSuasOfertas: {
+  botaoSeusServicos: {
     width: "100%",
-    fontSize: 16,
+    fontSize: 16.5,
     borderRadius: 12,
-    paddingLeft: 10,
-    paddingRight: 10,
-    paddingTop: 15,
+    paddingLeft: 5,
+    paddingRight: 5,
+    paddingTop: 14,
     borderBottomColor: "#1A397B",
     borderBottomWidth: 2,
     backgroundGradient: {
