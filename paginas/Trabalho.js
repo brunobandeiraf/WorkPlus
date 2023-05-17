@@ -101,7 +101,7 @@ export default function Trabalho({navigation}) {
           </View>
         </View>
         <View style={styles.viewMinhasOfertas}>
-            <Text style={styles.tituloMinhasOfertas}>Minhas Ofertas de Trabalho</Text> 
+            <Text style={styles.tituloMinhasOfertas}>Meus Trabalhos</Text> 
             <View style={styles.viewImagemEmpregador} >
             <Image
                 style={styles.fitaEmpregador}
@@ -147,7 +147,7 @@ export default function Trabalho({navigation}) {
               <View style={styles.viewLinha} >
               <Image
               style={styles.imagemLinha}
-              source={require("../assets/linha.png")}
+              source={require("../assets/linhaVertical.png")}
             />
               </View>
               <View style = {styles.postMeioDireita}> 
@@ -215,36 +215,37 @@ export default function Trabalho({navigation}) {
             </ScrollView>
           </SafeAreaView>
           <View style={styles.baixo}>
-              <View style={styles.suasOfertas}>
-                <TouchableOpacity
-                  onPress={() => navigation.navigate('Trabalho')}
-                >
-                  <Text style={styles.botaoMeustrabalhos}>Seus Trabalhos</Text>
-                </TouchableOpacity>
-              </View>
-              <View style={styles.casinha}>
-              <TouchableOpacity onPress={() => navigation.navigate('Home')}>
-                <Image
-                onPress={() => navigation.navigate('Home')}
-                  style={{ width: 35, height: 40, left: 18 }}
-                  source={require("../assets/casinha.png")}
-                  />
-                </TouchableOpacity>
-              </View>
-              <View style={styles.suasDemandas}>
-                <TouchableOpacity onPress={() => navigation.navigate('Servico')}>
+        <View style={styles.suasOfertas}>
+          <TouchableOpacity
+            onPress={() => navigation.navigate('Trabalho')}
+          >
+            <Text style={styles.botaoMeustrabalhos}>Meus Trabalhos</Text>
+          </TouchableOpacity>
+        </View>
+        <View style={styles.casinha}>
+        <TouchableOpacity onPress={() => navigation.navigate('Home')}>
+          <Image
+            style={{ width: 35, height: 40, left: 16.5 }}
+            source={require("../assets/casinha.png")}
+          />
+          </TouchableOpacity>
+        </View>
+        <View style={styles.suasDemandas}>
+          <TouchableOpacity onPress={() => navigation.navigate('Servico')}>
 
-                  <Text style={styles.botaoMeusServicos}>Seus Servicos</Text>
+            <Text style={styles.botaoMeusServicos}>Meus Servicos</Text>
 
-                </TouchableOpacity>
-              </View>
-              <View style={styles.usuarioBaixo}>
-                <Image
-                  style={styles.iconeUsuario}
-                  source={require("../assets/usuario.png")}
-                />
-              </View>
-            </View> 
+          </TouchableOpacity>
+        </View>
+        <View style={styles.usuarioBaixo}>
+        <TouchableOpacity onPress={() => navigation.navigate('Perfil')}>
+          <Image
+            style={{ height: 50, width: 50, right: 5}}
+            source={require("../assets/usuario.png")}
+          />
+          </TouchableOpacity>
+        </View>
+      </View>
     </View>
   );
 }
@@ -603,6 +604,7 @@ const styles = StyleSheet.create({
   },
   botaoMeustrabalhos: {
     width: "100%",
+    left: 18,
     fontSize: 16,
     borderRadius: 12,
     paddingLeft: 10,
@@ -634,10 +636,6 @@ const styles = StyleSheet.create({
       start: { x: 1, y: 2 },
       end: { x: 1, y: 1 },
     },
-  },
-  iconeUsuario: {
-    height: "82%",
-    width: "70%",
   },
   sombra: {
    

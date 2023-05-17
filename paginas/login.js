@@ -80,7 +80,7 @@ export default function Login({navigation}) {
 
             <View style={styles.viewButton}>
               <View style={styles.imgButton}>
-                <TouchableOpacity onPress={() => navigation.navigate('Servico')}>
+                <TouchableOpacity onPress={() => navigation.navigate('Home')}>
                   <Image
                     style={{ width: 100, height: 40, alignItems: "center"}}
                     source={require("../assets/BotaoEntrar.png")}
