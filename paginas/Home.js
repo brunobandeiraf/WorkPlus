@@ -109,10 +109,12 @@ export default function Home({navigation}) {
           <Text style={styles.titulo}>WorkPlus</Text>
         </View>
         <View style={styles.divLogout}>
+        <TouchableOpacity onPress={() => navigation.navigate('Login')}>
           <Image
-            style={styles.iconeLogout}
+            style={{ width: 58, height: 58}}
             source={require("../assets/logout.png")}
           />
+          </TouchableOpacity>
         </View>
       </View>
 
@@ -395,7 +397,7 @@ export default function Home({navigation}) {
           </TouchableOpacity>
         </View>
         <View style={styles.casinha}>
-        <TouchableOpacity onPress={() => navigation.navigate('Servico')}>
+        <TouchableOpacity onPress={() => navigation.navigate('Home')}>
           <Image
             style={{ width: 35, height: 40, left: 16.5 }}
             source={require("../assets/casinha.png")}
@@ -410,10 +412,12 @@ export default function Home({navigation}) {
           </TouchableOpacity>
         </View>
         <View style={styles.usuarioBaixo}>
+        <TouchableOpacity onPress={() => navigation.navigate('Perfil')}>
           <Image
-            style={styles.iconeUsuario}
+            style={{ height: 50, width: 50, right: 5}}
             source={require("../assets/usuario.png")}
           />
+          </TouchableOpacity>
         </View>
       </View>
 
@@ -786,9 +790,5 @@ const styles = StyleSheet.create({
       start: { x: 1, y: 2 },
       end: { x: 1, y: 1 },
     },
-  },
-  iconeUsuario: {
-    height: "82%",
-    width: "70%",
   },
 });

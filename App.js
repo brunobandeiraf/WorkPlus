@@ -8,8 +8,10 @@ import Trabalho from './paginas/Trabalho';
 import Login from './paginas/login';
 import Cadastro from './paginas/cadastro';
 import EsqueciSenha from './paginas/ForgotPasswordScreen';
-const Stack = createStackNavigator()
+import Perfil from './paginas/Perfil';
+import Editar from './paginas/EditarPerfil';
 
+const Stack = createStackNavigator()
 
 export default function App(){
 return(
@@ -21,6 +23,7 @@ return(
       <Stack.Screen name="Home" component={Home} options={{ headerShown: false}} />
       <Stack.Screen name="Servico" component={Servico} options={{ headerShown: false}} />
       <Stack.Screen name="Trabalho" component={Trabalho} options={{ headerShown: false}} />
+      <Stack.Screen name="Perfil" component={Perfil} options={{ headerShown: false}} />
     </Stack.Navigator>
   </NavigationContainer>
 )}

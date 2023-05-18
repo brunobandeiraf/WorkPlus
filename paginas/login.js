@@ -79,19 +79,15 @@ export default function Login({navigation}) {
           <View>
 
             <View style={styles.viewButton}>
-
-              <TouchableOpacity
-                style={styles.button}
-                onPress={() => navigation.navigate('Home')}
-                //onPress={handleLogin}
-                >
-                <Text style={styles.buttonText}>Login</Text>
-                <Image
-                  style={styles.engrenagem}
-                  source={require('../assets/engrenagem.png')}
+              <View style={styles.imgButton}>
+                <TouchableOpacity onPress={() => navigation.navigate('Home')}>
+                  <Image
+                    style={{ width: 100, height: 40, alignItems: "center"}}
+                    source={require("../assets/BotaoEntrar.png")}
                   />
-              </TouchableOpacity>
-
+                </TouchableOpacity>
+                
+              </View>
             </View>
 
             <TouchableOpacity
@@ -128,18 +124,22 @@ const styles = StyleSheet.create({
     marginTop: 20,
     paddingHorizontal: 10,
   },
-  button: {
-    flexDirection:'row',
-    backgroundColor: "blue",
-    borderRadius: 5,
-    padding: 10,
+  viewButton: {
+    height: "40%",
+    width: "10%",
+    backgroundColor: "red",
     marginTop: 20,
-    width: '60%',
   },
-  buttonText: {
+  imgButton: {
+    height: "40%",
+    width: "10%",
+    backgroundColor:'black'
+  },
+  buttonTextCadastro: {
     color: "white",
     fontSize: 16,
     textAlign: "center",
+    
   },
   forgotPasswordButton: {
     marginTop: 20,
@@ -151,16 +151,9 @@ const styles = StyleSheet.create({
     resizeMode: 'contain',
     marginBottom: 20,
   },
-  viewButton: {
-    alignItems: "center",
-    justifyContent: "center",
-    
-    
-  },
   engrenagem: {
-    marginLeft: '8%',
-    width: '30%',
-    height: '100%',
+    width: '20%',
+    height: '90%',
   },
   inputEmail:{
     height: 45,
