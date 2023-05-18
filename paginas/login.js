@@ -94,9 +94,6 @@ export default function Login({navigation}) {
 
             </View>
 
-              
-
-
             <TouchableOpacity
               style={styles.forgotPasswordButton}
               onPress={handleForgotPassword}

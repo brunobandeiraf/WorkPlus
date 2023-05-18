@@ -1,3 +1,11 @@
+Instalar node_modules
+npm i
+
+Instalar biblioteca Stack
+npm install @react-navigation/stack
+
+
+
 > Why do I have a folder named ".expo" in my project?
 The ".expo" folder is created when an Expo project is started using "expo start" command.
 > What do the files contain?
