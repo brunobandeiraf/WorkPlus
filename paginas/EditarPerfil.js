@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity, Image, StyleSheet } from 'react-native';
-import * as ImagePicker from 'expo-image-picker';
 
-export default function Editar({navigation}) {
+export default function EditarPerfil({navigation}) {
   const [imageUri, setImageUri] = useState('https://via.placeholder.com/150');
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');

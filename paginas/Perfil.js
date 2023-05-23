@@ -110,15 +110,15 @@ export default function Perfil({navigation}) {
         <View style = {styles.FotoUsuario}>
 
         </View>
-        <View style = {styles.viewBotaoEditar}>
-        <TouchableOpacity onPress={() => navigation.navigate('EditarPerfil')}>
-        <Image
-            style = {styles.BotaoEditar}
-            source={require("../assets/botaoEditar.png")}
-           
-          />
-           </TouchableOpacity>
-           </View>
+          <View style = {styles.viewBotaoEditar}>
+            <TouchableOpacity onPress={() => navigation.navigate('EditarPerfil')}>
+              <Image
+                style = {styles.BotaoEditar}
+                source={require("../assets/botaoEditar.png")}
+            
+              />
+            </TouchableOpacity>
+          </View>
         </View>
       
 
@@ -657,10 +657,10 @@ export default function Perfil({navigation}) {
           </TouchableOpacity>
         </View>
         <View style={styles.usuarioBaixo}>
-        <TouchableOpacity onPress={() => navigation.navigate('Home')}>
+        <TouchableOpacity onPress={() => navigation.navigate('TelaPremium')}>
           <Image
             style={{ height: 28, width: 40, right: 5}}
-            source={require("../assets/Menu.png")}
+            source={require("../assets/menu.png")}
           />
           </TouchableOpacity>
         </View>

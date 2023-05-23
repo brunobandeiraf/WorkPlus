@@ -2,9 +2,9 @@ import React, { useState, useEffect, useRef } from "react";
 import {Text, Animated,View,StyleSheet,Image,TextInput,SafeAreaView,ScrollView,TouchableOpacity, Linking
 } from "react-native";
 
-
 const whats = require('../assets/whats.png');
 const url = 'https://api.whatsapp.com/send?phone=5551984574910&text';
+
 export default function Home({navigation}) {
   const FadeInView = (props) => {
     const fadeAnim = useRef(new Animated.Value(0)).current;
@@ -109,10 +109,10 @@ export default function Home({navigation}) {
           <Text style={styles.titulo}>WorkPlus</Text>
         </View>
         <View style={styles.divLogout}>
-        <TouchableOpacity onPress={() => navigation.navigate('Login')}>
+        <TouchableOpacity onPress={() => navigation.navigate('TelaRecomendacao')}>
           <Image
-            style={{ width: 58, height: 58}}
-            source={require("../assets/logout.png")}
+            style={{ width: 50, height: 50, right: 10}}
+            source={require("../assets/atencao.png")}
           />
           </TouchableOpacity>
         </View>
