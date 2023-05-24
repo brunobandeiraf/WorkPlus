@@ -1,178 +1,165 @@
-import React, { useState } from "react";
-import {
-  StyleSheet,
-  Text,
-  TextInput,
-  TouchableOpacity,
-  View,
-  Image,
-} from "react-native";
+import React, { useState } from 'react';
+import { View, Text, TextInput, TouchableOpacity, Image } from 'react-native';
 
-export default function Login({navigation}) {
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
-  const [showForgotPassword, setShowForgotPassword] = useState(false);
-  const [email, setEmail] = useState("");
+const LoginScreen = ({ navigation }) => {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
 
   const handleLogin = () => {
-    // Adicionar lógica de login de usuário aqui
-    console.log("Login pressed");
-  };
-
-  const handleForgotPassword = () => {
-    // Adicionar lógica de recuperação de senha aqui
-    setShowForgotPassword(true);
-  };
-
-  const handleResetPassword = () => {
-    // Adicionar lógica de reset de senha aqui
-    setShowForgotPassword(false);
+    // Lógica para autenticar o usuário com o email e senha
+    // Você pode adicionar sua lógica aqui
   };
 
   return (
     <View style={styles.container}>
-
-      <Image
-        style={styles.logo}
-        source={require('../assets/logo.png')}
-      />
-
-      <Text style={{ fontSize: 50 }}>Work Plus</Text>
-
+      <View style={styles.logoContainer}>
+        <Image
+          style={styles.logo}
+          source={require('../assets/logo.png')}
+        />
+      </View>
+      <View style={styles.titleContainer}>
+        <Text style={styles.title}>Work Plus</Text>
+      </View>
       <View style={styles.inputContainer}>
-
         <TextInput
           style={styles.input}
-          placeholder="Nome de usuário"
-          value={username}
-          onChangeText={setUsername}
+          placeholder="Email"
+          onChangeText={(text) => setEmail(text)}
+          value={email}
         />
-
+        <Image
+          style={styles.inputIcon}
+          source={require('../assets/logo.png')}
+        />
+      </View>
+      <View style={styles.inputContainer}>
         <TextInput
           style={styles.input}
           placeholder="Senha"
           secureTextEntry={true}
+          onChangeText={(text) => setPassword(text)}
           value={password}
-          onChangeText={setPassword}
         />
-
-        {showForgotPassword ? (
-          <View style={styles.viewInputEmail}>
-            <Text style={{ marginTop: 20 }}>Insira seu e-mail abaixo:</Text>
-
-            <TextInput
-              style={styles.inputEmail}
-              placeholder="E-mail"
-              keyboardType="email-address"
-              value={email}
-              onChangeText={setEmail}
-            />
-
-            <TouchableOpacity
-              style={styles.buttonResetPassword}
-              onPress={handleResetPassword}
-            >
-              <Text style={styles.buttonText}>Resetar senha</Text>
-            </TouchableOpacity>
-          </View>
-        ) : (
-          <View>
-
-            <View style={styles.viewButton}>
-              <View style={styles.imgButton}>
-                <TouchableOpacity onPress={() => navigation.navigate('Home')}>
-                  <Image
-                    style={{ width: 100, height: 40, alignItems: "center"}}
-                    source={require("../assets/BotaoEntrar.png")}
-                  />
-                </TouchableOpacity>
-                
-              </View>
-            </View>
-
-            <TouchableOpacity
-              style={styles.forgotPasswordButton}
-              onPress={handleForgotPassword}
-            >
-              <Text style={{ color: "blue", textDecorationLine: "underline" }}>Esqueci minha senha</Text>
-            </TouchableOpacity>
-          </View>
-        )}
+        <Image
+          style={styles.inputIcon}
+          source={require('../assets/logo.png')}
+        />
+      </View>
+      <View style={styles.buttonContainer}>
+        <TouchableOpacity style={styles.button} onPress={handleLogin}>
+          <Text style={styles.buttonText}>Entrar</Text>
+          <Image
+            style={styles.buttonIcon}
+            source={require('../assets/logo.png')}
+          />
+        </TouchableOpacity>
+      </View>
+      <View style={styles.buttonContainer}>
+        <TouchableOpacity
+          style={[styles.button, styles.transparentButton]}
+          onPress={() => navigation.navigate('Cadastro')}
+        >
+          <Text style={[styles.buttonText, styles.transparentButtonText]}>Cadastre-se</Text>
+          <Image
+            style={styles.buttonIcon}
+            source={require('../assets/logo.png')}
+          />
+        </TouchableOpacity>
+      </View>
+      <View style={styles.buttonContainer}>
+        <TouchableOpacity
+          style={[styles.button, styles.transparentButton]}
+          onPress={() => navigation.navigate('EsqueciSenha')}
+        >
+          <Text style={[styles.buttonText, styles.transparentButtonText]}>Esqueci minha senha</Text>
+          <Image
+            style={styles.buttonIcon}
+            source={require('../assets/logo.png')}
+          />
+        </TouchableOpacity>
       </View>
     </View>
   );
-}
+};
 
-const styles = StyleSheet.create({
+const styles = {
   container: {
     flex: 1,
-    alignItems: "center",
-    justifyContent: "center",
-    backgroundColor: "#F5FCFF",
+    alignItems: 'center',
+    justifyContent: 'center',
   },
-  inputContainer: {
-    alignItems: "center",
-    justifyContent: "center",
-    width: "80%",
-
-  },
-  input: {
-    height: 45,
+  logoContainer: {
     width: '80%',
-    borderColor: "gray",
-    borderWidth: 1,
-    marginTop: 20,
-    paddingHorizontal: 10,
-  },
-  viewButton: {
-    height: "40%",
-    width: "10%",
-    backgroundColor: "red",
-    marginTop: 20,
-  },
-  imgButton: {
-    height: "40%",
-    width: "10%",
-    backgroundColor:'black'
-  },
-  buttonTextCadastro: {
-    color: "white",
-    fontSize: 16,
-    textAlign: "center",
-    
-  },
-  forgotPasswordButton: {
-    marginTop: 20,
-    alignItems: "center"
+    height: '35%',
+    marginBottom: '5%',
   },
   logo: {
-    width: '40%',
-    height: '20%',
-    resizeMode: 'contain',
-    marginBottom: 20,
+    flex: 1,
+    width: '100%',
+    height: '100%',
   },
-  engrenagem: {
-    width: '20%',
-    height: '90%',
+  titleContainer: {
+    marginBottom: '5%',
   },
-  inputEmail:{
-    height: 45,
+  title: {
+    fontSize: 50,
+    fontWeight: 'bold',
+  },
+  inputContainer: {
     width: '80%',
-    borderColor: "gray",
+    marginBottom: '2%',
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  input: {
+    flex: 1,
+    height: 40,
     borderWidth: 1,
-    marginTop: 20,
-    paddingHorizontal: 10,
-  },
-  viewInputEmail:{
-    alignItems: "center",
-    justifyContent: "center",
-    width: "100%",
-  },
-  buttonResetPassword:{
-    backgroundColor: "blue",
+    borderColor: 'gray',
     borderRadius: 5,
-    padding: 10,
-    marginTop: 20,
-    width: '45%',
-  }
-});
+    paddingHorizontal: '2%',
+  },
+  inputIcon: {
+    width: 20,
+    height: 20,
+    position: 'absolute',
+    right: 10,
+    top: '50%',
+    marginTop: -10,
+  },
+  buttonContainer: {
+    width: '80%',
+    marginBottom: '2%',
+    alignItems: 'center',
+  },
+  button: {
+    backgroundColor: 'blue',
+    paddingVertical: 8,
+    paddingHorizontal: 16,
+    borderRadius: 5,
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  buttonText: {
+    color: 'white',
+    fontSize: 16,
+    fontWeight: 'bold',
+    textAlign: 'center',
+    marginRight: '2%',
+  },
+  buttonIcon: {
+    width: 20,
+    height: 20,
+  },
+  transparentButton: {
+    backgroundColor: 'transparent',
+    borderWidth: 1,
+    borderColor: 'blue',
+  },
+  transparentButtonText: {
+    color: 'blue',
+  },
+};
+
+export default LoginScreen;

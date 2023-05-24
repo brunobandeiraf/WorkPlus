@@ -8,7 +8,7 @@ import {
   Image,
 } from "react-native";
 
-export default function Cadastro({navigation}) {
+export default function Cadastro({ navigation }) {
   const [nomeCompleto, setNomeCompleto] = useState("");
   const [email, setEmail] = useState("");
   const [cpf, setCpf] = useState("");
@@ -26,96 +26,90 @@ export default function Cadastro({navigation}) {
 
   return (
     <View style={styles.container}>
-
       <View style={styles.topo}>
-
         <View style={styles.viewImage}>
-
           <Image style={styles.logo} source={require('../assets/logo.png')} />
-
         </View>
-
         <View style={styles.viewTextoWorkPlus}>
-
           <Text style={{ fontSize: 50 }}>Work Plus</Text>
-
         </View>
-
       </View>
-
       <View style={styles.viewInput}>
-
-        <TextInput
-          style={styles.input}
-          placeholder="Nome completo"
-          value={nomeCompleto}
-          onChangeText={setNomeCompleto}
-        />
-
-        <TextInput
-          style={styles.input}
-          placeholder="Nome de usuário"
-          value={username}
-          onChangeText={setUsername}
-        />
-
-        <TextInput
-          style={styles.input}
-          placeholder="CPF"
-          value={cpf}
-          onChangeText={setCpf}
-        />
-
-        <TextInput
-          style={styles.input}
-          placeholder="E-mail"
-          keyboardType="email-address"
-          value={email}
-          onChangeText={setEmail}
-        />
-
-        <TextInput
-          style={styles.input}
-          placeholder="Senha"
-          secureTextEntry={true}
-          value={password}
-          onChangeText={setPassword}
-        />
-
-        <TextInput
-          style={styles.input}
-          placeholder="Confirmar senha"
-          secureTextEntry={true}
-          value={confirmPassword}
-          onChangeText={setConfirmPassword}
-        />
+        <View style={styles.inputContainer}>
+          <TextInput
+            style={styles.inputField}
+            placeholder="Nome completo"
+            value={nomeCompleto}
+            onChangeText={setNomeCompleto}
+          />
+          <Image style={styles.inputLogo} source={require('../assets/logo.png')} />
+        </View>
+        <View style={styles.inputContainer}>
+          <TextInput
+            style={styles.inputField}
+            placeholder="Nome de usuário"
+            value={username}
+            onChangeText={setUsername}
+          />
+          <Image style={styles.inputLogo} source={require('../assets/logo.png')} />
+        </View>
+        <View style={styles.inputContainer}>
+          <TextInput
+            style={styles.inputField}
+            placeholder="CPF"
+            value={cpf}
+            onChangeText={setCpf}
+          />
+          <Image style={styles.inputLogo} source={require('../assets/logo.png')} />
+        </View>
+        <View style={styles.inputContainer}>
+          <TextInput
+            style={styles.inputField}
+            placeholder="E-mail"
+            keyboardType="email-address"
+            value={email}
+            onChangeText={setEmail}
+          />
+          <Image style={styles.inputLogo} source={require('../assets/logo.png')} />
+        </View>
+        <View style={styles.inputContainer}>
+          <TextInput
+            style={styles.inputField}
+            placeholder="Senha"
+            secureTextEntry={true}
+            value={password}
+            onChangeText={setPassword}
+          />
+          <Image style={styles.inputLogo} source={require('../assets/logo.png')} />
+        </View>
+        <View style={styles.inputContainer}>
+          <TextInput
+            style={styles.inputField}
+            placeholder="Confirmar senha"
+            secureTextEntry={true}
+            value={confirmPassword}
+            onChangeText={setConfirmPassword}
+          />
+          <Image style={styles.inputLogo} source={require('../assets/logo.png')} />
+        </View>
       </View>
       <View style={styles.buttonContainer}>
-
         <View style={styles.viewCadatrar}>
-          <TouchableOpacity
-            style={styles.buttonCadastrar}
-            onPress={handleSignUp}
-          >
+          <TouchableOpacity style={styles.buttonCadastrar} onPress={handleSignUp}>
             <Text style={styles.buttonTextCadastrar}>Cadastrar</Text>
-            <Image
-              style={styles.engrenagem}
-              source={require('../assets/engrenagem.png')}
-            />
+            <Image style={styles.buttonIcon} source={require('../assets/logo.png')} />
           </TouchableOpacity>
         </View>
         <View style={styles.viewLogin}>
-
           <TouchableOpacity
             style={styles.buttonLogin}
             onPress={() => navigation.navigate('Home')}
           >
             <Text style={styles.buttonTextLogin}>Login</Text>
-
           </TouchableOpacity>
         </View>
       </View>
-    </View >
+    </View>
   );
 }
 
@@ -125,18 +119,16 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     backgroundColor: "#F5FCFF",
     width: "100%",
-    height: '100%',
+    height: "100%",
   },
   topo: {
     width: "100%",
-    height: '20%',
+    height: "20%",
   },
   viewInput: {
     width: "100%",
-    height: '60%',
-    paddingTop: '6%',
-    width: "100%",
-    height: '50%',
+    height: "50%",
+    paddingTop: "6%",
     alignItems: "center",
     justifyContent: "center",
   },
@@ -144,46 +136,51 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     width: "100%",
-    height: '20%',
+    height: "20%",
   },
   viewImage: {
     width: "100%",
-    height: '60%',
+    height: "60%",
   },
   logo: {
-    width: '100%',
-    height: '100%',
-    resizeMode: 'contain',
+    width: "100%",
+    height: "100%",
+    resizeMode: "contain",
     marginBottom: 20,
   },
-  viewTextoWorkPlus: { 
+  viewTextoWorkPlus: {
     alignItems: "center",
     justifyContent: "center",
     width: "100%",
-    height: '40%',
+    height: "40%",
   },
-  input: {
-    marginBottom: '6%',
+  inputContainer: {
+    flexDirection: "row",
+    alignItems: "center",
+    marginBottom: "6%",
     height: "10%",
     width: "85%",
     borderRadius: 12,
     paddingLeft: 10,
     paddingRight: 10,
-    paddingTop: 15,
     borderBottomColor: "#1A397B",
     borderBottomWidth: 2,
-    backgroundGradient: {
-      colors: ["black", "#ffffff"],
-      start: { x: 1, y: 2 },
-      end: { x: 1, y: 1 },
-    },
+  },
+  inputField: {
+    flex: 1,
+  },
+  inputLogo: {
+    width: 20,
+    height: 20,
+    resizeMode: "contain",
+    marginRight: 10,
   },
   viewCadatrar: {
     alignItems: "center",
     justifyContent: "center",
-    flexDirection: 'row',
+    flexDirection: "row",
     width: "50%",
-    height: '30%',
+    height: "30%",
     marginTop: 20,
   },
   buttonTextCadastrar: {
@@ -191,17 +188,18 @@ const styles = StyleSheet.create({
     fontSize: 16,
     textAlign: "center",
   },
-  engrenagem: {
-    marginLeft: '8%',
-    width: '23%',
-    height: '100%',
+  buttonIcon: {
+    width: 20,
+    height: 20,
+    resizeMode: "contain",
+    marginLeft: 10,
   },
   viewLogin: {
     alignItems: "center",
     justifyContent: "center",
-    flexDirection: 'row',
+    flexDirection: "row",
     width: "100%",
-    height: '30%',
+    height: "30%",
     marginTop: 20,
   },
   buttonTextLogin: {
@@ -212,20 +210,20 @@ const styles = StyleSheet.create({
   buttonLogin: {
     alignItems: "center",
     justifyContent: "center",
-    flexDirection: 'row',
+    flexDirection: "row",
     borderRadius: 5,
     padding: 10,
     width: "20%",
-    height: '100%',
+    height: "100%",
   },
   buttonCadastrar: {
     width: "100%",
-    height: '100%',
-    backgroundColor: "blue",
+    height: "100%",
+    backgroundColor: "#007bff",
     alignItems: "center",
     justifyContent: "center",
-    flexDirection: 'row',
+    flexDirection: "row",
+    paddingVertical: 10,
+    paddingHorizontal: 20,
   },
 });
-
-
