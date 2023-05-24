@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import {Text, Animated,View,StyleSheet,Image,TextInput,SafeAreaView,ScrollView,TouchableOpacity, Linking
 } from "react-native";
-
+{/* <text> */}
 export default function TelaPremium({navigation}){
 return(
 <View style = {styles.container}>
