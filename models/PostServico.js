@@ -23,7 +23,7 @@ const PostServico = connection.define(
             type: Sequelize.STRING,
             allowNull: false,
         },
-        endereco: {
+        regiao: {
             type: Sequelize.STRING,
             allowNull: false,
         },
