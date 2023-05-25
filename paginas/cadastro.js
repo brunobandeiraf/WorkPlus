@@ -219,7 +219,7 @@ const styles = StyleSheet.create({
   buttonCadastrar: {
     width: "100%",
     height: "100%",
-    backgroundColor: "#007bff",
+    backgroundColor: "blue",
     alignItems: "center",
     justifyContent: "center",
     flexDirection: "row",
