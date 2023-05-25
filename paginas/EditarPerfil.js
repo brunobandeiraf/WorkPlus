@@ -36,7 +36,7 @@ export default function EditarPerfil({navigation}) {
         <View style={styles.divInputs}>
           
           <View style={styles.divNomeUsuario}>
-            <Text style={styles.TituloNomeInfo}>Nome de Usuario</Text>
+            <Text style={styles.TituloNomeInfo}>Nome de Usuário</Text>
             <TextInput style={styles.TextInput}></TextInput>
           </View>
 
@@ -46,7 +46,7 @@ export default function EditarPerfil({navigation}) {
           </View>
 
           <View style={styles.divNomeUsuario}>
-            <Text style={styles.TituloNomeInfo}>Endereco</Text>
+            <Text style={styles.TituloNomeInfo}>Endereço</Text>
             <TextInput style={styles.TextInput}></TextInput>
           </View>
 
