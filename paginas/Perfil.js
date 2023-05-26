@@ -685,7 +685,7 @@ const styles = StyleSheet.create({
   },
 
   TopFotoBotao:{
-    paddingLeft:'34%',
+    paddingLeft:'31%',
     flexDirection:'row',
     height: "75%",
     width: "100%",
@@ -705,8 +705,8 @@ const styles = StyleSheet.create({
   FotoUsuario:{
     borderRadius: 100,
     height: "100%",
-    width: "49.5%",
-    backgroundColor:'#B6BFD0'
+    width: "53%",
+    backgroundColor:'#B6BFD0',
     
    },
    BotaoEditar:{
