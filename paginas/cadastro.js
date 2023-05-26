@@ -42,7 +42,7 @@ export default function Cadastro({ navigation }) {
             value={nomeCompleto}
             onChangeText={setNomeCompleto}
           />
-          <Image style={styles.inputLogo} source={require('../assets/logo.png')} />
+          <Image style={styles.inputLogo} source={require('../assets/usuario.png')} />
         </View>
         <View style={styles.inputContainer}>
           <TextInput
@@ -51,7 +51,7 @@ export default function Cadastro({ navigation }) {
             value={username}
             onChangeText={setUsername}
           />
-          <Image style={styles.inputLogo} source={require('../assets/logo.png')} />
+          <Image style={styles.inputLogo} source={require('../assets/usuario.png')} />
         </View>
         <View style={styles.inputContainer}>
           <TextInput
@@ -60,7 +60,7 @@ export default function Cadastro({ navigation }) {
             value={cpf}
             onChangeText={setCpf}
           />
-          <Image style={styles.inputLogo} source={require('../assets/logo.png')} />
+          <Image style={styles.inputLogo} source={require('../assets/usuario.png')} />
         </View>
         <View style={styles.inputContainer}>
           <TextInput
@@ -70,7 +70,7 @@ export default function Cadastro({ navigation }) {
             value={email}
             onChangeText={setEmail}
           />
-          <Image style={styles.inputLogo} source={require('../assets/logo.png')} />
+          <Image style={styles.inputLogo} source={require('../assets/Carta.png')} />
         </View>
         <View style={styles.inputContainer}>
           <TextInput
@@ -80,7 +80,7 @@ export default function Cadastro({ navigation }) {
             value={password}
             onChangeText={setPassword}
           />
-          <Image style={styles.inputLogo} source={require('../assets/logo.png')} />
+          <Image style={styles.inputLogo} source={require('../assets/Cadeado.png')} />
         </View>
         <View style={styles.inputContainer}>
           <TextInput
@@ -90,7 +90,7 @@ export default function Cadastro({ navigation }) {
             value={confirmPassword}
             onChangeText={setConfirmPassword}
           />
-          <Image style={styles.inputLogo} source={require('../assets/logo.png')} />
+          <Image style={styles.inputLogo} source={require('../assets/Cadeado.png')} />
         </View>
       </View>
       <View style={styles.buttonContainer}>

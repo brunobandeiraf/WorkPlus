@@ -1,14 +1,10 @@
 import React, { useState } from "react";
 import { View, Text, TextInput, TouchableOpacity, Image } from "react-native";
 
-const LoginScreen = ({ navigation }) => {
+
+export default function Login ({ navigation }){
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
-  const handleLogin = () => {
-    // Lógica para autenticar o usuário com o email e senha
-    // Você pode adicionar sua lógica aqui
-  };
 
   return (
     <View style={styles.container}>
@@ -25,7 +21,7 @@ const LoginScreen = ({ navigation }) => {
           onChangeText={(text) => setEmail(text)}
           value={email}
         />
-        <Image style={styles.inputIcon} source={require("../assets/logo.png")} />
+        <Image style={styles.inputIcon} source={require("../assets/usuario.png")} />
       </View>
       <View style={styles.inputContainer}>
         <TextInput
@@ -35,12 +31,12 @@ const LoginScreen = ({ navigation }) => {
           onChangeText={(text) => setPassword(text)}
           value={password}
         />
-        <Image style={styles.inputIcon} source={require("../assets/logo.png")} />
+        <Image style={styles.inputIcon} source={require("../assets/Cadeado.png")} />
       </View>
       <View style={styles.buttonContainer}>
-        <TouchableOpacity style={styles.button} onPress={handleLogin}>
+        <TouchableOpacity style={styles.button}           
+        onPress={() => navigation.navigate("Home")}>
           <Text style={styles.buttonText}>Entrar</Text>
-          <Image style={styles.buttonIcon} source={require("../assets/logo.png")} />
         </TouchableOpacity>
       </View>
       <View style={styles.buttonContainer}>
@@ -49,7 +45,7 @@ const LoginScreen = ({ navigation }) => {
           onPress={() => navigation.navigate("Cadastro")}
         >
           <Text style={[styles.buttonText, styles.transparentButtonText]}>Cadastre-se</Text>
-          <Image style={styles.buttonIcon} source={require("../assets/logo.png")} />
+          <Image style={styles.buttonIcon} source={require("../assets/engrenagem.png")} />
         </TouchableOpacity>
       </View>
       <View style={styles.buttonContainer}>
@@ -58,7 +54,6 @@ const LoginScreen = ({ navigation }) => {
           onPress={() => navigation.navigate("EsqueciSenha")}
         >
           <Text style={[styles.buttonText, styles.transparentButtonText]}>Esqueci minha senha</Text>
-          <Image style={styles.buttonIcon} source={require("../assets/logo.png")} />
         </TouchableOpacity>
       </View>
     </View>
@@ -72,8 +67,8 @@ const styles = {
     justifyContent: "center",
   },
   logoContainer: {
-    width: "80%",
-    height: "35%",
+    width: "50%",
+    height: "25%",
     marginBottom: "5%",
   },
   logo: {
@@ -114,7 +109,7 @@ const styles = {
   button: {
     backgroundColor: "blue",
     paddingVertical: 8,
-    paddingHorizontal: 16,
+    paddingHorizontal: 10,
     borderRadius: 5,
     flexDirection: "row",
     alignItems: "center",
@@ -138,4 +133,3 @@ const styles = {
   },
 };
 
-export default LoginScreen;

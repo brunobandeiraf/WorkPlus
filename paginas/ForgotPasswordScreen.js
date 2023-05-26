@@ -11,10 +11,6 @@ import {
 export default function EsqueciSenha({ navigation }) {
   const [email, setEmail] = useState("");
 
-  const handleResetPassword = () => {
-    // Implemente o código para redefinir a senha aqui
-  };
-
   return (
     <View style={styles.container}>
       <View style={styles.topo}>
@@ -48,7 +44,7 @@ export default function EsqueciSenha({ navigation }) {
       <View style={styles.viewButtonReset}>
         <TouchableOpacity
           style={styles.buttonResetPassword}
-          onPress={handleResetPassword}
+          onPress={() => navigation.navigate("Login")}
         >
           <Text style={styles.buttonText}>Enviar</Text>
         </TouchableOpacity>

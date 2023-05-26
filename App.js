@@ -21,7 +21,7 @@ return(
     <Stack.Navigator>
       <Stack.Screen name="Login" component={Login} options={{ headerShown: false}} />
       <Stack.Screen name="Cadastro" component={Cadastro} options={{ headerShown: false}} />
-      <Stack.Screen name="Esqueci Senha" component={EsqueciSenha} options={{ headerShown: false}} />
+      <Stack.Screen name="EsqueciSenha" component={EsqueciSenha} options={{ headerShown: false}} />
       <Stack.Screen name="Home" component={Home} options={{ headerShown: false}} />
       <Stack.Screen name="TelaRecomendacao" component={TelaRecomendacao} options={{ headerShown: false}} />
       <Stack.Screen name="Servico" component={Servico} options={{ headerShown: false}} />
