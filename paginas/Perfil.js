@@ -13,7 +13,7 @@ export default function Perfil({navigation}) {
         useNativeDriver: true,
       }).start();
     }, [fadeAnim]);
-  
+  //sla
     return (
       <Animated.View
         style={{
