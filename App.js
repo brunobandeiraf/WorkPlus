@@ -8,7 +8,9 @@ import EsqueciSenha from './paginas/ForgotPasswordScreen';
 import Home from './paginas/Home';
 import TelaRecomendacao from './paginas/TelaRecomendacao';
 import Servico from './paginas/Servico';
+import TelaCriarServico from './paginas/TelaCriarServico';
 import Trabalho from './paginas/Trabalho';
+import TelaCriarTrabalho from './paginas/TelaCriarTrabalho';
 import Perfil from './paginas/Perfil';
 import EditarPerfil from './paginas/EditarPerfil';
 import TelaPremium from './paginas/TelaPremium';
@@ -25,7 +27,9 @@ return(
       <Stack.Screen name="Home" component={Home} options={{ headerShown: false}} />
       <Stack.Screen name="TelaRecomendacao" component={TelaRecomendacao} options={{ headerShown: false}} />
       <Stack.Screen name="Servico" component={Servico} options={{ headerShown: false}} />
+      <Stack.Screen name="TelaCriarServico" component={TelaCriarServico} options={{ headerShown: false}} />
       <Stack.Screen name="Trabalho" component={Trabalho} options={{ headerShown: false}} />
+      <Stack.Screen name="TelaCriarTrabalho" component={TelaCriarTrabalho} options={{ headerShown: false}} />
       <Stack.Screen name="Perfil" component={Perfil} options={{ headerShown: false}} />
       <Stack.Screen name="EditarPerfil" component={EditarPerfil} options={{ headerShown: false}} />
       <Stack.Screen name="TelaPremium" component={TelaPremium} options={{ headerShown: false}} />

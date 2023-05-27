@@ -206,10 +206,14 @@ export default function Trabalho({navigation}) {
             </View>
             </View>
             <View style = {styles.viewCriarPosts}>
-                <Image
-                  style={styles.mais}
+              <TouchableOpacity 
+                onPress={() => navigation.navigate('TelaCriarTrabalho')}
+              >
+              <Image
+                  style={{ width: 35, height: 35 }}
                   source={require("../assets/mais.png")}
-                  />   
+                />
+              </TouchableOpacity>   
             </View>
 
             </ScrollView>
@@ -566,11 +570,7 @@ const styles = StyleSheet.create({
     paddingLeft:'2%',
     height: 55,
     width: "100%",
-  },
-  mais:{
-    width: "12%",
-    height: "87%",
-  },
+  }, 
   baixo: {
     flex: 1,
     flexDirection: "row",

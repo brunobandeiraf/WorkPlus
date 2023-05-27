@@ -45,7 +45,7 @@ export default function Login ({ navigation }){
           onPress={() => navigation.navigate("Cadastro")}
         >
           <Text style={[styles.buttonText, styles.transparentButtonText]}>Cadastre-se</Text>
-          <Image style={styles.buttonIcon} source={require("../assets/engrenagem.png")} />
+          <Image style={styles.buttonIcon} source={require("../assets/duplaEngrenagem.png")} />
         </TouchableOpacity>
       </View>
       <View style={styles.buttonContainer}>
