@@ -1,9 +1,7 @@
 import React,{useState, useEffect, useRef } from 'react';
 import { Text,Animated, View, StyleSheet,Image, TextInput, SafeAreaView, ScrollView, TouchableOpacity} from 'react-native';
-/*
-import componenteLogo from './src/'
-import Posts from './src/Componentes/Posts';
-*/
+
+
 export default function Trabalho({navigation}) {
   const FadeInView = (props) => {
     const fadeAnim = useRef(new Animated.Value(0)).current;
@@ -218,7 +216,8 @@ export default function Trabalho({navigation}) {
 
             </ScrollView>
           </SafeAreaView>
-          <View style={styles.baixo}>
+          
+      <View style={styles.baixo}>
         <View style={styles.suasOfertas}>
           <TouchableOpacity
             onPress={() => navigation.navigate('Trabalho')}

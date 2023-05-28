@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useRef } from "react";
 import {Text, Animated,KeyboardAvoidingView,View,StyleSheet,Image,TextInput,SafeAreaView,ScrollView,TouchableOpacity, Linking
 } from "react-native";
-import DescricaoComponent from "../src/componente/ComponenteTextoDescricao";
-import CustomCheckbox from '../src/componente/ComponenteEscolhaPeriodo.js';
+import DescricaoComponent from "../componente/ComponenteTextoDescricao";
+import CustomCheckbox from '../componente/ComponenteEscolhaPeriodo.js';
 
 
 export default function TelaCriarTrabalho({navigation}){

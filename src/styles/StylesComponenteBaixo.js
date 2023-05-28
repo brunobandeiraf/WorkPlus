@@ -1,48 +1,8 @@
 import React,{useState} from 'react';
 import { Text, View, StyleSheet,Image, TextInput, SafeAreaView, ScrollView, TouchableOpacity} from 'react-native';
+  
 
-
-export default function ComponenteBaixo({navigation}) {
-  const [text, setText] = useState('');
-  return (
-
-    <View style={styles.baixo}>
-        <View style={styles.suasOfertas}>
-          <TouchableOpacity
-            onPress={() => navigation.navigate('Trabalho')}
-          >
-            <Text style={styles.botaoMeustrabalhos}>Meus Trabalhos</Text>
-          </TouchableOpacity>
-        </View>
-        <View style={styles.casinha}>
-          <TouchableOpacity onPress={() => navigation.navigate('Home')}>
-            <Image
-              style={{ width: 35, height: 40, left: 16.5 }}
-              source={require("../assets/casinha.png")}
-            />
-          </TouchableOpacity>
-        </View>
-        <View style={styles.suasDemandas}>
-          <TouchableOpacity onPress={() => navigation.navigate('Servico')}>
-
-            <Text style={styles.botaoMeusServicos}>Meus Servicos</Text>
-
-          </TouchableOpacity>
-        </View>
-        <View style={styles.usuarioBaixo}>
-          <TouchableOpacity onPress={() => navigation.navigate('Perfil')}>
-            <Image
-              style={{ height: 50, width: 50, right: 5}}
-              source={require("../assets/usuario.png")}
-            />
-          </TouchableOpacity>
-        </View>
-    </View> 
-
-    );
-}
-
-const stylesComponenteBaixo = StyleSheet.create({
+export default stylesComponenteBaixo = StyleSheet.create({
 
   baixo: {
     flex: 1,

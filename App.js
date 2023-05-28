@@ -2,18 +2,18 @@ import * as React from 'react';
 import { Button, View } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-import Login from './paginas/login';
-import Cadastro from './paginas/cadastro';
-import EsqueciSenha from './paginas/ForgotPasswordScreen';
-import Home from './paginas/Home';
-import TelaRecomendacao from './paginas/TelaRecomendacao';
-import Servico from './paginas/Servico';
-import TelaCriarServico from './paginas/TelaCriarServico';
-import Trabalho from './paginas/Trabalho';
-import TelaCriarTrabalho from './paginas/TelaCriarTrabalho';
-import Perfil from './paginas/Perfil';
-import EditarPerfil from './paginas/EditarPerfil';
-import TelaPremium from './paginas/TelaPremium';
+import Login from './src/views/login';
+import Cadastro from './src/views/cadastro';
+import EsqueciSenha from './src/views/ForgotPasswordScreen';
+import Home from './src/views/Home';
+import TelaRecomendacao from './src/views/TelaRecomendacao';
+import Servico from './src/views/Servico';
+import TelaCriarServico from './src/views/TelaCriarServico';
+import Trabalho from './src/views/Trabalho';
+import TelaCriarTrabalho from './src/views/TelaCriarTrabalho';
+import Perfil from './src/views/Perfil';
+import EditarPerfil from './src/views/EditarPerfil';
+import TelaPremium from './src/views/TelaPremium';
 
 const Stack = createStackNavigator()
 
