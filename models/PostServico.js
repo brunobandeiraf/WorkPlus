@@ -5,7 +5,7 @@ import User from "./User.js";
 const PostServico = connection.define(
     'postServico',
     {
-        idPostTrabalho: {
+        idPostServico: {
             type: Sequelize.INTEGER,
             autoIncrement: true,
             allowNull: false,

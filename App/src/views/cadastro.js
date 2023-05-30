@@ -9,20 +9,39 @@ import {
 } from "react-native";
 
 export default function Cadastro({ navigation }) {
-  const [nomeCompleto, setNomeCompleto] = useState("");
-  const [email, setEmail] = useState("");
+  const [name, setName] = useState("");
+  const [nameUser, setNameUser] = useState("");
   const [cpf, setCpf] = useState("");
-  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
 
-  const handleSignUp = () => {
+  
+  const onRegisterPressed = async () => {
+    
     if (password !== confirmPassword) {
       alert("As senhas não coincidem");
     } else {
-      // Adicionar lógica de cadastro de usuário aqui
+        try {
+          const data = await api.post("/user/cadastro", {
+            name,
+            nameUser,
+            cpf,
+            email,
+            password
+          });
+          if(data.status === 200){
+            console.log(data);
+            alert(data.data.message);
+            navigation.navigate("Login")
+          } else {
+            console.log(data);
+          };
+        } catch (error) {
+          console.log(error)
+        };
+      };
     }
-  };
 
   return (
     <View style={styles.container}>
@@ -35,75 +54,86 @@ export default function Cadastro({ navigation }) {
         </View>
       </View>
       <View style={styles.viewInput}>
+
         <View style={styles.inputContainer}>
           <TextInput
             style={styles.inputField}
-            placeholder="Nome completo"
-            value={nomeCompleto}
-            onChangeText={setNomeCompleto}
+            placeholder="Nome Completo"
+            value={name}
+            onChangeText={setName}
           />
           <Image style={styles.inputLogo} source={require('../assets/usuario.png')} />
         </View>
+
         <View style={styles.inputContainer}>
           <TextInput
             style={styles.inputField}
             placeholder="Nome de usuário"
-            value={username}
-            onChangeText={setUsername}
+            value={nameUser}
+            setValue={setNameUser}
           />
           <Image style={styles.inputLogo} source={require('../assets/usuario.png')} />
         </View>
+
         <View style={styles.inputContainer}>
           <TextInput
             style={styles.inputField}
             placeholder="CPF"
             value={cpf}
-            onChangeText={setCpf}
+            setValue={setCpf}
           />
           <Image style={styles.inputLogo} source={require('../assets/usuario.png')} />
         </View>
+
         <View style={styles.inputContainer}>
           <TextInput
             style={styles.inputField}
             placeholder="E-mail"
-            keyboardType="email-address"
             value={email}
-            onChangeText={setEmail}
+            setValue={setEmail}
           />
           <Image style={styles.inputLogo} source={require('../assets/Carta.png')} />
         </View>
+
         <View style={styles.inputContainer}>
           <TextInput
             style={styles.inputField}
             placeholder="Senha"
-            secureTextEntry={true}
             value={password}
-            onChangeText={setPassword}
+            setValue={setPassword}
+            secureTextEntry={true}
           />
           <Image style={styles.inputLogo} source={require('../assets/Cadeado.png')} />
         </View>
+
         <View style={styles.inputContainer}>
           <TextInput
             style={styles.inputField}
             placeholder="Confirmar senha"
-            secureTextEntry={true}
             value={confirmPassword}
             onChangeText={setConfirmPassword}
+            secureTextEntry={true}
           />
           <Image style={styles.inputLogo} source={require('../assets/Cadeado.png')} />
         </View>
+
       </View>
       <View style={styles.buttonContainer}>
         <View style={styles.viewCadatrar}>
-          <TouchableOpacity style={styles.buttonCadastrar} onPress={handleSignUp}>
+          <TouchableOpacity 
+            style={styles.buttonCadastrar} 
+            onPress={onRegisterPressed}
+          >
             <Text style={styles.buttonTextCadastrar}>Cadastrar</Text>
-            <Image style={styles.buttonIcon} source={require('../assets/logo.png')} />
+            <Image style={styles.buttonIcon} 
+              source={require('../assets/logo.png')} />
           </TouchableOpacity>
         </View>
+
         <View style={styles.viewLogin}>
           <TouchableOpacity
             style={styles.buttonLogin}
-            onPress={() => navigation.navigate('Home')}
+            onPress={() => navigation.navigate('Login')}
           >
             <Text style={styles.buttonTextLogin}>Login</Text>
           </TouchableOpacity>

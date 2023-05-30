@@ -1,11 +1,30 @@
 import React, { useState } from "react";
 import { View, Text, TextInput, TouchableOpacity, Image } from "react-native";
-
+import api from "../api";
 
 export default function Login ({ navigation }){
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
+  const onLoginPressed = async () => {
+    try {
+      const authData = await api.post("/login", {
+          email,
+          password
+      });
+      if(authData.status === 200){
+          await AsyncStorage.setItem("token", authData.data.token);
+          dispatchEvent({type:"logIn", payload: true});
+      } else {
+        alert("Email ou Senha Inválidos");
+        setPassword('');
+      }
+    } catch (error) {
+      alert("Email ou Senha Inválidos");
+      setPassword('');
+    };
+  };
+  
   return (
     <View style={styles.container}>
       <View style={styles.logoContainer}>
@@ -18,8 +37,8 @@ export default function Login ({ navigation }){
         <TextInput
           style={styles.input}
           placeholder="Email"
-          onChangeText={(text) => setEmail(text)}
           value={email}
+          setValue={setEmail}
         />
         <Image style={styles.inputIcon} source={require("../assets/usuario.png")} />
       </View>
@@ -27,18 +46,20 @@ export default function Login ({ navigation }){
         <TextInput
           style={styles.input}
           placeholder="Senha"
-          secureTextEntry={true}
-          onChangeText={(text) => setPassword(text)}
           value={password}
+          setValue={setPassword}
         />
         <Image style={styles.inputIcon} source={require("../assets/Cadeado.png")} />
       </View>
+
       <View style={styles.buttonContainer}>
-        <TouchableOpacity style={styles.button}           
-        onPress={() => navigation.navigate("Home")}>
+        <TouchableOpacity style={styles.button}  
+          //onPress={onLoginPressed}>         
+          onPress={() => navigation.navigate("Home")}>
           <Text style={styles.buttonText}>Entrar</Text>
         </TouchableOpacity>
       </View>
+
       <View style={styles.buttonContainer}>
         <TouchableOpacity
           style={[styles.button, styles.transparentButton]}
@@ -48,6 +69,7 @@ export default function Login ({ navigation }){
           <Image style={styles.buttonIcon} source={require("../assets/duplaEngrenagem.png")} />
         </TouchableOpacity>
       </View>
+
       <View style={styles.buttonContainer}>
         <TouchableOpacity
           style={[styles.button, styles.transparentButton]}
