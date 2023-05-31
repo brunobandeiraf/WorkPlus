@@ -14,13 +14,8 @@ const User = connection.define(
             type: Sequelize.STRING,
             allowNull: false,
         },
-        nameUser: {
+        userName: {
             type: Sequelize.STRING,
-            allowNull: false,
-        },
-        cpf: {
-            type: Sequelize.STRING(11),
-            unique: true,
             allowNull: false,
         },
         email: {
@@ -34,10 +29,15 @@ const User = connection.define(
             type: Sequelize.STRING,
             allowNull: false,
         },
-        admin: {
-            type: Sequelize.BOOLEAN,
+        cpf: {
+            type: Sequelize.STRING(11),
+            unique: true,
             allowNull: false,
         },
+        dataNascimento: {
+            type: Sequelize.DATE,
+            allowNull: false,
+        }
     }
 
 );
