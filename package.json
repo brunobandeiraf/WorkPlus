@@ -1,9 +1,10 @@
 {
   "name": "navegacao",
   "version": "1.0.0",
-  "main": "node_modules/expo/AppEntry.js",
+  "main": "server.js",
+  "type": "module",
   "scripts": {
-    "start": "expo start",
+    "start": "nodemon server.js",
     "android": "expo start --android",
     "ios": "expo start --ios",
     "web": "expo start --web"
@@ -24,7 +25,9 @@
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-native": "0.71.8",
-    "react-native-web": "~0.18.10"
+    "react-native-keyboard-aware-scroll-view": "^0.9.5",
+    "react-native-web": "~0.18.10",
+    "sequelize": "^6.32.0"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0"

@@ -10,12 +10,14 @@ user.get("/", (req, res) => {
 });
 
 user.post("/cadastro", async (req, res) => {
-    const { name, userName, email, password, cpf, dataNascimento } = req.body;
-
+    const { name, userName, email, password, cpf, dtNascimento } = req.body;
+   
+ 
     const alreadyExistsUser = await User.findOne(
         { where: { userName, email } }
     ).catch((err) => console.log("Error: ", err));
-
+    
+   
     if(alreadyExistsUser) {
         console.log("Usuário Existente: " + alreadyExistsUser);
         return res
@@ -23,7 +25,10 @@ user.post("/cadastro", async (req, res) => {
             .json({ message: "Usuário ou E-mail já utilizado por outro usuário"})
     }
 
-    const newUser = new User ({ name, userName, email, password, cpf, dataNascimento });
+
+    
+    const newUser = new User ({ name, userName, email, password, cpf, dtNascimento });
+    
     const saveUser = await newUser.save().catch((err) => {
         console.log("Error: ", err);
         res.status(500).json({error: "Não foi possivel cadastrar o usuário."});

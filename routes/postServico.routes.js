@@ -7,7 +7,7 @@ postServico.get("/", (req, res) => {
     res.send("Rota de postServico");
 });
 
-postServico.post("/cadastro", async (req, res) => {
+postServico.post("/Cadastro", async (req, res) => {
 
     const { idPostServico, idUser, tipoServico, regiao, dtDisponivel, periodoMatutino, periodoVespertino, periodoNoturno, linkWhats, descricao } = req.body;
 
@@ -21,7 +21,7 @@ postServico.post("/cadastro", async (req, res) => {
     if(savePostServico) res.json({ message: "Post de Serviço enviado"});
 });
 
-postServico.get("/findByPostServico", async (req, res) => {
+postServico.get("/ProcurarPorPostServico", async (req, res) => {
     const postsServico = await PostServico.findAll().catch(
         (err) => {
             console.log(err)

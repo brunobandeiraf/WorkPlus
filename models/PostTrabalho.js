@@ -1,5 +1,5 @@
 import Sequelize from "sequelize";
-import connection from "../config/config.js";
+import connection from "../config/db.js";
 import User from "./User.js";
 
 const PostTrabalho = connection.define(
@@ -55,7 +55,7 @@ const PostTrabalho = connection.define(
     }
 );
 
-Review.belongsTo(User, {
+PostTrabalho.belongsTo(User, {
     foreignKey: 'idUser'
 });
 

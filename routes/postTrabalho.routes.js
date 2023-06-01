@@ -7,7 +7,7 @@ postTrabalho.get("/", (req, res) => {
     res.send("Rota de postTrabalhado");
 });
 
-postTrabalho.post("/cadastro", async (req, res) => {
+postTrabalho.post("/Cadastro", async (req, res) => {
 
     const { idPostTrabalho, idUser, tipoServico, endereco, dtInicio, periodoMatutino, periodoVespertino, periodoNoturno, linkWhats, descricao } = req.body;
 
@@ -21,7 +21,7 @@ postTrabalho.post("/cadastro", async (req, res) => {
     if(savePostTrabalho) res.json({ message: "Post de Trabalho enviado"});
 });
 
-postTrabalho.get("/findByPostTrabalho", async (req, res) => {
+postTrabalho.get("/ProcurarPorPostTrabalho", async (req, res) => {
     const postsTrabalho = await PostTrabalho.findAll().catch(
         (err) => {
             console.log(err)
