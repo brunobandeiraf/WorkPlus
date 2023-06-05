@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { View, Text, TextInput, TouchableOpacity, Image } from "react-native";
 import api from "../api";
 
-export default function Login ({ navigation }){
+const Login = ({ navigation }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -13,14 +13,13 @@ export default function Login ({ navigation }){
           password
       });
       if(authData.status === 200){
-          await AsyncStorage.setItem("token", authData.data.token);
-          dispatchEvent({type:"logIn", payload: true});
+          navigation.navigate("Home");
       } else {
-        alert("Email ou Senha Inválidos");
+        alert(authData.data.message);
         setPassword('');
       }
     } catch (error) {
-      alert("Email ou Senha Inválidos");
+      alert("ERRO");
       setPassword('');
     };
   };
@@ -38,7 +37,7 @@ export default function Login ({ navigation }){
           style={styles.input}
           placeholder="Email"
           value={email}
-          setValue={setEmail}
+          onChangeText={setEmail}
         />
         <Image style={styles.inputIcon} source={require("../assets/usuario.png")} />
       </View>
@@ -47,15 +46,14 @@ export default function Login ({ navigation }){
           style={styles.input}
           placeholder="Senha"
           value={password}
-          setValue={setPassword}
+          onChangeText={setPassword}
         />
         <Image style={styles.inputIcon} source={require("../assets/Cadeado.png")} />
       </View>
 
       <View style={styles.buttonContainer}>
         <TouchableOpacity style={styles.button}  
-          //onPress={onLoginPressed}>         
-          onPress={() => navigation.navigate("Home")}>
+          onPress={onLoginPressed}>         
           <Text style={styles.buttonText}>Entrar</Text>
         </TouchableOpacity>
       </View>
@@ -155,3 +153,4 @@ const styles = {
   },
 };
 
+export default Login

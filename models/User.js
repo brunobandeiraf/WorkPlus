@@ -22,7 +22,7 @@ const User = connection.define(
             type: Sequelize.STRING,
             unique: true,
             validate: {
-                isEmail: false,
+                isEmail: true,
             }
         },
         password: {
@@ -32,7 +32,7 @@ const User = connection.define(
         cpf: {
             type: Sequelize.STRING(11),
             unique: true,
-            allowNull: true,
+            allowNull: false,
         },
         dtNascimento: {
             type: Sequelize.DATE,

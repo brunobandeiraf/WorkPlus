@@ -1,10 +1,7 @@
 import React,{useState, useEffect, useRef } from 'react';
 import { Text,Animated, View, StyleSheet,Image, TextInput, SafeAreaView, ScrollView, TouchableOpacity} from 'react-native';
 import Constants from 'expo-constants';
-/*
-import componenteLogo from './src/'
-import Posts from './src/Componentes/Posts';
-*/
+
 export default function Servico({navigation}) {
   const FadeInView = (props) => {
     const fadeAnim = useRef(new Animated.Value(0)).current;

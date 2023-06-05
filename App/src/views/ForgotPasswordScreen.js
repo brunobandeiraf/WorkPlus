@@ -9,7 +9,7 @@ import {
 } from "react-native";
 
 export default function EsqueciSenha({ navigation }) {
-  const [email, setEmail] = useState("");
+  //const [email, setEmail] = useState("");
 
   return (
     <View style={styles.container}>

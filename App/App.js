@@ -1,9 +1,9 @@
-import * as React from 'react';
+import React from 'react';
 import { Button, View } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
-import Login from './src/views/login';
-import Cadastro from './src/views/cadastro';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import Login from './src/views/Login';
+import Cadastro from './src/views/Cadastro';
 import EsqueciSenha from './src/views/ForgotPasswordScreen';
 import Home from './src/views/Home';
 import TelaRecomendacao from './src/views/TelaRecomendacao';
@@ -15,9 +15,9 @@ import Perfil from './src/views/Perfil';
 import EditarPerfil from './src/views/EditarPerfil';
 import TelaPremium from './src/views/TelaPremium';
 
-const Stack = createStackNavigator()
+const Stack = createNativeStackNavigator()
 
-export default function App(){
+const App = () => {
 return(
   <NavigationContainer>
     <Stack.Navigator screenOptions={{ headerShown: false}}>
@@ -36,3 +36,9 @@ return(
     </Stack.Navigator>
   </NavigationContainer>
 )}
+
+export default () => {
+  return (
+        <App />
+  );
+};

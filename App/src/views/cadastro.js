@@ -1,17 +1,17 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Text, View, StyleSheet, Image, TextInput, TouchableOpacity,SafeAreaView,KeyboardAvoidingView } from "react-native";
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
+import api from "../api";
 
-const [name, setName] = useState("");
-const [userName, setUserName] = useState("");
-const [email, setEmail] = useState("");
-const [password, setPassword] = useState("");
-const [confirmPassword, setConfirmPassword] = useState("");
-const [cpf, setCpf] = useState("");
-const [dtNascimento, setDTNascimento] = useState("");
-
-export default function Cadastro({ navigation }) {
+const Cadastro = ({ navigation }) => {
   
+  const [name, setName] = useState('');
+  const [userName, setUserName] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
+  const [cpf, setCpf] = useState('');
+  const [dtNascimento, setDTNascimento] = useState('');
   
   const onRegisterPressed = async () => {
     
@@ -19,7 +19,7 @@ export default function Cadastro({ navigation }) {
       alert("As senhas não coincidem");
     } else {
         try {
-          const data = await api.post("/user/cadastro", {
+          const data = await api.post("/user/register", {
             name: name,
             userName: userName,
             password: password,
@@ -30,7 +30,7 @@ export default function Cadastro({ navigation }) {
           if(data.status === 200){
             console.log(data);
             alert(data.data.message);
-            navigation.navigate("Login")
+            navigation.navigate("login")
           } else {
             console.log(data);
           };
@@ -80,7 +80,7 @@ export default function Cadastro({ navigation }) {
               placeholder="Usuário" 
               style={styles.InputUsuario}
               value={userName}
-              setValue={setUserName}
+              onChangeText={setUserName}
             >
             </TextInput>
           </View>
@@ -97,7 +97,7 @@ export default function Cadastro({ navigation }) {
               placeholder="E-mail" 
               style={styles.InputEmail}
               value={email}
-              setValue={setEmail}
+              onChangeText={setEmail}
             >
             </TextInput>
           </View>
@@ -114,7 +114,7 @@ export default function Cadastro({ navigation }) {
               placeholder="Senha" 
               style={styles.InputSenha}
               value={password}
-              setValue={setPassword}
+              onChangeText={setPassword}
               secureTextEntry={true}
             >
             </TextInput>
@@ -151,7 +151,7 @@ export default function Cadastro({ navigation }) {
             placeholder="CPF" 
             style={styles.InputCPF}
             value={cpf}
-            setValue={setCpf}
+            onChangeText={setCpf}
             >
             </TextInput>
           </View>
@@ -168,7 +168,7 @@ export default function Cadastro({ navigation }) {
               placeholder="Data de Nascimento" 
               style={styles.InputDTNascimento}
               value={dtNascimento}
-              setValue={setDTNascimento}
+              onChangeText={setDTNascimento}
               >
             </TextInput>
           </View>
@@ -370,8 +370,6 @@ const styles = StyleSheet.create({
       end: { x: 1, y: 1 },
     },
   },
-
-  
   viewUsuario: {
     width: "60%",
     height: "100%",
@@ -394,7 +392,6 @@ const styles = StyleSheet.create({
       start: { x: 1, y: 2 },
       end: { x: 1, y: 1 },
     },
-
   },
   imagemUsuario: {
     width: "80%",
@@ -416,10 +413,7 @@ const styles = StyleSheet.create({
       end: { x: 1, y: 1 },
     },
   },
-
-
   viewEmail: {
-
     width: "60%",
     height: "100%",
     //backgroundColor: 'blue',
@@ -441,7 +435,6 @@ const styles = StyleSheet.create({
       start: { x: 1, y: 2 },
       end: { x: 1, y: 1 },
     },
-
   },
   imagemEmail: {
     marginLeft:'1.5%',
@@ -464,8 +457,6 @@ const styles = StyleSheet.create({
       end: { x: 1, y: 1 },
     },
   },
-
-
   viewSenha: {
     width: "60%",
     height: "100%",
@@ -714,3 +705,5 @@ const styles = StyleSheet.create({
   },
 
 });
+
+export default Cadastro

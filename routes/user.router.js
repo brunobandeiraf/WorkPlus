@@ -4,12 +4,12 @@ import verifyToken from "../config/auth.js"
 
 const user = express.Router();
 
-user.get("/", (req, res) => {
+user.get("/verify", (req, res) => {
     const token = req.headers["token"];
     const authData = verifyToken(token, res);
 });
 
-user.post("/cadastro", async (req, res) => {
+user.post("/register", async (req, res) => {
     const { name, userName, email, password, cpf, dtNascimento } = req.body;
    
  
@@ -31,7 +31,9 @@ user.post("/cadastro", async (req, res) => {
     
     const saveUser = await newUser.save().catch((err) => {
         console.log("Error: ", err);
-        res.status(500).json({error: "Não foi possivel cadastrar o usuário."});
+        res
+            .status(500)
+            .json({error: "Não foi possivel cadastrar o usuário."});
     });
 
     if(saveUser){
