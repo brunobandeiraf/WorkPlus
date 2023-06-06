@@ -6,7 +6,73 @@ import CustomCheckbox from '../componente/ComponenteEscolhaPeriodo.js';
 
 
 export default function TelaCriarTrabalho({navigation}){
-return(
+
+  const [tipoServico, setTipoServico] = useState('');
+  const [endereco, setEndereco] = useState('');
+  const [dtInicio, setDTInicio] = useState(new Date());
+  const [periodoMatutino, setPeriodoMatutino] = useState('');
+  const [periodoVespertino, setPeriodoVespertino] = useState('');
+  const [periodoNoturno, setPeriodoNoturno] = useState('');
+  const [linkWhats, setLinkWhats] = useState('');
+  const [descricao, setDescricao] = useState('');
+
+  const [date, setDate] = useState(new Date());
+
+  const [showPicker, setShowPicker] = useState(false);
+
+  const toggleDatepicker =() => {
+    setShowPicker(!showPicker);
+  };
+
+  const onChange = ({type}, selectedDate) => {
+    if(type == "set"){
+      const currentDate = selectedDate;
+      setDate (currentDate);
+      if(Platform.OS === "android"){
+        toggleDatepicker();
+        setDTInicio(currentDate.toLocaleDateString());
+      }
+    }else{
+      toggleDatepicker();
+    }
+  };
+
+  const console = () => {
+    alert(dtInicio)
+  }
+
+
+  const onRegisterPressed = async () => {
+    
+    if (password !== confirmPassword) {
+      alert("As senhas não coincidem");
+    } else {
+        try {
+          const data = await api.post("/user/register", {
+            tipoServico: tipoServico,
+            endereco: endereco,
+            dtInicio: dtInicio,
+            periodoMatutino: periodoMatutino,
+            periodoVespertino: periodoVespertino,
+            periodoNoturno: periodoNoturno,
+            linkWhats: linkWhats,
+            descricao: descricao
+          });
+          if(data.status === 200){
+            console.log(data);
+            alert(data.data.message);
+            navigation.navigate("Trabalho")
+          } else {
+            console.log(data);
+          };
+        } catch (error) {
+          console.log(error)
+        };
+      };
+  }
+
+
+  return(
   
 <View style = {styles.container}>
 
@@ -31,8 +97,11 @@ return(
         </View>
 
         <View style = {styles.viewImputTipoTrabalho}>
-          <TextInput multiline style = {styles.BaseImputTipoDeTrabalho}>
-
+          <TextInput 
+            multiline style = {styles.BaseImputTipoDeTrabalho}
+            value={tipoServico}
+            onChangeText={setTipoServico}
+          >
           </TextInput>
         </View>
         <View style = {styles.viewImagemTipoTrabalho}>
@@ -48,8 +117,11 @@ return(
         <Text style = {styles.BaseEndereço}>Endereço</Text>
         </View>
         <View style = {styles.viewImputEndereço}>
-          <TextInput multiline style = {styles.BaseImputEndereço}>
-
+          <TextInput 
+            multiline style = {styles.BaseImputEndereço}
+            value={endereco}
+            onChangeText={setEndereco}
+          >
           </TextInput>
         </View>
         <View style = {styles.viewImagemLocalização}>
@@ -60,14 +132,17 @@ return(
         </View>
       </View>
 
+      {/* luigi */}
       <View style = {styles.viewForaMenor}>
         <View style = {styles.viewMenor}>
         <View style = {styles.viewData}>
         <Text style = {styles.BaseData}>Data de Início</Text>
         </View>
         <View style = {styles.viewImputData}>
-          <TextInput multiline style = {styles.BaseImputData}>
-
+          <TextInput 
+            multiline style = {styles.BaseImputData}
+          
+          >
           </TextInput>
         </View>
         <View style = {styles.viewImagemData}>
@@ -84,15 +159,27 @@ return(
         </View>
         <View style = {styles.viewTodosPeriodos}>
          <View style = {styles.viewMatutino}>
-            <CustomCheckbox label="Matutino" />
+            <CustomCheckbox 
+              label="Matutino" 
+              value={periodoMatutino}
+              onChangeText={setPeriodoMatutino}
+            />
          </View>
 
           <View style = {styles.viewVespertino}>
-            <CustomCheckbox label="Vespertino" />
+            <CustomCheckbox 
+              label="Vespertino" 
+              value={periodoVespertino}
+              onChangeText={setPeriodoVespertino}
+            />
           </View>
 
           <View style = {styles.viewNoturno}>
-            <CustomCheckbox label="Noturno" />
+            <CustomCheckbox 
+              label="Noturno" 
+              value={periodoNoturno}
+              onChangeText={setPeriodoNoturno}
+            />
           </View>
         </View>
       </View>
@@ -102,8 +189,11 @@ return(
         <Text style = {styles.BaseWhats}>WhatsApp</Text>
         </View>
         <View style = {styles.viewImputWhats}>
-          <TextInput multiline style = {styles.BaseImputWhats}>
-
+          <TextInput 
+            multiline style = {styles.BaseImputWhats}
+            value={linkWhats}
+            onChangeText={setLinkWhats}
+          >
           </TextInput>
         </View>
         <View style = {styles.viewImagemWhats}>
@@ -118,10 +208,15 @@ return(
         <Text style = {styles.TextoDescrição}>Descrição</Text>
       </View>
       <KeyboardAvoidingView style = {styles.viewDescrição} behavior="padding" >
-      <DescricaoComponent/>
+      <DescricaoComponent
+        value={descricao}
+        onChangeText={setDescricao}
+      />
       </KeyboardAvoidingView>
 
-      <TouchableOpacity>
+      <TouchableOpacity
+        onPress={onRegisterPressed}
+      >
       <View style = {styles.ViewBotaoConfirmar}>
         <View style = {styles.BotaoConfirmarTrabalho}>
 

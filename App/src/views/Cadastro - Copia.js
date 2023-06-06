@@ -1,9 +1,9 @@
 import React, { useState, useEffect, useRef } from "react";
-import { Text, View, StyleSheet, Image, TextInput,Platform, TouchableOpacity,SafeAreaView,KeyboardAvoidingView, Pressable } from "react-native";
+import { Text, View, StyleSheet, Image, TextInput, TouchableOpacity,SafeAreaView,KeyboardAvoidingView } from "react-native";
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
-import DateTimePicker from '@react-native-community/datetimepicker';
+import api from "../api";
 
-export default function Login({ navigation }) {
+const Cadastro = ({ navigation }) => {
   
   const [name, setName] = useState('');
   const [userName, setUserName] = useState('');
@@ -11,33 +11,8 @@ export default function Login({ navigation }) {
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [cpf, setCpf] = useState('');
-  const [dtNascimento, setDTNascimento] = useState(new Date());
-
-  const [date, setDate] = useState(new Date());
-
-  const [showPicker, setShowPicker] = useState(false);
-
-  const toggleDatepicker =() => {
-    setShowPicker(!showPicker);
-  };
-
-  const onChange = ({type}, selectedDate) => {
-    if(type == "set"){
-      const currentDate = selectedDate;
-      setDate (currentDate);
-      if(Platform.OS === "android"){
-        toggleDatepicker();
-        setDTNascimento(currentDate.toLocaleDateString());
-      }
-    }else{
-      toggleDatepicker();
-    }
-  };
-
-  const console = () => {
-    alert(dtNascimento)
-  }
-
+  const [dtNascimento, setDTNascimento] = useState('');
+  
   const onRegisterPressed = async () => {
     
     if (password !== confirmPassword) {
@@ -65,6 +40,7 @@ export default function Login({ navigation }) {
       };
   }
 
+
   return (
     <KeyboardAwareScrollView>
     <View style={styles.container}>
@@ -88,7 +64,7 @@ export default function Login({ navigation }) {
               style={styles.InputNomeCompleto}
               value={name}
               onChangeText={setName}
-              >
+            >
             </TextInput>
           </View>
           <View style={styles.viewImagemNomeCompleto}>
@@ -165,16 +141,17 @@ export default function Login({ navigation }) {
             <Image
               style={styles.imagemConfirmarSenha}
               source={require('../assets/Cadeado.png')} />
+		
           </View>
         </View>
 
         <View style={styles.meioCPF}>
           <View style={styles.viewCPF}>
-            <TextInput 
-              placeholder="CPF" 
-              style={styles.InputCPF}
-              value={cpf}
-              onChangeText={setCpf}
+            <TextInput  
+            placeholder="CPF" 
+            style={styles.InputCPF}
+            value={cpf}
+            onChangeText={setCpf}
             >
             </TextInput>
           </View>
@@ -187,52 +164,13 @@ export default function Login({ navigation }) {
 
         <View style={styles.meioDTNascimento}>
           <View style={styles.viewDTNascimento}>
-
-            {showPicker ? (
-              <>
-              <DateTimePicker
-                mode="date"
-                display="spinner"
-                value={date}
-                onChange = {onChange}
-                />
-
-                <Pressable
-              onPress={toggleDatepicker}
-            >
-             <TextInput 
-              placeholder="DD/MM/AA Nascimento"
+            <TextInput 
+              placeholder="Data de Nascimento" 
               style={styles.InputDTNascimento}
-              editable={false}
               value={dtNascimento}
               onChangeText={setDTNascimento}
               >
-              
-             </TextInput>
-            </Pressable>
-            </>
-                
-            )
-
-            :
-           
-            (
-              <Pressable
-              onPress={toggleDatepicker}
-            >
-             <TextInput 
-              placeholder="DD/MM/AA Nascimento"
-              style={styles.InputDTNascimento}
-              editable={false}
-              value={dtNascimento}
-              onChangeText={setDTNascimento}
-              >
-              
-             </TextInput>
-            </Pressable>
-            )}
-
-
+            </TextInput>
           </View>
           <View style={styles.viewImagemDTNascimento}>
             <Image
@@ -248,7 +186,7 @@ export default function Login({ navigation }) {
 
           <TouchableOpacity 
             onPress={onRegisterPressed}
-          >
+            >
             <View style={styles.BotaoEntrar}>
               <View style={styles.viewTextoEntrar}>
                 <Text style={styles.TextoEntrar}>Concluir</Text>
@@ -264,7 +202,9 @@ export default function Login({ navigation }) {
         </View>
 
         <View style={styles.baixoBotaoEsqueceu}>
-          <TouchableOpacity>
+          <TouchableOpacity 
+            onPress={() => navigation.navigate('Login')} 
+            >
             <Text style={styles.textoEsqueceu}>Login</Text>
           </TouchableOpacity>
         </View>
@@ -430,8 +370,6 @@ const styles = StyleSheet.create({
       end: { x: 1, y: 1 },
     },
   },
-
-  
   viewUsuario: {
     width: "60%",
     height: "100%",
@@ -454,7 +392,6 @@ const styles = StyleSheet.create({
       start: { x: 1, y: 2 },
       end: { x: 1, y: 1 },
     },
-
   },
   imagemUsuario: {
     width: "80%",
@@ -476,10 +413,7 @@ const styles = StyleSheet.create({
       end: { x: 1, y: 1 },
     },
   },
-
-
   viewEmail: {
-
     width: "60%",
     height: "100%",
     //backgroundColor: 'blue',
@@ -501,7 +435,6 @@ const styles = StyleSheet.create({
       start: { x: 1, y: 2 },
       end: { x: 1, y: 1 },
     },
-
   },
   imagemEmail: {
     marginLeft:'1.5%',
@@ -524,8 +457,6 @@ const styles = StyleSheet.create({
       end: { x: 1, y: 1 },
     },
   },
-
-
   viewSenha: {
     width: "60%",
     height: "100%",
@@ -774,3 +705,5 @@ const styles = StyleSheet.create({
   },
 
 });
+
+export default Cadastro
