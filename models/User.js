@@ -36,7 +36,7 @@ const User = connection.define(
         },
         dtNascimento: {
             type: Sequelize.DATE,
-            allowNull: true,
+            allowNull: false,
         }
     }
 
