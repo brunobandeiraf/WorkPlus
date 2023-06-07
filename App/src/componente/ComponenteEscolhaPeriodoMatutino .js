@@ -1,15 +1,15 @@
 import React, { useState } from 'react';
 import { View, Text, TouchableOpacity } from 'react-native';
 
-const CustomCheckbox = ({ label }) => {
-  const [isChecked, setIsChecked] = useState(false);
+const CheckboxMatutino = ({ label }) => {
+  const [isMatutino, setIsMatutino] = useState(false);
 
-  const handleToggle = () => {
-    setIsChecked(!isChecked);
+  const escolhaMatutino = () => {
+    setIsMatutino(!isMatutino);
   };
 
   return (
-    <TouchableOpacity onPress={handleToggle}>
+    <TouchableOpacity onPress={escolhaMatutino}>
        <View style={{ flexDirection: 'row', alignItems: 'center' }}>
         <View
           style={{
@@ -27,4 +27,4 @@ const CustomCheckbox = ({ label }) => {
   );
 };
 
-export default CustomCheckbox;
+export default CheckboxMatutino;

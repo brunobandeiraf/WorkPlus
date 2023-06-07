@@ -3,17 +3,31 @@ import {
   Text, Animated, KeyboardAvoidingView, View, StyleSheet, Image, TextInput, SafeAreaView, ScrollView, TouchableOpacity, Linking, Pressable
 } from "react-native";
 import DescricaoComponent from "../componente/ComponenteTextoDescricao";
-import CustomCheckbox from '../componente/ComponenteEscolhaPeriodo.js';
+
 import DateTimePicker from '@react-native-community/datetimepicker';
 import api from "../api";
 export default function TelaCriarTrabalho({ navigation }) {
+  const escolhaMatutino = () => {
+    setIsMatutino(!periodoMatutino);
+  };
 
+  const escolhaVespertino = () => {
+    setIsVespertino(!periodoVespertino);
+  };
+
+  const escolhaNoturno = () => {
+    setIsNoturno(!periodoNoturno);
+  };
+
+  const toggleDatepicker = () => {
+    setShowPicker(!showPicker);
+  };
   const [tipoServico, setTipoServico] = useState('');
   const [endereco, setEndereco] = useState('');
-  const [dtInicio, setDTInicio] = useState(new Date());
-  const [periodoMatutino, setPeriodoMatutino] = useState('');
-  const [periodoVespertino, setPeriodoVespertino] = useState('');
-  const [periodoNoturno, setPeriodoNoturno] = useState('');
+  const [dtInicio, setDTInicio] = useState('2023-07-07');
+  const [periodoMatutino, setIsMatutino] = useState(false);
+  const [periodoVespertino, setIsVespertino] = useState(false);
+  const [periodoNoturno, setIsNoturno] = useState(false);
   const [linkWhats, setLinkWhats] = useState('');
   const [descricao, setDescricao] = useState('');
 
@@ -21,9 +35,7 @@ export default function TelaCriarTrabalho({ navigation }) {
 
   const [showPicker, setShowPicker] = useState(false);
 
-  const toggleDatepicker = () => {
-    setShowPicker(!showPicker);
-  };
+
 
   const onChange = ({ type }, selectedDate) => {
     if (type == "set") {
@@ -37,10 +49,6 @@ export default function TelaCriarTrabalho({ navigation }) {
       toggleDatepicker();
     }
   };
-
-  const console = () => {
-    alert(dtInicio)
-  }
 
 
   const onRegisterPressed = async () => {
@@ -66,7 +74,6 @@ export default function TelaCriarTrabalho({ navigation }) {
     } catch (error) {
       console.log(error)
     };
-
   }
 
 
@@ -130,7 +137,6 @@ export default function TelaCriarTrabalho({ navigation }) {
             </View>
           </View>
 
-          {/* luigi */}
           <View style={styles.viewForaMenor}>
             <View style={styles.viewMenor}>
               <View style={styles.viewData}>
@@ -138,52 +144,52 @@ export default function TelaCriarTrabalho({ navigation }) {
               </View>
               <View style={styles.viewImputData}>
                 <View style={styles.BaseImputData}>
-                {showPicker ? (
-                  <>
+                  {showPicker ? (
+                    <>
 
-                    <DateTimePicker
-                      mode="date"
-                      display="spinner"
-                      value={date}
-                      onChange={onChange}
-                      style={{backgroundColor:'blue'}}
-                    />
+                      <DateTimePicker
+                        mode="date"
+                        display="spinner"
+                        value={date}
+                        onChange={onChange}
+                        style={{ backgroundColor: 'blue' }}
+                      />
 
-                    <Pressable
-                      onPress={toggleDatepicker}
-                    >
-                      <TextInput
-                        placeholder="DD/MM/AA"
-                        style={{color:'black',fontWeight: 'bold', fontSize:15}}
-                        editable={false}
-                        value={dtInicio}
-                        onChangeText={setDTInicio}
+                      <Pressable
+                        onPress={toggleDatepicker}
                       >
+                        <TextInput
+                          placeholder="DD/MM/AA"
+                          style={{ color: 'black', fontWeight: 'bold', fontSize: 15 }}
+                          editable={false}
+                          value={dtInicio}
+                          onChangeText={setDTInicio}
+                        >
 
-                      </TextInput>
-                    </Pressable>
-                  </>
+                        </TextInput>
+                      </Pressable>
+                    </>
 
-                )
+                  )
 
-                  :
+                    :
 
-                  (
-                    <Pressable
-                      onPress={toggleDatepicker}
-                    >
-                      <TextInput
-                        placeholder="DD/MM/AA"
-                        style={{color:'black',fontWeight: 'bold', fontSize:15}}
-                        editable={false}
-                        value={dtInicio}
-                        onChangeText={setDTInicio}
+                    (
+                      <Pressable
+                        onPress={toggleDatepicker}
                       >
+                        <TextInput
+                          placeholder="DD/MM/AA"
+                          style={{ color: 'black', fontWeight: 'bold', fontSize: 15 }}
+                          editable={false}
+                          value={dtInicio}
+                          onChangeText={setDTInicio}
+                        >
 
-                      </TextInput>
-                    </Pressable>
-                  )}
-                  </View>
+                        </TextInput>
+                      </Pressable>
+                    )}
+                </View>
               </View>
               <View style={styles.viewImagemData}>
                 <Image
@@ -198,29 +204,65 @@ export default function TelaCriarTrabalho({ navigation }) {
               <Text style={styles.BasePeriodo}>Período</Text>
             </View>
             <View style={styles.viewTodosPeriodos}>
+
+
+
               <View style={styles.viewMatutino}>
-                <CustomCheckbox
-                  label="Matutino"
-                  value={periodoMatutino}
-                  onChangeText={setPeriodoMatutino}
-                />
+                <TouchableOpacity onPress={escolhaMatutino}>
+                  <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+                    <View
+                      style={{
+                        width: 20,
+                        height: 20,
+                        borderRadius: 10,
+                        borderWidth: 6,
+                        borderColor: periodoMatutino ? '#082253' : 'white',
+                        marginRight: 2,
+                      }}
+                    />
+                    <Text style={{ fontWeight: 'bold' }}>Matutino</Text>
+                  </View>
+                </TouchableOpacity>
               </View>
 
               <View style={styles.viewVespertino}>
-                <CustomCheckbox
-                  label="Vespertino"
-                  value={periodoVespertino}
-                  onValueChange={setPeriodoVespertino}
-                />
+                <TouchableOpacity onPress={escolhaVespertino}>
+                  <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+                    <View
+                      style={{
+                        width: 20,
+                        height: 20,
+                        borderRadius: 10,
+                        borderWidth: 6,
+                        borderColor: periodoVespertino ? '#082253' : 'white',
+                        marginRight: 2,
+                      }}
+                    />
+                    <Text style={{ fontWeight: 'bold' }}>Vespertino</Text>
+                  </View>
+                </TouchableOpacity>
               </View>
 
               <View style={styles.viewNoturno}>
-                <CustomCheckbox
-                  label="Noturno"
-                  value={periodoNoturno}
-                  onValueChange={setPeriodoNoturno}
-                />
+                <TouchableOpacity onPress={escolhaNoturno}>
+                  <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+                    <View
+                      style={{
+                        width: 20,
+                        height: 20,
+                        borderRadius: 10,
+                        borderWidth: 6,
+                        borderColor: periodoNoturno ? '#082253' : 'white',
+                        marginRight: 2,
+                      }}
+                    />
+                    <Text style={{ fontWeight: 'bold' }}>Noturno</Text>
+                  </View>
+                </TouchableOpacity>
               </View>
+
+
+
             </View>
           </View>
 
@@ -243,6 +285,11 @@ export default function TelaCriarTrabalho({ navigation }) {
               />
             </View>
           </View>
+
+
+
+
+
 
           <View style={styles.viewTextoDescrição}>
             <Text style={styles.TextoDescrição}>Descrição</Text>
@@ -335,8 +382,8 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     //backgroundColor: 'red'
   },
-  dataCor:{
-colors:'red'
+  dataCor: {
+    colors: 'red'
   },
   viewTitulo: {
     alignItems: "center",

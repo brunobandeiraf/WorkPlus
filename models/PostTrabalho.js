@@ -11,46 +11,46 @@ const PostTrabalho = connection.define(
             allowNull: false,
             primaryKey: true,
         },
-        idUser: {
-            type: Sequelize.INTEGER,
-            allowNull: false,
-            references: {
-                model: 'users',
-                key: 'idUser',
-            }
-        },
+        // idUser: {
+        //     type: Sequelize.INTEGER,
+        //     allowNull: false,
+        //     references: {
+        //         model: 'users',
+        //         key: 'idUser',
+        //     }
+        // },
         tipoServico: {
             type: Sequelize.STRING,
-            allowNull: false,
+            allowNull: true,
         },
         endereco: {
             type: Sequelize.STRING,
-            allowNull: false,
+            allowNull: true,
         },
         dtInicio: {
             type: Sequelize.DATE,
             unique: true,
-            allowNull: false,
+            allowNull: true,
         },
         periodoMatutino: {
             type: Sequelize.BOOLEAN,
-            allowNull: false,
+            allowNull: true,
         },
-        periodoVespertino: {
-            type: Sequelize.BOOLEAN,
-            allowNull: false,
-        },
-        periodoNoturno: {
-            type: Sequelize.BOOLEAN,
-            allowNull: false,
-        },
+        // periodoVespertino: {
+        //     type: Sequelize.BOOLEAN,
+        //     allowNull: true,
+        // },
+        // periodoNoturno: {
+        //     type: Sequelize.BOOLEAN,
+        //     allowNull: true,
+        // },
         linkWhats: {
             type: Sequelize.STRING,
-            allowNull: false,
+            allowNull: true,
         },
         descricao: {
             type: Sequelize.STRING,
-            allowNull: false,
+            allowNull: true,
         },
     }
 );

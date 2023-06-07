@@ -1,8 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import {Text, Animated,KeyboardAvoidingView,View,StyleSheet,Image,TextInput,SafeAreaView,ScrollView,TouchableOpacity, Linking
 } from "react-native";
-import DescricaoComponent from "../componente/ComponenteTextoDescricao";
-import CustomCheckbox from '../componente/ComponenteEscolhaPeriodo.js';
+
 
 
 export default function TelaCriarServico({navigation}){

@@ -7,11 +7,11 @@ postTrabalho.get("/", (req, res) => {
     res.send("Rota de postTrabalhado");
 });
 
-postTrabalho.post("/register", async (req, res) => {
+ postTrabalho.post("/register", async (req, res) => {
+//     periodoMatutino, periodoVespertino, periodoNoturno,
+    const { idPostTrabalho, tipoServico, endereco, dtInicio, periodoMatutino, linkWhats, descricao } = req.body;
 
-    const { idPostTrabalho, idUser, tipoServico, endereco, dtInicio, periodoMatutino, periodoVespertino, periodoNoturno, linkWhats, descricao } = req.body;
-
-    const newPostTrabalho = new PostTrabalho({ idPostTrabalho, idUser, tipoServico, endereco, dtInicio, periodoMatutino, periodoVespertino, periodoNoturno, linkWhats, descricao});
+    const newPostTrabalho = new PostTrabalho({ idPostTrabalho, tipoServico, endereco, dtInicio,periodoMatutino, linkWhats, descricao});
 
     const savePostTrabalho = await newPostTrabalho.save().catch((err) => {
         console.log("Error: ", err);
@@ -40,8 +40,3 @@ postTrabalho.get("/ProcurarPorPostTrabalho", async (req, res) => {
 export default postTrabalho;
 
 
-
-
-
-
- 
