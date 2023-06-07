@@ -21,6 +21,7 @@ const App = () => {
 return(
   <NavigationContainer>
     <Stack.Navigator screenOptions={{ headerShown: false}}>
+      <Stack.Screen name="TelaCriarTrabalho" component={TelaCriarTrabalho} />
       <Stack.Screen name="Login" component={Login} />
       <Stack.Screen name="Cadastro" component={Cadastro} />
       <Stack.Screen name="EsqueciSenha" component={EsqueciSenha} />
@@ -29,7 +30,6 @@ return(
       <Stack.Screen name="Servico" component={Servico} />
       <Stack.Screen name="TelaCriarServico" component={TelaCriarServico} />
       <Stack.Screen name="Trabalho" component={Trabalho} />
-      <Stack.Screen name="TelaCriarTrabalho" component={TelaCriarTrabalho} />
       <Stack.Screen name="Perfil" component={Perfil} />
       <Stack.Screen name="EditarPerfil" component={EditarPerfil} />
       <Stack.Screen name="TelaPremium" component={TelaPremium} />

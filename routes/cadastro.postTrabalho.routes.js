@@ -7,7 +7,7 @@ postTrabalho.get("/", (req, res) => {
     res.send("Rota de postTrabalhado");
 });
 
-postTrabalho.post("/Cadastro", async (req, res) => {
+postTrabalho.post("/register", async (req, res) => {
 
     const { idPostTrabalho, idUser, tipoServico, endereco, dtInicio, periodoMatutino, periodoVespertino, periodoNoturno, linkWhats, descricao } = req.body;
 
@@ -18,7 +18,9 @@ postTrabalho.post("/Cadastro", async (req, res) => {
         res.status(500).json({ error: "Não é possivel enviar esse Post"});
     });
 
-    if(savePostTrabalho) res.json({ message: "Post de Trabalho enviado"});
+    if(savePostTrabalho) 
+    console.log(savePostTrabalho);
+    res.json({ message: "Post de Trabalho enviado"});
 });
 
 postTrabalho.get("/ProcurarPorPostTrabalho", async (req, res) => {

@@ -1,11 +1,12 @@
 import React, { useState, useEffect, useRef } from "react";
-import {Text, Animated,KeyboardAvoidingView,View,StyleSheet,Image,TextInput,SafeAreaView,ScrollView,TouchableOpacity, Linking
+import {
+  Text, Animated, KeyboardAvoidingView, View, StyleSheet, Image, TextInput, SafeAreaView, ScrollView, TouchableOpacity, Linking, Pressable
 } from "react-native";
 import DescricaoComponent from "../componente/ComponenteTextoDescricao";
 import CustomCheckbox from '../componente/ComponenteEscolhaPeriodo.js';
-
-
-export default function TelaCriarTrabalho({navigation}){
+import DateTimePicker from '@react-native-community/datetimepicker';
+import api from "../api";
+export default function TelaCriarTrabalho({ navigation }) {
 
   const [tipoServico, setTipoServico] = useState('');
   const [endereco, setEndereco] = useState('');
@@ -20,19 +21,19 @@ export default function TelaCriarTrabalho({navigation}){
 
   const [showPicker, setShowPicker] = useState(false);
 
-  const toggleDatepicker =() => {
+  const toggleDatepicker = () => {
     setShowPicker(!showPicker);
   };
 
-  const onChange = ({type}, selectedDate) => {
-    if(type == "set"){
+  const onChange = ({ type }, selectedDate) => {
+    if (type == "set") {
       const currentDate = selectedDate;
-      setDate (currentDate);
-      if(Platform.OS === "android"){
+      setDate(currentDate);
+      if (Platform.OS === "android") {
         toggleDatepicker();
         setDTInicio(currentDate.toLocaleDateString());
       }
-    }else{
+    } else {
       toggleDatepicker();
     }
   };
@@ -43,206 +44,245 @@ export default function TelaCriarTrabalho({navigation}){
 
 
   const onRegisterPressed = async () => {
-    
-    if (password !== confirmPassword) {
-      alert("As senhas não coincidem");
-    } else {
-        try {
-          const data = await api.post("/user/register", {
-            tipoServico: tipoServico,
-            endereco: endereco,
-            dtInicio: dtInicio,
-            periodoMatutino: periodoMatutino,
-            periodoVespertino: periodoVespertino,
-            periodoNoturno: periodoNoturno,
-            linkWhats: linkWhats,
-            descricao: descricao
-          });
-          if(data.status === 200){
-            console.log(data);
-            alert(data.data.message);
-            navigation.navigate("Trabalho")
-          } else {
-            console.log(data);
-          };
-        } catch (error) {
-          console.log(error)
-        };
+
+    try {
+      const data = await api.post("/postTrabalho/register", {
+        tipoServico: tipoServico,
+        endereco: endereco,
+        dtInicio: dtInicio,
+        periodoMatutino: periodoMatutino,
+        periodoVespertino: periodoVespertino,
+        periodoNoturno: periodoNoturno,
+        linkWhats: linkWhats,
+        descricao: descricao
+      });
+      if (data.status === 200) {
+        console.log(data);
+        alert(data.data.message);
+        navigation.navigate("Trabalho")
+      } else {
+        console.log(data);
       };
+    } catch (error) {
+      console.log(error)
+    };
+
   }
 
 
-  return(
-  
-<View style = {styles.container}>
+  return (
 
-  <View style = {styles.topo}>
-    <View style = {styles.viewLogo}>
+    <View style={styles.container}>
+
+      <View style={styles.topo}>
+        <View style={styles.viewLogo}>
           <Image
             style={styles.logo}
             source={require("../assets/logo.png")}
           />
-    </View>
-
-    <View style = {styles.viewTitulo}>
-      <Text style = {styles.titulo}>WorkPlus</Text>
-    </View>
-  </View>
-
-  <View style = {styles.containerCriação}>
-    <View style = {styles.viewCriarPostTrabalho}>
-      <View style = {styles.viewMaior}>
-        <View style = {styles.viewTipoTrabalho}>
-        <Text style = {styles.BaseTipoDeTrabalho}>Tipo de Trabalho</Text>
         </View>
 
-        <View style = {styles.viewImputTipoTrabalho}>
-          <TextInput 
-            multiline style = {styles.BaseImputTipoDeTrabalho}
-            value={tipoServico}
-            onChangeText={setTipoServico}
-          >
-          </TextInput>
-        </View>
-        <View style = {styles.viewImagemTipoTrabalho}>
-        <Image
-            style={styles.ImagemEngrenagemTipo}
-            source={require("../assets/engrenagem.png")}
-          />
-        </View>
-        
-      </View>
-      <View style = {styles.viewMaior}>
-        <View style = {styles.viewEndereço}>
-        <Text style = {styles.BaseEndereço}>Endereço</Text>
-        </View>
-        <View style = {styles.viewImputEndereço}>
-          <TextInput 
-            multiline style = {styles.BaseImputEndereço}
-            value={endereco}
-            onChangeText={setEndereco}
-          >
-          </TextInput>
-        </View>
-        <View style = {styles.viewImagemLocalização}>
-        <Image
-            style={styles.ImagemLozalização}
-            source={require("../assets/Localizacao.png")}
-          />
+        <View style={styles.viewTitulo}>
+          <Text style={styles.titulo}>WorkPlus</Text>
         </View>
       </View>
 
-      {/* luigi */}
-      <View style = {styles.viewForaMenor}>
-        <View style = {styles.viewMenor}>
-        <View style = {styles.viewData}>
-        <Text style = {styles.BaseData}>Data de Início</Text>
-        </View>
-        <View style = {styles.viewImputData}>
-          <TextInput 
-            multiline style = {styles.BaseImputData}
-          
-          >
-          </TextInput>
-        </View>
-        <View style = {styles.viewImagemData}>
-        <Image
-            style={styles.ImagemData}
-            source={require("../assets/Calendario.png")}
-          />
-        </View>
-        </View>
-      </View>
-      <View style = {styles.viewMaior}>
-        <View style = {styles.viewPeriodo}>
-        <Text style = {styles.BasePeriodo}>Período</Text>
-        </View>
-        <View style = {styles.viewTodosPeriodos}>
-         <View style = {styles.viewMatutino}>
-            <CustomCheckbox 
-              label="Matutino" 
-              value={periodoMatutino}
-              onChangeText={setPeriodoMatutino}
-            />
-         </View>
+      <View style={styles.containerCriação}>
+        <View style={styles.viewCriarPostTrabalho}>
+          <View style={styles.viewMaior}>
+            <View style={styles.viewTipoTrabalho}>
+              <Text style={styles.BaseTipoDeTrabalho}>Tipo de Trabalho</Text>
+            </View>
 
-          <View style = {styles.viewVespertino}>
-            <CustomCheckbox 
-              label="Vespertino" 
-              value={periodoVespertino}
-              onChangeText={setPeriodoVespertino}
-            />
+            <View style={styles.viewImputTipoTrabalho}>
+              <TextInput
+                multiline style={styles.BaseImputTipoDeTrabalho}
+                value={tipoServico}
+                onChangeText={setTipoServico}
+              >
+              </TextInput>
+            </View>
+            <View style={styles.viewImagemTipoTrabalho}>
+              <Image
+                style={styles.ImagemEngrenagemTipo}
+                source={require("../assets/engrenagem.png")}
+              />
+            </View>
+
+          </View>
+          <View style={styles.viewMaior}>
+            <View style={styles.viewEndereço}>
+              <Text style={styles.BaseEndereço}>Endereço</Text>
+            </View>
+            <View style={styles.viewImputEndereço}>
+              <TextInput
+                multiline style={styles.BaseImputEndereço}
+                value={endereco}
+                onChangeText={setEndereco}
+              >
+              </TextInput>
+            </View>
+            <View style={styles.viewImagemLocalização}>
+              <Image
+                style={styles.ImagemLozalização}
+                source={require("../assets/Localizacao.png")}
+              />
+            </View>
           </View>
 
-          <View style = {styles.viewNoturno}>
-            <CustomCheckbox 
-              label="Noturno" 
-              value={periodoNoturno}
-              onChangeText={setPeriodoNoturno}
-            />
-          </View>
-        </View>
-      </View>
+          {/* luigi */}
+          <View style={styles.viewForaMenor}>
+            <View style={styles.viewMenor}>
+              <View style={styles.viewData}>
+                <Text style={styles.BaseData}>Data de Início</Text>
+              </View>
+              <View style={styles.viewImputData}>
+                <View style={styles.BaseImputData}>
+                {showPicker ? (
+                  <>
 
-      <View style = {styles.viewMaiorWhats}>
-      <View style = {styles.viewWhats}>
-        <Text style = {styles.BaseWhats}>WhatsApp</Text>
-        </View>
-        <View style = {styles.viewImputWhats}>
-          <TextInput 
-            multiline style = {styles.BaseImputWhats}
-            value={linkWhats}
-            onChangeText={setLinkWhats}
-          >
-          </TextInput>
-        </View>
-        <View style = {styles.viewImagemWhats}>
-        <Image
-            style={styles.ImagemWhats}
-            source={require("../assets/whats.png")}
-          />
-        </View>
-      </View>
+                    <DateTimePicker
+                      mode="date"
+                      display="spinner"
+                      value={date}
+                      onChange={onChange}
+                      style={{backgroundColor:'blue'}}
+                    />
 
-      <View style = {styles.viewTextoDescrição}>
-        <Text style = {styles.TextoDescrição}>Descrição</Text>
-      </View>
-      <KeyboardAvoidingView style = {styles.viewDescrição} behavior="padding" >
-      <DescricaoComponent
-        value={descricao}
-        onChangeText={setDescricao}
-      />
-      </KeyboardAvoidingView>
+                    <Pressable
+                      onPress={toggleDatepicker}
+                    >
+                      <TextInput
+                        placeholder="DD/MM/AA"
+                        style={{color:'black',fontWeight: 'bold', fontSize:15}}
+                        editable={false}
+                        value={dtInicio}
+                        onChangeText={setDTInicio}
+                      >
 
-      <TouchableOpacity
-        onPress={onRegisterPressed}
-      >
-      <View style = {styles.ViewBotaoConfirmar}>
-        <View style = {styles.BotaoConfirmarTrabalho}>
+                      </TextInput>
+                    </Pressable>
+                  </>
 
-          <View style = {styles.viewTextoConcluir}>
-            <Text style = {styles.textoConcluir}>Concluir</Text>
-          </View>
-          
-              <View style = {styles.viewImagemConcluir}>
+                )
+
+                  :
+
+                  (
+                    <Pressable
+                      onPress={toggleDatepicker}
+                    >
+                      <TextInput
+                        placeholder="DD/MM/AA"
+                        style={{color:'black',fontWeight: 'bold', fontSize:15}}
+                        editable={false}
+                        value={dtInicio}
+                        onChangeText={setDTInicio}
+                      >
+
+                      </TextInput>
+                    </Pressable>
+                  )}
+                  </View>
+              </View>
+              <View style={styles.viewImagemData}>
                 <Image
-                  style={styles.ImagemEngrenagem}
-                  source={require("../assets/duplaEngrenagem.png")}
+                  style={styles.ImagemData}
+                  source={require("../assets/Calendario.png")}
                 />
               </View>
-          <View>
-
+            </View>
           </View>
+          <View style={styles.viewMaior}>
+            <View style={styles.viewPeriodo}>
+              <Text style={styles.BasePeriodo}>Período</Text>
+            </View>
+            <View style={styles.viewTodosPeriodos}>
+              <View style={styles.viewMatutino}>
+                <CustomCheckbox
+                  label="Matutino"
+                  value={periodoMatutino}
+                  onChangeText={setPeriodoMatutino}
+                />
+              </View>
+
+              <View style={styles.viewVespertino}>
+                <CustomCheckbox
+                  label="Vespertino"
+                  value={periodoVespertino}
+                  onValueChange={setPeriodoVespertino}
+                />
+              </View>
+
+              <View style={styles.viewNoturno}>
+                <CustomCheckbox
+                  label="Noturno"
+                  value={periodoNoturno}
+                  onValueChange={setPeriodoNoturno}
+                />
+              </View>
+            </View>
+          </View>
+
+          <View style={styles.viewMaiorWhats}>
+            <View style={styles.viewWhats}>
+              <Text style={styles.BaseWhats}>WhatsApp</Text>
+            </View>
+            <View style={styles.viewImputWhats}>
+              <TextInput
+                multiline style={styles.BaseImputWhats}
+                value={linkWhats}
+                onChangeText={setLinkWhats}
+              >
+              </TextInput>
+            </View>
+            <View style={styles.viewImagemWhats}>
+              <Image
+                style={styles.ImagemWhats}
+                source={require("../assets/whats.png")}
+              />
+            </View>
+          </View>
+
+          <View style={styles.viewTextoDescrição}>
+            <Text style={styles.TextoDescrição}>Descrição</Text>
+          </View>
+          <KeyboardAvoidingView style={styles.viewDescrição} behavior="padding" >
+            <DescricaoComponent
+              value={descricao}
+              onChangeText={setDescricao}
+            />
+          </KeyboardAvoidingView>
+
+          <TouchableOpacity
+            onPress={onRegisterPressed}
+          >
+            <View style={styles.ViewBotaoConfirmar}>
+              <View style={styles.BotaoConfirmarTrabalho}>
+
+                <View style={styles.viewTextoConcluir}>
+                  <Text style={styles.textoConcluir}>Concluir</Text>
+                </View>
+
+                <View style={styles.viewImagemConcluir}>
+                  <Image
+                    style={styles.ImagemEngrenagem}
+                    source={require("../assets/duplaEngrenagem.png")}
+                  />
+                </View>
+                <View>
+
+                </View>
+              </View>
+            </View>
+          </TouchableOpacity>
         </View>
+
+
+
       </View>
-      </TouchableOpacity>
-    </View>
-  
 
-
-  </View>
-
-  <View style={styles.baixo}>
+      <View style={styles.baixo}>
         <View style={styles.suasOfertas}>
           <TouchableOpacity
             onPress={() => navigation.navigate('Trabalho')}
@@ -251,11 +291,11 @@ export default function TelaCriarTrabalho({navigation}){
           </TouchableOpacity>
         </View>
         <View style={styles.casinha}>
-        <TouchableOpacity onPress={() => navigation.navigate('Home')}>
-          <Image
-            style={{ width: 35, height: 40, left: 16.5 }}
-            source={require("../assets/casinha.png")}
-          />
+          <TouchableOpacity onPress={() => navigation.navigate('Home')}>
+            <Image
+              style={{ width: 35, height: 40, left: 16.5 }}
+              source={require("../assets/casinha.png")}
+            />
           </TouchableOpacity>
         </View>
         <View style={styles.suasDemandas}>
@@ -266,524 +306,528 @@ export default function TelaCriarTrabalho({navigation}){
           </TouchableOpacity>
         </View>
         <View style={styles.usuarioBaixo}>
-        <TouchableOpacity onPress={() => navigation.navigate('Perfil')}>
-          <Image
-            style={{ height: 50, width: 50, right: 5}}
-            source={require("../assets/usuario.png")}
-          />
+          <TouchableOpacity onPress={() => navigation.navigate('Perfil')}>
+            <Image
+              style={{ height: 50, width: 50, right: 5 }}
+              source={require("../assets/usuario.png")}
+            />
           </TouchableOpacity>
         </View>
       </View>
-</View>
-)}
+    </View>
+  )
+}
 
 const styles = StyleSheet.create({
 
-container:{
-height:800,
-width:'100%',
-//backgroundColor: 'blue'
-},
-topo:{
-  paddingLeft:'5%',
-  paddingTop:'10%',
-  alignItems:"center",
- 
-  height:'18%',
-  width:'100%',
-  flexDirection: "row",
-  //backgroundColor: 'red'
-},
-viewTitulo:{
-  alignItems:"center",
-  justifyContent:'center',
-  height:'100%',
-  width:'60%',
-  //backgroundColor: 'red'
+  container: {
+    height: 800,
+    width: '100%',
+    //backgroundColor: 'blue'
+  },
+  topo: {
+    paddingLeft: '5%',
+    paddingTop: '10%',
+    alignItems: "center",
 
-},
-titulo:{
-fontSize:50
-},
-viewLogo:{
-  alignItems:"center",
-  justifyContent:'center',
-  height:'100%',
-  width:'31%',
- // backgroundColor: 'blue'
- 
-},
-logo:{
-  height:'77%',
-  width:'77%',
-},
-containerCriação:{
-flex:12,
-justifyContent:'center',
-alignItems:'center',
-},
-viewCriarPostTrabalho:{
-  paddingTop:'3%',
-  height:'100%',
-  width:'100%',
-  alignItems:'center',
-},
-viewMaior:{
-  flexDirection:'row',
-  marginBottom:'3%',
-  borderRadius: 7,
-  height:'7%',
-  width:'90%',
-  backgroundColor: '#AECAFF',
-  opacity: 0.5
-},
-viewMaiorWhats:{
-  flexDirection:'row',
-  marginBottom:'0%',
-  borderRadius: 7,
-  height:'7%',
-  width:'90%',
-  backgroundColor: '#AECAFF',
-  opacity: 0.5
-},
-viewForaMenor:{
-  marginBottom:'3%',
-  height:'7%',
-  width:'100%',
-},
-viewMenor:{
-  flexDirection:'row',
-  marginLeft:'5%',
-  marginBottom:'5%',
-  borderRadius: 7,
-  height:'100%',
-  width:'68%',
-  backgroundColor: '#AECAFF',
-  opacity: 0.5
-},
-viewTextoDescrição:{
-  paddingLeft:'6%',
-  justifyContent:'center',
-  width:'100%',
-  height:'5%',
-  //backgroundColor:'blue'
-},
-TextoDescrição:{
-fontSize:17,
-fontWeight: 'bold'
-},
-viewDescrição:{
-  fontSize:44,
-  paddingLeft:'3%',
-  paddingRight:'3%',
-  paddingBottom:'4%',
-  paddingTop:'2%',
-  marginBottom:'1%',
-  borderRadius: 7,
-  width:'90%',
-  height:'25%',
-  backgroundColor: '#AECAFF',
-  opacity: 0.5
-},
-viewTipoTrabalho:{
-  alignItems:'center',
-  justifyContent:'center',
-  height:'100%',
-  width:'43%',
-  //backgroundColor:'blue'
-},
-viewImputTipoTrabalho:{
-  paddingBottom:'0.77%',
-  alignItems:'center',
-  justifyContent:'center',
-  height:'100%',
-  width:'48%',
-  //backgroundColor:'blue'
-},
-viewImagemTipoTrabalho:{
-  alignItems:'center',
-  justifyContent:'center',
-  height:'98%',
-  width:'9%',
-  //backgroundColor: 'blue'
-},
-ImagemEngrenagemTipo:{
-  height:'100%',
-  width:'100%',
-},
-BaseTipoDeTrabalho: {
-  fontWeight: 'bold',
-  width: "90%",
-  fontSize: 16.5,
-  borderRadius: 4,
-  paddingLeft: 5,
-  paddingRight: 5,
-  paddingTop: 2,
-  borderBottomColor: "#1A397B",
-  borderBottomWidth: 2,
-  backgroundGradient: {
-    colors: ["black", "#ffffff"],
-    start: { x: 1, y: 2 },
-    end: { x: 1, y: 1 },
+    height: '18%',
+    width: '100%',
+    flexDirection: "row",
+    //backgroundColor: 'red'
   },
-},
-BaseImputTipoDeTrabalho: {
-  fontWeight: 'bold',
-  width: "99%",
-  fontSize: 16.5,
-  borderRadius: 4,
-  paddingLeft: 8,
-  paddingRight: 6,
-  borderBottomColor: "#1A397B",
-  borderBottomWidth: 2,
-  backgroundGradient: {
-    colors: ["black", "#ffffff"],
-    start: { x: 1, y: 2 },
-    end: { x: 1, y: 1 },
+  dataCor:{
+colors:'red'
   },
-},
-viewImagemLocalização:{
-  alignItems:'center',
-  justifyContent:'center',
-  height:'100%',
-  width:'10%',
-  //backgroundColor:'red',
-},
-viewEndereço:{
-  //backgroundColor:'red',
-  paddingLeft:'1.5%',
-  justifyContent:'center',
-  height:'100%',
-  width:'30%',
-  
-},
-viewEndereçoServiço:{
-  //backgroundColor:'red',
-  paddingLeft:'1.5%',
-  justifyContent:'center',
-  height:'100%',
-  width:'39%',
-},
-viewImputEndereço:{
-  //backgroundColor: 'blue',
-  paddingBottom:'0.77%',
-  alignItems:'center',
-  justifyContent:'center',
-  height:'100%',
-  width:'60%',
-},
-viewImagemEndereço:{
-  alignItems:'center',
-  justifyContent:'center',
-  height:'100%',
-  width:'10%',
- // backgroundColor: 'blue'
-},
-BaseEndereço: {
-  fontWeight: 'bold',
-  width: "90%",
-  fontSize: 17.5,
-  borderRadius: 4,
-  paddingLeft: 8,
-  paddingRight: 6,
-  paddingTop: 2,
-  borderBottomColor: "#1A397B",
-  borderBottomWidth: 2,
-  backgroundGradient: {
-    colors: ["black", "#ffffff"],
-    start: { x: 1, y: 2 },
-    end: { x: 1, y: 1 },
+  viewTitulo: {
+    alignItems: "center",
+    justifyContent: 'center',
+    height: '100%',
+    width: '60%',
+    //backgroundColor: 'red'
+
   },
-},
-BaseImputEndereço: {
-  fontWeight: 'bold',
-  width: "96%",
-  fontSize: 16.5,
-  borderRadius: 4,
-  paddingLeft: 8,
-  paddingRight: 6,
-  borderBottomColor: "#1A397B",
-  borderBottomWidth: 2,
-  backgroundGradient: {
-    colors: ["black", "#ffffff"],
-    start: { x: 1, y: 2 },
-    end: { x: 1, y: 1 },
+  titulo: {
+    fontSize: 50
   },
-},
-ImagemLozalização:{
-  height:'80%',
-  width:'57%',
-},
-viewData:{
-  paddingLeft:'1.5%',
-  justifyContent:'center',
-  height:'100%',
-  width:'48%',
-},
-viewImputData:{
-  paddingBottom:'0.77%',
-  alignItems:'center',
-  justifyContent:'center',
-  height:'100%',
-  width:'38%',
-},
-viewImagemData:{
-  alignItems:'center',
-  justifyContent:'center',
-  height:'100%',
-  width:'15%',
-  
-},
-BaseData: {
-  fontWeight: 'bold',
-  width: "95%",
-  fontSize: 16.5,
-  borderRadius: 4,
-  paddingLeft: 8,
-  paddingRight: 6,
-  paddingTop: 2,
-  borderBottomColor: "#1A397B",
-  borderBottomWidth: 2,
-  backgroundGradient: {
-    colors: ["black", "#ffffff"],
-    start: { x: 1, y: 2 },
-    end: { x: 1, y: 1 },
+  viewLogo: {
+    alignItems: "center",
+    justifyContent: 'center',
+    height: '100%',
+    width: '31%',
+    // backgroundColor: 'blue'
+
   },
-},
-BaseImputData: {
-  fontWeight: 'bold',
-  width: "96%",
-  fontSize: 16.5,
-  borderRadius: 4,
-  paddingLeft: 8,
-  paddingRight: 6,
-  borderBottomColor: "#1A397B",
-  borderBottomWidth: 2,
-  backgroundGradient: {
-    colors: ["black", "#ffffff"],
-    start: { x: 1, y: 2 },
-    end: { x: 1, y: 1 },
+  logo: {
+    height: '77%',
+    width: '77%',
   },
-},
-ImagemData:{
-  height:'76%',
-  width:'69%',
-},
-viewPeriodo:{
-  //backgroundColor:'grey',
-  paddingLeft:'1.5%',
-  justifyContent:'center',
-  height:'100%',
-  width:'24%',
-},
-BasePeriodo: {
-  fontWeight: 'bold',
-  width: "95%",
-  fontSize: 16.5,
-  borderRadius: 4,
-  paddingLeft: 8,
-  paddingRight: 6,
-  paddingTop: 2,
-  borderBottomColor: "#1A397B",
-  borderBottomWidth: 2,
-  backgroundGradient: {
-    colors: ["black", "#ffffff"],
-    start: { x: 1, y: 2 },
-    end: { x: 1, y: 1 },
+  containerCriação: {
+    flex: 12,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
-},
-viewTodosPeriodos:{
-  alignItems:'center',
-  justifyContent:'center',
-  flexDirection:'row',
-  height:'100%',
-  width:'76%',
-},
-viewMatutino:{
-  alignItems:'center',
-  justifyContent:'center',
-  //backgroundColor:'blue',
-  height:'100%',
-  width:'32%',
-},
-viewVespertino:{
-  alignItems:'center',
-  justifyContent:'center',
-  //backgroundColor:'blue',
-  height:'100%',
-  width:'36%',
-},
-viewNoturno:{
-  alignItems:'center',
-  justifyContent:'center',
- // backgroundColor:'blue',
-  height:'100%',
-  width:'32%',
-},
-viewWhats:{
-  //backgroundColor:'red',
-  paddingLeft:'1.5%',
-  justifyContent:'center',
-  height:'100%',
-  width:'30%',
-  
-},
-viewImputWhats:{
-  //backgroundColor: 'blue',
-  paddingBottom:'0.77%',
-  alignItems:'center',
-  justifyContent:'center',
-  height:'100%',
-  width:'59%',
-},
-viewImagemWhats:{
-  alignItems:'center',
-  justifyContent:'center',
-  height:'100%',
-  width:'10%',
- // backgroundColor: 'blue'
-},
-BaseWhats: {
-  fontWeight: 'bold',
-  width: "95%",
-  fontSize: 16.5,
-  borderRadius: 4,
-  paddingLeft: 8,
-  paddingRight: 6,
-  paddingTop: 2,
-  borderBottomColor: "#1A397B",
-  borderBottomWidth: 2,
-  backgroundGradient: {
-    colors: ["black", "#ffffff"],
-    start: { x: 1, y: 2 },
-    end: { x: 1, y: 1 },
+  viewCriarPostTrabalho: {
+    paddingTop: '3%',
+    height: '100%',
+    width: '100%',
+    alignItems: 'center',
   },
-},
-BaseImputWhats: {
-  fontWeight: 'bold',
-  width: "96%",
-  fontSize: 16.5,
-  borderRadius: 4,
-  paddingLeft: 8,
-  paddingRight: 6,
-  borderBottomColor: "#1A397B",
-  borderBottomWidth: 2,
-  backgroundGradient: {
-    colors: ["black", "#ffffff"],
-    start: { x: 1, y: 2 },
-    end: { x: 1, y: 1 },
+  viewMaior: {
+    flexDirection: 'row',
+    marginBottom: '3%',
+    borderRadius: 7,
+    height: '7%',
+    width: '90%',
+    backgroundColor: '#AECAFF',
+    opacity: 0.5
   },
-},
-ImagemWhats:{
-  height:'72%',
-  width:'83%',
-},
-ViewBotaoConfirmar:{
-    
-    paddingTop:'9%',
-  alignItems:'center',
-  justifyContent:'center',
-  //backgroundColor:'blue',
-width:400,
-height:115
-},
-BotaoConfirmarTrabalho:{
-    flexDirection:'row',
-    backgroundColor:'#13387D',
-    width:'33%',
-    height:'45%',
-    borderRadius:10
-},
-viewTextoConcluir:{
-    alignItems:'center',
-    justifyContent:'center',
-    //backgroundColor:'blue',
-    width:'78%',
-    height:'100%',
-},
-textoConcluir:{
-    fontSize:21,
-    color:'white'
-},
-viewImagemConcluir:{
-    alignItems:'center',
-    justifyContent:'center',
+  viewMaiorWhats: {
+    flexDirection: 'row',
+    marginBottom: '0%',
+    borderRadius: 7,
+    height: '7%',
+    width: '90%',
+    backgroundColor: '#AECAFF',
+    opacity: 0.5
+  },
+  viewForaMenor: {
+    marginBottom: '3%',
+    height: '7%',
+    width: '100%',
+  },
+  viewMenor: {
+    flexDirection: 'row',
+    marginLeft: '5%',
+    marginBottom: '5%',
+    borderRadius: 7,
+    height: '100%',
+    width: '68%',
+    backgroundColor: '#AECAFF',
+    opacity: 0.5
+  },
+  viewTextoDescrição: {
+    paddingLeft: '6%',
+    justifyContent: 'center',
+    width: '100%',
+    height: '5%',
+    //backgroundColor:'blue'
+  },
+  TextoDescrição: {
+    fontSize: 17,
+    fontWeight: 'bold'
+  },
+  viewDescrição: {
+    fontSize: 44,
+    paddingLeft: '3%',
+    paddingRight: '3%',
+    paddingBottom: '4%',
+    paddingTop: '2%',
+    marginBottom: '1%',
+    borderRadius: 7,
+    width: '90%',
+    height: '25%',
+    backgroundColor: '#AECAFF',
+    opacity: 0.5
+  },
+  viewTipoTrabalho: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    height: '100%',
+    width: '43%',
+    //backgroundColor:'blue'
+  },
+  viewImputTipoTrabalho: {
+    paddingBottom: '0.77%',
+    alignItems: 'center',
+    justifyContent: 'center',
+    height: '100%',
+    width: '48%',
+    //backgroundColor:'blue'
+  },
+  viewImagemTipoTrabalho: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    height: '98%',
+    width: '9%',
+    //backgroundColor: 'blue'
+  },
+  ImagemEngrenagemTipo: {
+    height: '100%',
+    width: '100%',
+  },
+  BaseTipoDeTrabalho: {
+    fontWeight: 'bold',
+    width: "90%",
+    fontSize: 16.5,
+    borderRadius: 4,
+    paddingLeft: 5,
+    paddingRight: 5,
+    paddingTop: 2,
+    borderBottomColor: "#1A397B",
+    borderBottomWidth: 2,
+    backgroundGradient: {
+      colors: ["black", "#ffffff"],
+      start: { x: 1, y: 2 },
+      end: { x: 1, y: 1 },
+    },
+  },
+  BaseImputTipoDeTrabalho: {
+    fontWeight: 'bold',
+    width: "99%",
+    fontSize: 16.5,
+    borderRadius: 4,
+    paddingLeft: 8,
+    paddingRight: 6,
+    borderBottomColor: "#1A397B",
+    borderBottomWidth: 2,
+    backgroundGradient: {
+      colors: ["black", "#ffffff"],
+      start: { x: 1, y: 2 },
+      end: { x: 1, y: 1 },
+    },
+  },
+  viewImagemLocalização: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    height: '100%',
+    width: '10%',
     //backgroundColor:'red',
-    width:'22%',
-    height:'100%',
-},
-ImagemEngrenagemTipo:{
-    width:'80%',
-    height:'73%',
-},
-ImagemEngrenagem:{
-    width:'80%',
-    height:'67%',
-},
-baixo: {
-  flex: 1,
-  flexDirection: "row",
-  backgroundColor: "#A5C4FF",
-  borderRadius:10,
-},
-suasOfertas: {
-  height: "100%",
-  width: "34%",
-  justifyContent: "center",
-  alignItems: "center",
-},
-casinha: {
-  paddingRight: "2%",
-  justifyContent: "center",
-  alignItems: "center",
-  height: "100%",
-  width: "15%",
-},
-suasDemandas: {
-  height: "100%",
-  width: "35%",
-  justifyContent: "center",
-  alignItems: "center",
-},
-usuarioBaixo: {
-  height: "100%",
-  width: "16%",
-  justifyContent: "center",
-  alignItems: "center",
-},
-botaoMeustrabalhos: {
-  width: "100%",
-  left: 18,
-  fontSize: 16,
-  borderRadius: 12,
-  paddingLeft: 10,
-  paddingRight: 10,
-  paddingTop: 15,
-  borderBottomColor: "#1A397B",
-  borderBottomWidth: 2,
-  backgroundGradient: {
-    colors: ["black", "#ffffff"],
-    start: { x: 1, y: 2 },
-    end: { x: 1, y: 1 },
   },
-},
-iconeCasinha: {
-  height: "73%",
-  width: "70%",
-},
-botaoMeusServicos: {
-  width: "100%",
-  fontSize: 16.5,
-  borderRadius: 12,
-  paddingLeft: 5,
-  paddingRight: 5,
-  paddingTop: 14,
-  borderBottomColor: "#1A397B",
-  borderBottomWidth: 2,
-  backgroundGradient: {
-    colors: ["black", "#ffffff"],
-    start: { x: 1, y: 2 },
-    end: { x: 1, y: 1 },
+  viewEndereço: {
+    //backgroundColor:'red',
+    paddingLeft: '1.5%',
+    justifyContent: 'center',
+    height: '100%',
+    width: '30%',
+
   },
-},
+  viewEndereçoServiço: {
+    //backgroundColor:'red',
+    paddingLeft: '1.5%',
+    justifyContent: 'center',
+    height: '100%',
+    width: '39%',
+  },
+  viewImputEndereço: {
+    //backgroundColor: 'blue',
+    paddingBottom: '0.77%',
+    alignItems: 'center',
+    justifyContent: 'center',
+    height: '100%',
+    width: '60%',
+  },
+  viewImagemEndereço: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    height: '100%',
+    width: '10%',
+    // backgroundColor: 'blue'
+  },
+  BaseEndereço: {
+    fontWeight: 'bold',
+    width: "90%",
+    fontSize: 17.5,
+    borderRadius: 4,
+    paddingLeft: 8,
+    paddingRight: 6,
+    paddingTop: 2,
+    borderBottomColor: "#1A397B",
+    borderBottomWidth: 2,
+    backgroundGradient: {
+      colors: ["black", "#ffffff"],
+      start: { x: 1, y: 2 },
+      end: { x: 1, y: 1 },
+    },
+  },
+  BaseImputEndereço: {
+    fontWeight: 'bold',
+    width: "96%",
+    fontSize: 16.5,
+    borderRadius: 4,
+    paddingLeft: 8,
+    paddingRight: 6,
+    borderBottomColor: "#1A397B",
+    borderBottomWidth: 2,
+    backgroundGradient: {
+      colors: ["black", "#ffffff"],
+      start: { x: 1, y: 2 },
+      end: { x: 1, y: 1 },
+    },
+  },
+  ImagemLozalização: {
+    height: '80%',
+    width: '57%',
+  },
+  viewData: {
+    paddingLeft: '1.5%',
+    justifyContent: 'center',
+    height: '100%',
+    width: '48%',
+  },
+  viewImputData: {
+    paddingBottom: '0.77%',
+    alignItems: 'center',
+    justifyContent: 'center',
+    height: '100%',
+    width: '38%',
+  },
+  viewImagemData: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    height: '100%',
+    width: '15%',
+
+  },
+  BaseData: {
+    fontWeight: 'bold',
+    width: "95%",
+    fontSize: 16.5,
+    borderRadius: 4,
+    paddingLeft: 8,
+    paddingRight: 6,
+    paddingTop: 2,
+    borderBottomColor: "#1A397B",
+    borderBottomWidth: 2,
+    backgroundGradient: {
+      colors: ["black", "#ffffff"],
+      start: { x: 1, y: 2 },
+      end: { x: 1, y: 1 },
+    },
+  },
+  BaseImputData: {
+    fontWeight: 'bold',
+    width: "96%",
+    fontSize: 16.5,
+    borderRadius: 4,
+    paddingLeft: 8,
+    paddingRight: 6,
+    borderBottomColor: "#1A397B",
+    borderBottomWidth: 2,
+    backgroundGradient: {
+      colors: ["black", "#ffffff"],
+      start: { x: 1, y: 2 },
+      end: { x: 1, y: 1 },
+    },
+  },
+  ImagemData: {
+    height: '76%',
+    width: '69%',
+  },
+  viewPeriodo: {
+    //backgroundColor:'grey',
+    paddingLeft: '1.5%',
+    justifyContent: 'center',
+    height: '100%',
+    width: '24%',
+  },
+  BasePeriodo: {
+    fontWeight: 'bold',
+    width: "95%",
+    fontSize: 16.5,
+    borderRadius: 4,
+    paddingLeft: 8,
+    paddingRight: 6,
+    paddingTop: 2,
+    borderBottomColor: "#1A397B",
+    borderBottomWidth: 2,
+    backgroundGradient: {
+      colors: ["black", "#ffffff"],
+      start: { x: 1, y: 2 },
+      end: { x: 1, y: 1 },
+    },
+  },
+  viewTodosPeriodos: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    flexDirection: 'row',
+    height: '100%',
+    width: '76%',
+  },
+  viewMatutino: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    //backgroundColor:'blue',
+    height: '100%',
+    width: '32%',
+  },
+  viewVespertino: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    //backgroundColor:'blue',
+    height: '100%',
+    width: '36%',
+  },
+  viewNoturno: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    // backgroundColor:'blue',
+    height: '100%',
+    width: '32%',
+  },
+  viewWhats: {
+    //backgroundColor:'red',
+    paddingLeft: '1.5%',
+    justifyContent: 'center',
+    height: '100%',
+    width: '30%',
+
+  },
+  viewImputWhats: {
+    //backgroundColor: 'blue',
+    paddingBottom: '0.77%',
+    alignItems: 'center',
+    justifyContent: 'center',
+    height: '100%',
+    width: '59%',
+  },
+  viewImagemWhats: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    height: '100%',
+    width: '10%',
+    // backgroundColor: 'blue'
+  },
+  BaseWhats: {
+    fontWeight: 'bold',
+    width: "95%",
+    fontSize: 16.5,
+    borderRadius: 4,
+    paddingLeft: 8,
+    paddingRight: 6,
+    paddingTop: 2,
+    borderBottomColor: "#1A397B",
+    borderBottomWidth: 2,
+    backgroundGradient: {
+      colors: ["black", "#ffffff"],
+      start: { x: 1, y: 2 },
+      end: { x: 1, y: 1 },
+    },
+  },
+  BaseImputWhats: {
+    fontWeight: 'bold',
+    width: "96%",
+    fontSize: 16.5,
+    borderRadius: 4,
+    paddingLeft: 8,
+    paddingRight: 6,
+    borderBottomColor: "#1A397B",
+    borderBottomWidth: 2,
+    backgroundGradient: {
+      colors: ["black", "#ffffff"],
+      start: { x: 1, y: 2 },
+      end: { x: 1, y: 1 },
+    },
+  },
+  ImagemWhats: {
+    height: '72%',
+    width: '83%',
+  },
+  ViewBotaoConfirmar: {
+
+    paddingTop: '9%',
+    alignItems: 'center',
+    justifyContent: 'center',
+    //backgroundColor:'blue',
+    width: 400,
+    height: 115
+  },
+  BotaoConfirmarTrabalho: {
+    flexDirection: 'row',
+    backgroundColor: '#13387D',
+    width: '33%',
+    height: '45%',
+    borderRadius: 10
+  },
+  viewTextoConcluir: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    //backgroundColor:'blue',
+    width: '78%',
+    height: '100%',
+  },
+  textoConcluir: {
+    fontSize: 21,
+    color: 'white'
+  },
+  viewImagemConcluir: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    //backgroundColor:'red',
+    width: '22%',
+    height: '100%',
+  },
+  ImagemEngrenagemTipo: {
+    width: '80%',
+    height: '73%',
+  },
+  ImagemEngrenagem: {
+    width: '80%',
+    height: '67%',
+  },
+  baixo: {
+    flex: 1,
+    flexDirection: "row",
+    backgroundColor: "#A5C4FF",
+    borderRadius: 10,
+  },
+  suasOfertas: {
+    height: "100%",
+    width: "34%",
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  casinha: {
+    paddingRight: "2%",
+    justifyContent: "center",
+    alignItems: "center",
+    height: "100%",
+    width: "15%",
+  },
+  suasDemandas: {
+    height: "100%",
+    width: "35%",
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  usuarioBaixo: {
+    height: "100%",
+    width: "16%",
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  botaoMeustrabalhos: {
+    width: "100%",
+    left: 18,
+    fontSize: 16,
+    borderRadius: 12,
+    paddingLeft: 10,
+    paddingRight: 10,
+    paddingTop: 15,
+    borderBottomColor: "#1A397B",
+    borderBottomWidth: 2,
+    backgroundGradient: {
+      colors: ["black", "#ffffff"],
+      start: { x: 1, y: 2 },
+      end: { x: 1, y: 1 },
+    },
+  },
+  iconeCasinha: {
+    height: "73%",
+    width: "70%",
+  },
+  botaoMeusServicos: {
+    width: "100%",
+    fontSize: 16.5,
+    borderRadius: 12,
+    paddingLeft: 5,
+    paddingRight: 5,
+    paddingTop: 14,
+    borderBottomColor: "#1A397B",
+    borderBottomWidth: 2,
+    backgroundGradient: {
+      colors: ["black", "#ffffff"],
+      start: { x: 1, y: 2 },
+      end: { x: 1, y: 1 },
+    },
+  },
 })

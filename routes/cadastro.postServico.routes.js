@@ -7,7 +7,7 @@ postServico.get("/", (req, res) => {
     res.send("Rota de postServico");
 });
 
-postServico.post("/Cadastro", async (req, res) => {
+postServico.post("/register", async (req, res) => {
 
     const { idPostServico, idUser, tipoServico, regiao, dtDisponivel, periodoMatutino, periodoVespertino, periodoNoturno, linkWhats, descricao } = req.body;
 

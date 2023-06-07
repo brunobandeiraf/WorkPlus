@@ -9,7 +9,7 @@ export default function TelaCriarServico({navigation}){
 
   const [tipoServico, setTipoServico] = useState('');
   const [regiao, setRegiao] = useState('');
-  const [dtDisponivel, setDTDisponivel] = useState(new Date());
+  const [dtDisponivel, setDTDisponivel] = useState('2023-07-07');
   const [periodoMatutino, setPeriodoMatutino] = useState('');
   const [periodoVespertino, setPeriodoVespertino] = useState('');
   const [periodoNoturno, setPeriodoNoturno] = useState('');
@@ -44,11 +44,9 @@ export default function TelaCriarServico({navigation}){
 
   const onRegisterPressed = async () => {
     
-    if (password !== confirmPassword) {
-      alert("As senhas não coincidem");
-    } else {
+    
         try {
-          const data = await api.post("/user/register", {
+          const data = await api.post("/postServico/register", {
             tipoServico: tipoServico,
             regiao: regiao,
             dtDisponivel: dtDisponivel,
@@ -68,7 +66,7 @@ export default function TelaCriarServico({navigation}){
         } catch (error) {
           console.log(error)
         };
-      };
+      
   }
 
 return(
@@ -140,7 +138,8 @@ return(
         <View style = {styles.viewImputData}>
           <TextInput 
             multiline style = {styles.BaseImputData}
-          
+            value={dtDisponivel}
+            onChangeText={setDTDisponivel}
           >
           </TextInput>
         </View>
