@@ -21,35 +21,35 @@ const PostTrabalho = connection.define(
         // },
         tipoTrabalho: {
             type: Sequelize.STRING,
-            allowNull: true,
+            allowNull: false,
         },
         endereco: {
             type: Sequelize.STRING,
-            allowNull: true,
+            allowNull: false,
         },
         dtInicio: {
             type: Sequelize.DATE,
-            allowNull: true,
+            allowNull: false,
         },
         periodoMatutino: {
             type: Sequelize.BOOLEAN,
-            allowNull: true,
+            allowNull: false,
         },
         periodoVespertino: {
             type: Sequelize.BOOLEAN,
-            allowNull: true,
+            allowNull: false,
         },
         periodoNoturno: {
             type: Sequelize.BOOLEAN,
-            allowNull: true,
+            allowNull: false,
         },
         linkWhats: {
             type: Sequelize.STRING,
-            allowNull: true,
+            allowNull: false,
         },
         descricao: {
             type: Sequelize.STRING,
-            allowNull: true,
+            allowNull: false,
         },
     }
 );
