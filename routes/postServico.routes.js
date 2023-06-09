@@ -11,7 +11,7 @@ postServico.post("/register", async (req, res) => {
 
     const { idPostServico, idUser, tipoServico, regiao, dtDisponivel, periodoMatutino, periodoVespertino, periodoNoturno, linkWhats, descricao } = req.body;
 
-    const newPostServico = new PostServico({ idPostServico, idUser, tipoServico, regiao, dtDisponivel, periodoMatutino, periodoVespertino, periodoNoturno, linkWhats, descricao});
+    const newPostServico = new PostServico({ idPostServico, idUser, tipoServico, regiao, dtDisponivel, periodoMatutino, periodoVespertino, periodoNoturno, linkWhats, descricao });
 
     const savePostServico = await newPostServico.save().catch((err) => {
         console.log("Error: ", err);

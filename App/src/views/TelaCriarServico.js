@@ -1,17 +1,19 @@
 import React, { useState, useEffect, useRef } from "react";
 import {Text, Animated,KeyboardAvoidingView,View,StyleSheet,Image,TextInput,SafeAreaView,ScrollView,TouchableOpacity, Linking
 } from "react-native";
-
-
+import DescricaoComponent from "../componente/ComponenteTextoDescricao";
+import CustomCheckbox from "../componente/ComponenteEscolhaPeriodo";
+import DateTimePicker from '@react-native-community/datetimepicker';
+import api from "../api";
 
 export default function TelaCriarServico({navigation}){
 
   const [tipoServico, setTipoServico] = useState('');
   const [regiao, setRegiao] = useState('');
   const [dtDisponivel, setDTDisponivel] = useState('2023-07-07');
-  const [periodoMatutino, setPeriodoMatutino] = useState('');
-  const [periodoVespertino, setPeriodoVespertino] = useState('');
-  const [periodoNoturno, setPeriodoNoturno] = useState('');
+  const [periodoMatutino, setPeriodoMatutino] = useState(false);
+  const [periodoVespertino, setPeriodoVespertino] = useState(false);
+  const [periodoNoturno, setPeriodoNoturno] = useState(false);
   const [linkWhats, setLinkWhats] = useState('');
   const [descricao, setDescricao] = useState('');
 
@@ -39,6 +41,16 @@ export default function TelaCriarServico({navigation}){
   const console = () => {
     alert(dtDisponivel)
   }
+
+  const escolhaPeriodoMatutino = () => {
+    setPeriodoMatutino(!periodoMatutino);
+  };
+  const escolhaPeriodoVespertino = () => {
+    setPeriodoVespertino(!periodoVespertino);
+  };
+  const escolhaPeriodoNoturno = () => {
+    setPeriodoNoturno(!periodoNoturno);
+  };
 
 
   const onRegisterPressed = async () => {
@@ -158,27 +170,57 @@ return(
         </View>
         <View style = {styles.viewTodosPeriodos}>
          <View style = {styles.viewMatutino}>
-            <CustomCheckbox 
-              label="Matutino" 
-              value={periodoMatutino}
-              onChangeText={setPeriodoMatutino}
-            />
+            <TouchableOpacity onPress={escolhaPeriodoMatutino}>
+              <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+                <View
+                  style={{
+                    width: 20,
+                    height: 20,
+                    borderRadius: 10,
+                    borderWidth: 6,
+                    borderColor: periodoMatutino ? '#082253' : 'white',
+                    marginRight: 2,
+                  }}
+                />
+                <Text style={{ fontWeight: 'bold' }}>Noturno</Text>
+              </View>
+            </TouchableOpacity>
          </View>
 
           <View style = {styles.viewVespertino}>
-            <CustomCheckbox 
-              label="Vespertino" 
-              value={periodoVespertino}
-              onChangeText={setPeriodoVespertino}
-            />
+            <TouchableOpacity onPress={escolhaPeriodoVespertino}>
+              <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+                <View
+                  style={{
+                    width: 20,
+                    height: 20,
+                    borderRadius: 10,
+                    borderWidth: 6,
+                    borderColor: periodoVespertino ? '#082253' : 'white',
+                    marginRight: 2,
+                  }}
+                />
+                <Text style={{ fontWeight: 'bold' }}>Noturno</Text>
+              </View>
+            </TouchableOpacity>
           </View>
 
           <View style = {styles.viewNoturno}>
-            <CustomCheckbox 
-              label="Noturno" 
-              value={periodoNoturno}
-              onChangeText={setPeriodoNoturno}
-            />
+            <TouchableOpacity onPress={escolhaPeriodoNoturno}>
+              <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+                <View
+                  style={{
+                    width: 20,
+                    height: 20,
+                    borderRadius: 10,
+                    borderWidth: 6,
+                    borderColor: periodoNoturno ? '#082253' : 'white',
+                    marginRight: 2,
+                  }}
+                />
+                <Text style={{ fontWeight: 'bold' }}>Noturno</Text>
+              </View>
+            </TouchableOpacity>
           </View>
         </View>
       </View>

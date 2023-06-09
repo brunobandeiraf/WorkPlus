@@ -12,11 +12,9 @@ user.get("/verify", (req, res) => {
 user.post("/register", async (req, res) => {
     const { name, userName, email, password, cpf, dtNascimento } = req.body;
    
- 
     const alreadyExistsUser = await User.findOne(
         { where: { userName, email } }
     ).catch((err) => console.log("Error: ", err));
-    
    
     if(alreadyExistsUser) {
         console.log("Usuário Existente: " + alreadyExistsUser);
@@ -25,8 +23,6 @@ user.post("/register", async (req, res) => {
             .json({ message: "Usuário ou E-mail já utilizado por outro usuário"})
     }
 
-
-    
     const newUser = new User ({ name, userName, email, password, cpf, dtNascimento });
     
     const saveUser = await newUser.save().catch((err) => {

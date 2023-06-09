@@ -8,7 +8,7 @@ const PostServico = connection.define(
         idPostServico: {
             type: Sequelize.INTEGER,
             autoIncrement: true,
-            allowNull: false,
+            allowNull: true,
             primaryKey: true,
         },
         idUser: {
@@ -21,36 +21,36 @@ const PostServico = connection.define(
         },
         tipoServico: {
             type: Sequelize.STRING,
-            allowNull: false,
+            allowNull: true,
         },
         regiao: {
             type: Sequelize.STRING,
-            allowNull: false,
+            allowNull: true,
         },
         dtDisponivel: {
             type: Sequelize.DATE,
             unique: true,
-            allowNull: false,
+            allowNull: true,
         },
         periodoMatutino: {
             type: Sequelize.BOOLEAN,
-            allowNull: false,
+            allowNull: true,
         },
         periodoVespertino: {
             type: Sequelize.BOOLEAN,
-            allowNull: false,
+            allowNull: true,
         },
         periodoNoturno: {
             type: Sequelize.BOOLEAN,
-            allowNull: false,
+            allowNull: true,
         },
         linkWhats: {
             type: Sequelize.STRING,
-            allowNull: false,
+            allowNull: true,
         },
         descricao: {
             type: Sequelize.STRING,
-            allowNull: false,
+            allowNull: true,
         },
     }
 );

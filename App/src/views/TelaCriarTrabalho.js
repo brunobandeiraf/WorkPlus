@@ -1,33 +1,20 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState } from "react";
 import {
-  Text, Animated, KeyboardAvoidingView, View, StyleSheet, Image, TextInput, SafeAreaView, ScrollView, TouchableOpacity, Linking, Pressable
+  Text, KeyboardAvoidingView, View, StyleSheet, Image, TextInput, SafeAreaView, ScrollView, TouchableOpacity, Linking, Pressable
 } from "react-native";
 import DescricaoComponent from "../componente/ComponenteTextoDescricao";
-
+import CustomCheckbox from "../componente/ComponenteEscolhaPeriodo";
 import DateTimePicker from '@react-native-community/datetimepicker';
 import api from "../api";
+
 export default function TelaCriarTrabalho({ navigation }) {
-  const escolhaMatutino = () => {
-    setIsMatutino(!periodoMatutino);
-  };
-
-  const escolhaVespertino = () => {
-    setIsVespertino(!periodoVespertino);
-  };
-
-  const escolhaNoturno = () => {
-    setIsNoturno(!periodoNoturno);
-  };
-
-  const toggleDatepicker = () => {
-    setShowPicker(!showPicker);
-  };
+  
   const [tipoServico, setTipoServico] = useState('');
   const [endereco, setEndereco] = useState('');
   const [dtInicio, setDTInicio] = useState('2023-07-07');
-  const [periodoMatutino, setIsMatutino] = useState(false);
-  const [periodoVespertino, setIsVespertino] = useState(false);
-  const [periodoNoturno, setIsNoturno] = useState(false);
+  const [periodoMatutino, setPeriodoMatutino] = useState(false);
+  const [periodoVespertino, setPeriodoVespertino] = useState(false);
+  const [periodoNoturno, setPeriodoNoturno] = useState(false);
   const [linkWhats, setLinkWhats] = useState('');
   const [descricao, setDescricao] = useState('');
 
@@ -35,7 +22,9 @@ export default function TelaCriarTrabalho({ navigation }) {
 
   const [showPicker, setShowPicker] = useState(false);
 
-
+  const toggleDatepicker =() => {
+    setShowPicker(!showPicker);
+  };
 
   const onChange = ({ type }, selectedDate) => {
     if (type == "set") {
@@ -50,6 +39,18 @@ export default function TelaCriarTrabalho({ navigation }) {
     }
   };
 
+  const escolhaPeriodoMatutino = () => {
+    setPeriodoMatutino(!periodoMatutino);
+    
+  };
+  const escolhaPeriodoVespertino = () => {
+    setPeriodoVespertino(!periodoVespertino);
+    
+  };
+  const escolhaPeriodoNoturno = () => {
+    setPeriodoNoturno(!periodoNoturno);
+    
+  };
 
   const onRegisterPressed = async () => {
 
@@ -208,7 +209,7 @@ export default function TelaCriarTrabalho({ navigation }) {
 
 
               <View style={styles.viewMatutino}>
-                <TouchableOpacity onPress={escolhaMatutino}>
+                <TouchableOpacity onPress={escolhaPeriodoMatutino}>
                   <View style={{ flexDirection: 'row', alignItems: 'center' }}>
                     <View
                       style={{
@@ -226,7 +227,7 @@ export default function TelaCriarTrabalho({ navigation }) {
               </View>
 
               <View style={styles.viewVespertino}>
-                <TouchableOpacity onPress={escolhaVespertino}>
+                <TouchableOpacity onPress={escolhaPeriodoVespertino}>
                   <View style={{ flexDirection: 'row', alignItems: 'center' }}>
                     <View
                       style={{
@@ -244,7 +245,7 @@ export default function TelaCriarTrabalho({ navigation }) {
               </View>
 
               <View style={styles.viewNoturno}>
-                <TouchableOpacity onPress={escolhaNoturno}>
+                <TouchableOpacity onPress={escolhaPeriodoNoturno}>
                   <View style={{ flexDirection: 'row', alignItems: 'center' }}>
                     <View
                       style={{

@@ -1,15 +1,10 @@
 import React, { useState } from 'react';
 import { View, Text, TouchableOpacity } from 'react-native';
 
-const CheckboxMatutino = ({ label }) => {
-  const [isMatutino, setIsMatutino] = useState(false);
-
-  const escolhaMatutino = () => {
-    setIsMatutino(!isMatutino);
-  };
+const CustomCheckbox = ({ label }) => {
 
   return (
-    <TouchableOpacity onPress={escolhaMatutino}>
+    <TouchableOpacity>
        <View style={{ flexDirection: 'row', alignItems: 'center' }}>
         <View
           style={{
@@ -17,7 +12,6 @@ const CheckboxMatutino = ({ label }) => {
             height: 20,
             borderRadius: 10,
             borderWidth: 6,
-            borderColor: isChecked ? '#082253' : 'white',
             marginRight: 2,
           }}
         />
@@ -27,4 +21,4 @@ const CheckboxMatutino = ({ label }) => {
   );
 };
 
-export default CheckboxMatutino;
+export default CustomCheckbox;
