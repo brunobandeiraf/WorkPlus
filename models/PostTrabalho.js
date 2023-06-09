@@ -19,7 +19,7 @@ const PostTrabalho = connection.define(
         //         key: 'idUser',
         //     }
         // },
-        tipoServico: {
+        tipoTrabalho: {
             type: Sequelize.STRING,
             allowNull: true,
         },

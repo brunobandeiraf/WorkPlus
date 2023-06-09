@@ -9,7 +9,7 @@ import api from "../api";
 
 export default function TelaCriarTrabalho({ navigation }) {
   
-  const [tipoServico, setTipoServico] = useState('');
+  const [tipoTrabalho, setTipoTrabalho] = useState('');
   const [endereco, setEndereco] = useState('');
   const [dtInicio, setDTInicio] = useState('2023-07-07');
   const [periodoMatutino, setPeriodoMatutino] = useState(false);
@@ -51,13 +51,25 @@ export default function TelaCriarTrabalho({ navigation }) {
     setPeriodoNoturno(!periodoNoturno);
     
   };
+  
+  const handleDescricaoChange = (text) => {
+    if (text.length <= 255) {
+      setDescricao(text);
+    }
+  };
 
   const onRegisterPressed = async () => {
-
+  
     try {
       const data = await api.post("/postTrabalho/register", {
-        tipoServico: tipoServico,
-        
+        tipoTrabalho: tipoTrabalho,
+        endereco: endereco,
+        dtInicio: dtInicio,
+        periodoMatutino: periodoMatutino,
+        periodoVespertino: periodoVespertino,
+        periodoNoturno: periodoNoturno,
+        linkWhats: linkWhats,
+        descricao: descricao
       });
       if (data.status === 200) {
         console.log(data);
@@ -99,8 +111,8 @@ export default function TelaCriarTrabalho({ navigation }) {
             <View style={styles.viewImputTipoTrabalho}>
               <TextInput
                 multiline style={styles.BaseImputTipoDeTrabalho}
-                value={tipoServico}
-                onChangeText={setTipoServico}
+                value={tipoTrabalho}
+                onChangeText={setTipoTrabalho}
               >
               </TextInput>
             </View>
@@ -290,10 +302,15 @@ export default function TelaCriarTrabalho({ navigation }) {
             <Text style={styles.TextoDescrição}>Descrição</Text>
           </View>
           <KeyboardAvoidingView style={styles.viewDescrição} behavior="padding" >
-            <DescricaoComponent
-              value={descricao}
-              onChangeText={setDescricao}
-            />
+            <View>
+              <TextInput
+                style={{ fontSize:18 }}
+                multiline
+                maxLength={255}
+                value={descricao}
+                onChangeText={handleDescricaoChange}
+              />
+            </View>
           </KeyboardAvoidingView>
 
           <TouchableOpacity
