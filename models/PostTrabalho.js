@@ -11,14 +11,14 @@ const PostTrabalho = connection.define(
             allowNull: false,
             primaryKey: true,
         },
-        idUser: {
-            type: Sequelize.INTEGER,
-            allowNull: false,
-            references: {
-                model: 'users',
-                key: 'idUser',
-            }
-        },
+        // idUser: {
+        //     type: Sequelize.INTEGER,
+        //     allowNull: false,
+        //     references: {
+        //         model: 'users',
+        //         key: 'idUser',
+        //     }
+        // },
         tipoServico: {
             type: Sequelize.STRING,
             allowNull: true,
@@ -29,7 +29,6 @@ const PostTrabalho = connection.define(
         },
         dtInicio: {
             type: Sequelize.DATE,
-            unique: true,
             allowNull: true,
         },
         periodoMatutino: {
@@ -55,8 +54,8 @@ const PostTrabalho = connection.define(
     }
 );
 
-PostTrabalho.belongsTo(User, {
-    foreignKey: 'idUser'
-});
+// PostTrabalho.belongsTo(User, {
+//     foreignKey: 'idUser'
+// });
 
 export default PostTrabalho;

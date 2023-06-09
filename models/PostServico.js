@@ -29,7 +29,6 @@ const PostServico = connection.define(
         },
         dtDisponivel: {
             type: Sequelize.DATE,
-            unique: true,
             allowNull: true,
         },
         periodoMatutino: {

@@ -57,13 +57,7 @@ export default function TelaCriarTrabalho({ navigation }) {
     try {
       const data = await api.post("/postTrabalho/register", {
         tipoServico: tipoServico,
-        endereco: endereco,
-        dtInicio: dtInicio,
-        periodoMatutino: periodoMatutino,
-        periodoVespertino: periodoVespertino,
-        periodoNoturno: periodoNoturno,
-        linkWhats: linkWhats,
-        descricao: descricao
+        
       });
       if (data.status === 200) {
         console.log(data);

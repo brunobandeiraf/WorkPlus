@@ -8,10 +8,14 @@ postTrabalho.get("/", (req, res) => {
 });
 
  postTrabalho.post("/register", async (req, res) => {
-    
-    const { idPostServico, idUser, tipoServico, regiao, dtDisponivel, periodoMatutino, periodoVespertino, periodoNoturno, linkWhats, descricao } = req.body;
+     
+    // const { idPostServico, idUser, tipoServico, regiao, dtDisponivel, periodoMatutino, periodoVespertino, periodoNoturno, linkWhats, descricao } = req.body;
 
-    const newPostTrabalho = new PostTrabalho({ idPostServico, idUser, tipoServico, regiao, dtDisponivel, periodoMatutino, periodoVespertino, periodoNoturno, linkWhats, descricao});
+    const { tipoServico, regiao, dtDisponivel, periodoMatutino, periodoVespertino, periodoNoturno, linkWhats, descricao } = req.body;
+
+    // const newPostTrabalho = new PostTrabalho({ idPostServico, idUser, tipoServico, regiao, dtDisponivel, periodoMatutino, periodoVespertino, periodoNoturno, linkWhats, descricao});
+    
+    const newPostTrabalho = new PostTrabalho({ tipoServico, regiao, dtDisponivel, periodoMatutino, periodoVespertino, periodoNoturno, linkWhats, descricao});
 
     const savePostTrabalho = await newPostTrabalho.save().catch((err) => {
         console.log("Error: ", err);
