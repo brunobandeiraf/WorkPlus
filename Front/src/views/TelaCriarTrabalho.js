@@ -19,9 +19,7 @@ export default function TelaCriarTrabalho({ navigation }) {
   const [descricao, setDescricao] = useState('');
 
   const [date, setDate] = useState(new Date());
-
   const [showPicker, setShowPicker] = useState(false);
-
   const toggleDatepicker =() => {
     setShowPicker(!showPicker);
   };

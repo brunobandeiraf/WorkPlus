@@ -22,14 +22,13 @@ const Login = ({ navigation }) => {
       alert("ERRO");
       setPassword('');
     };
-};
+  };
+
   return (
     <View style={styles.container}>
       <View style={styles.top}>
         <View style={styles.topBotaoCadastrar}>
-        <TouchableOpacity 
-          onPress={() => navigation.navigate("Cadastro")}
-        >
+        <TouchableOpacity onPress={() => navigation.navigate('Cadastro')} >
           <View style={styles.viewBotaoCadastrar}>
             <Text style={styles.botaoCadastrar}>Cadastrar</Text>
           </View>
@@ -49,43 +48,44 @@ const Login = ({ navigation }) => {
 
         <View style={styles.meioUsuario}>
           <View style={styles.viewUsuario}>
-            <TextInput style={styles.input}
+            <TextInput
+              style={styles.InputUsuario}
               placeholder="Email"
               value={email}
               onChangeText={setEmail}
-            >
-            </TextInput>
+            />
           </View>
           <View style={styles.viewImagemUsuario}>
-          <Image 
-                  style={styles.imagemUsuario} 
-                  source={require('../assets/usuario.png')}/>
+            <Image 
+              style={styles.imagemUsuario} 
+              source={require('../assets/usuario.png')}
+            />
           </View>
         </View>
 
         <View style={styles.meioSenha}>
-        <View style={styles.viewSenha}>
-          <TextInput
-            style={styles.input}
-            placeholder="Senha"
-            value={password}
-            onChangeText={setPassword}
-          />
-        </View>
+          <View style={styles.viewSenha}>
+            <TextInput
+              style={styles.InputSenha}
+              placeholder="Senha"
+              value={password}
+              onChangeText={setPassword}
+            />
+          </View>
           <View style={styles.viewImagemSenha}>
-          <Image 
-                  style={styles.imagemSenha} 
-                  source={require('../assets/Cadeado.png')}/>
+            <Image 
+              style={styles.imagemSenha} 
+              source={require('../assets/Cadeado.png')}/>
           </View>
         </View>
       </View>
       <View style={styles.baixo}>
 
-       <View style={styles.baixoBotaoEntrar}>
+        <View style={styles.baixoBotaoEntrar}>
 
-       <TouchableOpacity
-        onPress={onLoginPressed}
-       >
+        <TouchableOpacity 
+          onPress={onLoginPressed}
+        >
           <View style={styles.BotaoEntrar}>
             <View style={styles.viewTextoEntrar}>
               <Text style={styles.TextoEntrar}>Entrar</Text>
@@ -96,7 +96,7 @@ const Login = ({ navigation }) => {
                   source={require('../assets/duplaEngrenagem.png')}/>
             </View>
           </View>
-          </TouchableOpacity>
+        </TouchableOpacity>
 
        </View>
 
@@ -107,7 +107,6 @@ const Login = ({ navigation }) => {
             <Text style={styles.textoEsqueceu}>Esqueci minha senha</Text>
           </TouchableOpacity>
        </View>
-        
       </View>
     </View>
   );
@@ -117,25 +116,21 @@ const styles = StyleSheet.create({
   container: {
     width: "100%",
     height: 800,
-    //backgroundColor:'blue'
   },
   top: {
     width: "100%",
     height: "45%",
-    //backgroundColor: 'grey'
   },
   topBotaoCadastrar: {
     justifyContent: 'center',
     paddingLeft: '60%',
     width: "100%",
     height: "15%",
-    //backgroundColor:'grey',
     marginTop: '22%'
   },
   viewBotaoCadastrar: {
     width: "70%",
     height: "100%",
-    //backgroundColor:'blue',
   },
   botaoCadastrar: {
     width: "100%",
@@ -155,7 +150,6 @@ const styles = StyleSheet.create({
   toplogo: {
     width: "100%",
     height: "45%",
-    //backgroundColor: 'blue',
     alignItems: 'center',
     justifyContent: 'center'
   },
@@ -166,7 +160,6 @@ const styles = StyleSheet.create({
   topTitulo: {
     width: "100%",
     height: "16.5%",
-    //backgroundColor: 'red',
     alignItems: 'center',
     justifyContent: 'center'
   },
@@ -177,33 +170,26 @@ const styles = StyleSheet.create({
     marginTop: '9%',
     width: "100%",
     height: "15%",
-    //backgroundColor: 'grey',
   },
   meioUsuario: {
     width: "100%",
     height: "50%",
-    //backgroundColor: 'grey',
     alignItems:'center',
     justifyContent:'center',
-    flexDirection:'row'
-    
+    flexDirection:'row' 
   },
   meioSenha: {
     width: "100%",
     height: "50%",
-    //backgroundColor: 'grey',
     alignItems:'center',
     justifyContent:'center',
     flexDirection:'row'
   },
   viewUsuario:{
-   
     width: "60%",
     height: "100%",
-    //backgroundColor: 'blue',
   },
   viewImagemUsuario:{
-    //backgroundColor:'blue',
     justifyContent:'center',
     alignItems:'center',
     paddingTop:'3%',
@@ -219,7 +205,6 @@ const styles = StyleSheet.create({
       start: { x: 1, y: 2 },
       end: { x: 1, y: 1 },
     },
-
   },
   imagemUsuario:{
     width: "80%",
@@ -241,15 +226,11 @@ const styles = StyleSheet.create({
       end: { x: 1, y: 1 },
     },
   },
-
   viewSenha:{
-   
     width: "60%",
     height: "100%",
-    //backgroundColor: 'blue',
   },
   viewImagemSenha:{
-    //backgroundColor:'blue',
     justifyContent:'center',
     alignItems:'center',
     paddingTop:'3%',
@@ -265,7 +246,6 @@ const styles = StyleSheet.create({
       start: { x: 1, y: 2 },
       end: { x: 1, y: 1 },
     },
-
   },
   imagemSenha:{
     width: "76%",
@@ -290,14 +270,12 @@ const styles = StyleSheet.create({
   baixo:{
     width: "100%",
     height: "37%",
-    //backgroundColor:'blue'
   },
   baixoBotaoEntrar:{
     marginTop:'7%',
     marginBottom:'1%',
     width: "100%",
     height: "17%",
-    //backgroundColor:'grey',
     justifyContent:'center',
     alignItems:'center'
   },
@@ -310,22 +288,17 @@ const styles = StyleSheet.create({
   },
   viewTextoEntrar:{
     width: "80%",
-    height: "100%",
-   // backgroundColor:'blue',
-    
+    height: "100%",   
     alignItems:'center',
-    
   },
   TextoEntrar:{
     fontSize:25,
     color:'white',
-    
   },
   viewImagemEntrar:{
     paddingTop:'3%',
     width: "20%",
     height: "100%",
-    //backgroundColor:'yellow',
   },
   imagemDuplaEngrenagem:{
     width: "100%",
@@ -337,12 +310,12 @@ const styles = StyleSheet.create({
     marginTop:'3%',
     width: "100%",
     height: "10%",
-    //backgroundColor:'red'
   },
   textoEsqueceu:{
     fontSize:16,
     color:'blue',
   },
+
 });
 
-export default Login;
+export default Login

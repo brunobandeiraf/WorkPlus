@@ -34,7 +34,7 @@ const Login = ({ navigation }) => {
       </View>
       <View style={styles.inputContainer}>
         <TextInput
-          style={styles.input}
+          style={styles.InputUsuario}
           placeholder="Email"
           value={email}
           onChangeText={setEmail}
@@ -43,7 +43,7 @@ const Login = ({ navigation }) => {
       </View>
       <View style={styles.inputContainer}>
         <TextInput
-          style={styles.input}
+          style={styles.InputSenha}
           placeholder="Senha"
           value={password}
           onChangeText={setPassword}

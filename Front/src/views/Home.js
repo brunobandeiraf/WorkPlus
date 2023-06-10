@@ -5,7 +5,7 @@ import {Text, Animated,View,StyleSheet,Image,TextInput,SafeAreaView,ScrollView,T
 const whats = require('../assets/whats.png');
 const url = 'https://api.whatsapp.com/send?phone=5551984574910&text';
 
-export default function Home({navigation}) {
+const Home = ({navigation}) => {
   const FadeInView = (props) => {
     const fadeAnim = useRef(new Animated.Value(0)).current;
   
@@ -758,11 +758,11 @@ const styles = StyleSheet.create({
   },
   botaoMeustrabalhos: {
     width: "100%",
-    left: 18,
-    fontSize: 16,
+    marginLeft:'23%',
+    fontSize: 17,
     borderRadius: 12,
-    paddingLeft: 10,
-    paddingRight: 10,
+    paddingLeft: 5,
+    paddingRight: 5,
     paddingTop: 15,
     borderBottomColor: "#1A397B",
     borderBottomWidth: 2,
@@ -792,3 +792,5 @@ const styles = StyleSheet.create({
     },
   },
 });
+
+export default Home;

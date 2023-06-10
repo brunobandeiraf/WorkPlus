@@ -2,7 +2,7 @@ import React,{useState} from 'react';
 import { Text, View, StyleSheet,Image, TextInput, SafeAreaView, ScrollView, TouchableOpacity} from 'react-native';
 
 
-export default function ComponenteBaixo({navigation}) {
+const ComponenteBaixo = ({navigation}) => {
   const [text, setText] = useState('');
   return (
 
@@ -111,3 +111,5 @@ const stylesComponenteBaixo = StyleSheet.create({
     },
   },
 });
+
+export default ComponenteBaixo;
