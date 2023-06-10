@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import {Text, Animated,View,StyleSheet,Image,TextInput,SafeAreaView,ScrollView,TouchableOpacity, Linking
 } from "react-native";
 
-export default function TelaRecomendacao({navigation}) {
+const TelaRecomendacao = ({navigation}) => {
 return(
 <View style = {styles.container}>
   <View style = {styles.topo}>
@@ -192,4 +192,6 @@ const styles = StyleSheet.create({
     },
   },
 
-})
+});
+
+export default TelaRecomendacao

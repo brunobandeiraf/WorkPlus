@@ -1,48 +1,62 @@
-import React,{useState} from 'react';
-import { Text, View, StyleSheet,Image, TextInput, SafeAreaView, ScrollView, TouchableOpacity} from 'react-native';
-
+import React, { useState, useEffect, useRef } from "react";
+import {Text, Animated,View,StyleSheet,Image,TextInput,SafeAreaView,ScrollView,TouchableOpacity, Linking
+} from "react-native";
 
 const ComponenteBaixo = ({navigation}) => {
   const [text, setText] = useState('');
+
+  const NavegacaoTrabalho = () => {
+    navigation.navigate('Trabalho')
+  };
+  const NavegacaoHome = () => {
+    navigation.navigate('Home')
+  };
+  const NavegacaoServico = () => {
+    navigation.navigate('Servico')
+  };
+  const NavegacaoPerfil = () => {
+    navigation.navigate('Perfil')
+  };
+
   return (
 
-    <View style={styles.baixo}>
-        <View style={styles.suasOfertas}>
-          <TouchableOpacity
-            onPress={() => navigation.navigate('Trabalho')}
-          >
-            <Text style={styles.botaoMeustrabalhos}>Meus Trabalhos</Text>
-          </TouchableOpacity>
-        </View>
-        <View style={styles.casinha}>
-          <TouchableOpacity onPress={() => navigation.navigate('Home')}>
-            <Image
-              style={{ width: 35, height: 40, left: 16.5 }}
-              source={require("../assets/casinha.png")}
-            />
-          </TouchableOpacity>
-        </View>
-        <View style={styles.suasDemandas}>
-          <TouchableOpacity onPress={() => navigation.navigate('Servico')}>
+  <View style={styles.baixo}>
+    <View style={styles.suasOfertas}>
+      <TouchableOpacity
+        onPress={NavegacaoTrabalho}
+      >
+        <Text style={styles.botaoMeustrabalhos}>Meus Trabalhos</Text>
+      </TouchableOpacity>
+    </View>
+    <View style={styles.casinha}>
+    <TouchableOpacity onPress={NavegacaoHome}>
+      <Image
+        style={{ width: 35, height: 40, left: 16.5 }}
+        source={require("../assets/casinha.png")}
+      />
+      </TouchableOpacity>
+    </View>
+    <View style={styles.suasDemandas}>
+      <TouchableOpacity onPress={NavegacaoServico}>
 
-            <Text style={styles.botaoMeusServicos}>Meus Servicos</Text>
+        <Text style={styles.botaoMeusServicos}>Meus Servicos</Text>
 
-          </TouchableOpacity>
-        </View>
-        <View style={styles.usuarioBaixo}>
-          <TouchableOpacity onPress={() => navigation.navigate('Perfil')}>
-            <Image
-              style={{ height: 50, width: 50, right: 5}}
-              source={require("../assets/usuario.png")}
-            />
-          </TouchableOpacity>
-        </View>
-    </View> 
+      </TouchableOpacity>
+    </View>
+    <View style={styles.usuarioBaixo}>
+    <TouchableOpacity onPress={NavegacaoPerfil}>
+      <Image
+        style={{ height: 50, width: 50, right: 5}}
+        source={require("../assets/usuario.png")}
+      />
+      </TouchableOpacity>
+    </View>
+  </View> 
 
     );
 }
 
-const stylesComponenteBaixo = StyleSheet.create({
+const styles = StyleSheet.create({
 
   baixo: {
     flex: 1,

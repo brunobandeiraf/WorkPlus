@@ -7,7 +7,7 @@ import CustomCheckbox from "../componente/ComponenteEscolhaPeriodo";
 import DateTimePicker from '@react-native-community/datetimepicker';
 import api from "../api";
 
-export default function TelaCriarTrabalho({ navigation }) {
+const TelaCriarTrabalho = ({ navigation }) => {
   
   const [tipoTrabalho, setTipoTrabalho] = useState('');
   const [endereco, setEndereco] = useState('');
@@ -887,4 +887,6 @@ const styles = StyleSheet.create({
       end: { x: 1, y: 1 },
     },
   },
-})
+});
+
+export default TelaCriarTrabalho;

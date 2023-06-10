@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import {Text,View,StyleSheet,Image,TextInput,TouchableOpacity,} from "react-native";
 
-export default function EditarPerfil({navigation}) {
+const EditarPerfil = ({navigation}) => {
   return (
     <View style={styles.container}>
 
@@ -281,3 +281,5 @@ const styles = StyleSheet.create({
     width: "60%",
   },
 });
+
+export default EditarPerfil;

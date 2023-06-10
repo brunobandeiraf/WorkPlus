@@ -3,7 +3,7 @@ import {
   Text, Animated, View, StyleSheet, Image, TextInput, SafeAreaView, ScrollView, TouchableOpacity, Linking
 } from "react-native";
 
-export default function Perfil({ navigation }) {
+const Perfil = ({ navigation }) => {
   const FadeInView = (props) => {
     const fadeAnim = useRef(new Animated.Value(0)).current;
 
@@ -1209,9 +1209,6 @@ const styles = StyleSheet.create({
     height: "70%",
     width: "60%",
   },
-
-
-
-
-
 });
+
+export default Perfil;

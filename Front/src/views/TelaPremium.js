@@ -156,7 +156,7 @@ return(
           />
           </TouchableOpacity>
         </View>
-      </View>
+  </View>
 
 </View>
 

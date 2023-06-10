@@ -2,7 +2,7 @@ import React,{useState, useEffect, useRef } from 'react';
 import { Text,Animated, View, StyleSheet,Image, TextInput, SafeAreaView, ScrollView, TouchableOpacity} from 'react-native';
 import Constants from 'expo-constants';
 
-export default function Servico({navigation}) {
+const Servico = ({navigation}) => {
   const FadeInView = (props) => {
     const fadeAnim = useRef(new Animated.Value(0)).current;
   
@@ -649,3 +649,5 @@ const styles = StyleSheet.create({
     
   },
 });
+
+export default Servico;

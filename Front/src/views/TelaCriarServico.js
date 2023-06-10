@@ -6,7 +6,7 @@ import CustomCheckbox from "../componente/ComponenteEscolhaPeriodo";
 import DateTimePicker from '@react-native-community/datetimepicker';
 import api from "../api";
 
-export default function TelaCriarServico({navigation}){
+const TelaCriarServico = ({navigation}) => {
 
   const [tipoServico, setTipoServico] = useState('');
   const [regiao, setRegiao] = useState('');
@@ -828,4 +828,6 @@ botaoMeusServicos: {
     end: { x: 1, y: 1 },
   },
 },
-})
+});
+
+export default TelaCriarServico;
