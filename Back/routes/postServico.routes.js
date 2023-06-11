@@ -9,16 +9,20 @@ postServico.get("/", (req, res) => {
 
 postServico.post("/register", async (req, res) => {
 
-    const { idPostServico, idUser, tipoServico, regiao, dtDisponivel, periodoMatutino, periodoVespertino, periodoNoturno, linkWhats, descricao } = req.body;
+    const { tipoServico, regiao, dtDisponivel, periodoMatutino, periodoVespertino, periodoNoturno, linkWhats, descricao } = req.body;
 
-    const newPostServico = new PostServico({ idPostServico, idUser, tipoServico, regiao, dtDisponivel, periodoMatutino, periodoVespertino, periodoNoturno, linkWhats, descricao });
+    const newPostServico = new PostServico({ tipoServico, regiao, dtDisponivel, periodoMatutino, periodoVespertino, periodoNoturno, linkWhats, descricao });
 
     const savePostServico = await newPostServico.save().catch((err) => {
         console.log("Error: ", err);
-        res.status(500).json({ error: "Não é possivel enviar esse Post"});
+        res
+            .status(500)
+            .json({ error: "Não é possivel enviar esse Post"});
     });
 
-    if(savePostServico) res.json({ message: "Post de Serviço enviado"});
+    if(savePostServico) 
+    console.log(savePostServico)
+    res.json({ message: "Post de Serviço enviado"});
 });
 
 postServico.get("/ProcurarPorPostServico", async (req, res) => {

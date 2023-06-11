@@ -9,7 +9,6 @@ postTrabalho.get("/", (req, res) => {
 
  postTrabalho.post("/register", async (req, res) => {
      
-    
     const { tipoTrabalho, endereco, dtInicio, periodoMatutino, periodoVespertino, periodoNoturno, linkWhats, descricao } = req.body;
 
     const newPostTrabalho = new PostTrabalho({ tipoTrabalho, endereco, dtInicio, periodoMatutino, periodoVespertino, periodoNoturno, linkWhats, descricao});
@@ -20,6 +19,7 @@ postTrabalho.get("/", (req, res) => {
             .status(500)
             .json({ error: "Não é possivel enviar esse Post"});
     });
+    
     if(savePostTrabalho) 
     console.log(savePostTrabalho);
     res.json({ message: "Post de Trabalho enviado"});

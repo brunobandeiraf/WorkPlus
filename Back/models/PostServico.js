@@ -8,54 +8,54 @@ const PostServico = connection.define(
         idPostServico: {
             type: Sequelize.INTEGER,
             autoIncrement: true,
-            allowNull: true,
+            allowNull: false,
             primaryKey: true,
         },
-        idUser: {
-            type: Sequelize.INTEGER,
-            allowNull: false,
-            references: {
-                model: 'users',
-                key: 'idUser',
-            }
-        },
+        // idUser: {
+        //     type: Sequelize.INTEGER,
+        //     allowNull: false,
+        //     references: {
+        //         model: 'users',
+        //         key: 'idUser',
+        //     }
+        // },
         tipoServico: {
             type: Sequelize.STRING,
-            allowNull: true,
+            allowNull: false,
         },
         regiao: {
             type: Sequelize.STRING,
-            allowNull: true,
+            allowNull: false,
         },
         dtDisponivel: {
             type: Sequelize.DATE,
-            allowNull: true,
+            allowNull: false,
         },
         periodoMatutino: {
             type: Sequelize.BOOLEAN,
-            allowNull: true,
+            allowNull: false,
         },
         periodoVespertino: {
             type: Sequelize.BOOLEAN,
-            allowNull: true,
+            allowNull: false,
         },
         periodoNoturno: {
             type: Sequelize.BOOLEAN,
-            allowNull: true,
+            allowNull: false,
         },
         linkWhats: {
             type: Sequelize.STRING,
-            allowNull: true,
+            allowNull: false,
         },
         descricao: {
             type: Sequelize.STRING,
-            allowNull: true,
+            allowNull: false,
         },
     }
 );
 
-PostServico.belongsTo(User, {
-    foreignKey: 'idUser'
-});
+// PostServico.belongsTo(User, {
+//     foreignKey: 'idUser'
+// });
 
 export default PostServico;

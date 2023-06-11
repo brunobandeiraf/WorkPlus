@@ -30,9 +30,7 @@ const TelaCriarServico = ({navigation}) => {
   const [descricao, setDescricao] = useState('');
 
   const [date, setDate] = useState(new Date());
-
   const [showPicker, setShowPicker] = useState(false);
-
   const toggleDatepicker =() => {
     setShowPicker(!showPicker);
   };
@@ -49,10 +47,6 @@ const TelaCriarServico = ({navigation}) => {
       toggleDatepicker();
     }
   };
-
-  const console = () => {
-    alert(dtDisponivel)
-  }
 
   const escolhaPeriodoMatutino = () => {
     setPeriodoMatutino(!periodoMatutino);
@@ -78,6 +72,7 @@ const TelaCriarServico = ({navigation}) => {
             periodoNoturno: periodoNoturno,
             linkWhats: linkWhats,
             descricao: descricao
+
           });
           if(data.status === 200){
             console.log(data);
