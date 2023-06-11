@@ -1,8 +1,5 @@
-import React, { useState, useEffect, useRef } from "react";
-import {Text, Animated,KeyboardAvoidingView,View,StyleSheet,Image,TextInput,SafeAreaView,ScrollView,TouchableOpacity, Linking
-} from "react-native";
-import DescricaoComponent from "../componente/ComponenteTextoDescricao";
-import CustomCheckbox from "../componente/ComponenteEscolhaPeriodo";
+import React, { useState } from "react";
+import { Text, KeyboardAvoidingView, View, StyleSheet, Image, TextInput, SafeAreaView, ScrollView, TouchableOpacity, Linking, Pressable } from "react-native";
 import DateTimePicker from '@react-native-community/datetimepicker';
 import api from "../api";
 
@@ -58,9 +55,13 @@ const TelaCriarServico = ({navigation}) => {
     setPeriodoNoturno(!periodoNoturno);
   };
 
+  const handleDescricaoChange = (text) => {
+    if (text.length <= 255) {
+      setDescricao(text);
+    }
+  };
 
   const onRegisterPressed = async () => {
-    
     
         try {
           const data = await api.post("/postServico/register", {
@@ -153,14 +154,55 @@ return(
         <View style = {styles.viewData}>
         <Text style = {styles.BaseData}>Data de Início</Text>
         </View>
-        <View style = {styles.viewImputData}>
-          <TextInput 
-            multiline style = {styles.BaseImputData}
-            value={dtDisponivel}
-            onChangeText={setDTDisponivel}
-          >
-          </TextInput>
-        </View>
+        <View style={styles.viewImputData}>
+                <View style={styles.BaseImputData}>
+                  {showPicker ? (
+                    <>
+
+                      <DateTimePicker
+                        mode="date"
+                        display="spinner"
+                        value={date}
+                        onChange={onChange}
+                        style={{ backgroundColor: 'blue' }}
+                      />
+
+                      <Pressable
+                        onPress={toggleDatepicker}
+                      >
+                        <TextInput
+                          placeholder="DD/MM/AA"
+                          style={{ color: 'black', fontWeight: 'bold', fontSize: 15 }}
+                          editable={false}
+                          value={dtDisponivel}
+                          onChangeText={setDTDisponivel}
+                        >
+
+                        </TextInput>
+                      </Pressable>
+                    </>
+
+                  )
+
+                    :
+
+                    (
+                      <Pressable
+                        onPress={toggleDatepicker}
+                      >
+                        <TextInput
+                          placeholder="DD/MM/AA"
+                          style={{ color: 'black', fontWeight: 'bold', fontSize: 15 }}
+                          editable={false}
+                          value={dtDisponivel}
+                          onChangeText={setDTDisponivel}
+                        >
+
+                        </TextInput>
+                      </Pressable>
+                    )}
+                </View>
+              </View>
         <View style = {styles.viewImagemData}>
         <Image
             style={styles.ImagemData}
@@ -189,7 +231,7 @@ return(
                     marginRight: 2,
                   }}
                 />
-                <Text style={{ fontWeight: 'bold' }}>Noturno</Text>
+                <Text style={{ fontWeight: 'bold' }}>Matutino</Text>
               </View>
             </TouchableOpacity>
          </View>
@@ -207,7 +249,7 @@ return(
                     marginRight: 2,
                   }}
                 />
-                <Text style={{ fontWeight: 'bold' }}>Noturno</Text>
+                <Text style={{ fontWeight: 'bold' }}>Vespertino</Text>
               </View>
             </TouchableOpacity>
           </View>
@@ -256,10 +298,15 @@ return(
         <Text style = {styles.TextoDescrição}>Descrição</Text>
       </View>
       <KeyboardAvoidingView style = {styles.viewDescrição} behavior="padding" >
-      <DescricaoComponent
-        value={descricao}
-        onChangeText={setDescricao}
-      />
+        <View>
+          <TextInput
+            style={{ fontSize:18 }}
+            multiline
+            maxLength={255}
+            value={descricao}
+            onChangeText={handleDescricaoChange}
+          />
+        </View>
       </KeyboardAvoidingView>
 
       <TouchableOpacity

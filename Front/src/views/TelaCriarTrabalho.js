@@ -1,9 +1,5 @@
 import React, { useState } from "react";
-import {
-  Text, KeyboardAvoidingView, View, StyleSheet, Image, TextInput, SafeAreaView, ScrollView, TouchableOpacity, Linking, Pressable
-} from "react-native";
-import DescricaoComponent from "../componente/ComponenteTextoDescricao";
-import CustomCheckbox from "../componente/ComponenteEscolhaPeriodo";
+import { Text, KeyboardAvoidingView, View, StyleSheet, Image, TextInput, SafeAreaView, ScrollView, TouchableOpacity, Linking, Pressable } from "react-native";
 import DateTimePicker from '@react-native-community/datetimepicker';
 import api from "../api";
 
@@ -51,15 +47,12 @@ const TelaCriarTrabalho = ({ navigation }) => {
 
   const escolhaPeriodoMatutino = () => {
     setPeriodoMatutino(!periodoMatutino);
-    
   };
   const escolhaPeriodoVespertino = () => {
     setPeriodoVespertino(!periodoVespertino);
-    
   };
   const escolhaPeriodoNoturno = () => {
     setPeriodoNoturno(!periodoNoturno);
-    
   };
   
   const handleDescricaoChange = (text) => {
