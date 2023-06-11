@@ -1,8 +1,8 @@
 import React,{useState, useEffect, useRef } from 'react';
-import { Text,Animated, View, StyleSheet,Image, TextInput, SafeAreaView, ScrollView, TouchableOpacity} from 'react-native';
-import Constants from 'expo-constants';
+import { Text,Animated, View, StyleSheet,Image, TextInput, SafeAreaView, ScrollView, TouchableOpacity, FlatList} from 'react-native';
 
 const Servico = ({navigation}) => {
+
   const FadeInView = (props) => {
     const fadeAnim = useRef(new Animated.Value(0)).current;
   
@@ -52,12 +52,125 @@ const Servico = ({navigation}) => {
 
   const handleShowMoreInfo = () => {
     setShowMoreInfo(true);
-
   };
 
   const handleHideMoreInfo = () => {
     setShowMoreInfo(false);
   };
+
+  const DATA = [
+    {
+      id: "1",
+      title: "alguma coisa"
+    },
+    {
+      id: "2",
+      title: "alguma coisa"
+    },
+    {
+      id: "3",
+      title: "alguma coisa"
+    },
+  ];
+
+  const Item = ({title}) => (
+    
+    <View style = {styles.post}>
+    <View style = {styles.viewFoto}>
+      <View style = {styles.fotoUsuario}>
+
+      </View>
+    </View>
+    <View style = {styles.postMeioEsquerda}> 
+    <View style = {styles.viewMeioEsquerdaCima}>
+      <View style = {styles.viewSubtituloTipoServiço}>
+        <Text style={styles.subtituloTipo}>Tipo de Serviço</Text>
+      </View>
+      <View  style = {styles.viewInfoTipoServiço}>
+        <Text style={styles.tipo}>Pintura</Text>
+      </View>
+    </View>
+    <View style = {styles.viewMeioEsquerdaMeio}>
+    <View style = {styles.viewSubtituloPeriodo}>
+        <Text style={styles.subtituloPeriodo}>Periodo</Text>
+      </View>
+      <View style = {styles.viewInfoPeriodo}>
+        <Text style={styles.periodo}>Matutino</Text>
+      </View>
+    </View>
+    <View style = {styles.viewMeioEsquerdaBaixo}>
+    <View style = {styles.viewSubtituloRegiao}>
+      <Text style={styles.subtituloRegiao}>Região</Text>
+    </View>
+    <View style = {styles.viewInfoRegiao}>
+      <Text style={styles.regiao}>Florianópolis-SC</Text>
+    </View>
+    </View>
+    </View>
+    <View style={styles.viewLinha} >
+    <Image
+    style={styles.imagemLinha}
+    source={require("../assets/linhaVertical.png")}
+  />
+    </View>
+    <View style = {styles.postMeioDireita}> 
+    <View style = {styles.viewMeioDireitaCima}>
+      <View style = {styles.viewSubtituloStatus}> 
+        <Text style={styles.subtituloStatusServico}>Status do Serviço</Text>
+      </View> 
+      <View style = {styles.viewInfoStatus}> 
+        <Text style={styles.statusServico}>Ativo</Text>
+      </View> 
+    </View> 
+    <View style = {styles.viewMeioDireitaMeio}>
+      <View style = {styles.viewSubtituloVisualizacao}>  
+        <Text style={styles.subtituloVisualizacoes}>Visualizações</Text>
+      </View>
+      <View style = {styles.viewInfoVisualizacao}>  
+        <Text style={styles.visualizacoes}>8 Visualizações</Text>
+      </View> 
+    </View> 
+    <View style = {styles.viewMeioDireitaBaixo}> 
+      <View style = {styles.viewSubtituloPublicacao}> 
+        <Text style={styles.subtituloDataPublicacao}>Publicação</Text>
+      </View> 
+      <View style = {styles.viewInfoPublicacao}> 
+        <Text style={styles.dataPublicacao}>01/08/2022</Text>
+      </View> 
+    </View>
+    </View> 
+    <View style={styles.direita}>
+      <View style={styles.direitaCima} >
+    <Image
+    style={styles.imagemEditar}
+    source={require("../assets/editar.png")}
+  />
+  </View>
+  <View style={styles.direitaBaixo}>
+
+  
+    <View>
+    <TouchableOpacity onPress={handleShowMoreInfo}>
+      <Image
+        style={{ width: 27, height: 27 }}
+        source={require("../assets/mais.png")}
+      />
+    </TouchableOpacity>
+    
+    {showMoreInfo && (
+<TouchableOpacity onPress={handleHideMoreInfo} style={{ position: 'absolute', top: 0, bottom: 0, left: 0, right: 0 }} />
+)}
+</View>
+  <Image
+    style={styles.imagemLixeira}
+    source={require("../assets/lixeira.png")}
+  />
+  </View>
+  </View>
+  </View>
+  );
+  
+
   return (
     <View style={styles.container}>
        {showMoreInfo && (
@@ -108,99 +221,12 @@ const Servico = ({navigation}) => {
           <SafeAreaView style = {styles.containerPosts}>
             <ScrollView>
 
-            <View style = {styles.post}>
-              <View style = {styles.viewFoto}>
-                <View style = {styles.fotoUsuario}>
+            <FlatList
+              data={DATA}
+              renderItem={({item}) => <Item title={item.title} />}
+              keyExtractor={item => item.id}
+            />
 
-                </View>
-              </View>
-              <View style = {styles.postMeioEsquerda}> 
-              <View style = {styles.viewMeioEsquerdaCima}>
-                <View style = {styles.viewSubtituloTipoServiço}>
-                  <Text style={styles.subtituloTipo}>Tipo de Serviço</Text>
-                </View>
-                <View  style = {styles.viewInfoTipoServiço}>
-                  <Text style={styles.tipo}>Pintura</Text>
-                </View>
-              </View>
-              <View style = {styles.viewMeioEsquerdaMeio}>
-              <View style = {styles.viewSubtituloPeriodo}>
-                  <Text style={styles.subtituloPeriodo}>Periodo</Text>
-                </View>
-                <View style = {styles.viewInfoPeriodo}>
-                  <Text style={styles.periodo}>Matutino</Text>
-                </View>
-              </View>
-              <View style = {styles.viewMeioEsquerdaBaixo}>
-              <View style = {styles.viewSubtituloRegiao}>
-                <Text style={styles.subtituloRegiao}>Região</Text>
-              </View>
-              <View style = {styles.viewInfoRegiao}>
-                <Text style={styles.regiao}>Florianópolis-SC</Text>
-              </View>
-              </View>
-              </View>
-              <View style={styles.viewLinha} >
-              <Image
-              style={styles.imagemLinha}
-              source={require("../assets/linhaVertical.png")}
-            />
-              </View>
-              <View style = {styles.postMeioDireita}> 
-              <View style = {styles.viewMeioDireitaCima}>
-                <View style = {styles.viewSubtituloStatus}> 
-                  <Text style={styles.subtituloStatusServico}>Status do Serviço</Text>
-                </View> 
-                <View style = {styles.viewInfoStatus}> 
-                  <Text style={styles.statusServico}>Ativo</Text>
-                </View> 
-              </View> 
-              <View style = {styles.viewMeioDireitaMeio}>
-                <View style = {styles.viewSubtituloVisualizacao}>  
-                  <Text style={styles.subtituloVisualizacoes}>Visualizações</Text>
-                </View>
-                <View style = {styles.viewInfoVisualizacao}>  
-                  <Text style={styles.visualizacoes}>8 Visualizações</Text>
-                </View> 
-              </View> 
-              <View style = {styles.viewMeioDireitaBaixo}> 
-                <View style = {styles.viewSubtituloPublicacao}> 
-                  <Text style={styles.subtituloDataPublicacao}>Publicação</Text>
-                </View> 
-                <View style = {styles.viewInfoPublicacao}> 
-                  <Text style={styles.dataPublicacao}>01/08/2022</Text>
-                </View> 
-              </View>
-              </View> 
-              <View style={styles.direita}>
-                <View style={styles.direitaCima} >
-              <Image
-              style={styles.imagemEditar}
-              source={require("../assets/editar.png")}
-            />
-            </View>
-            <View style={styles.direitaBaixo}>
-
-            
-              <View>
-              <TouchableOpacity onPress={handleShowMoreInfo}>
-                <Image
-                  style={{ width: 27, height: 27 }}
-                  source={require("../assets/mais.png")}
-                />
-              </TouchableOpacity>
-              
-              {showMoreInfo && (
-        <TouchableOpacity onPress={handleHideMoreInfo} style={{ position: 'absolute', top: 0, bottom: 0, left: 0, right: 0 }} />
-      )}
-    </View>
-            <Image
-              style={styles.imagemLixeira}
-              source={require("../assets/lixeira.png")}
-            />
-            </View>
-            </View>
-            </View>
             <View style = {styles.viewCriarPosts}>
               <TouchableOpacity 
                 onPress={() => navigation.navigate('TelaCriarServico')}

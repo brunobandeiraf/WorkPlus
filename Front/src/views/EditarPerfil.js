@@ -2,6 +2,38 @@ import React, { useState, useEffect, useRef } from "react";
 import {Text,View,StyleSheet,Image,TextInput,TouchableOpacity,} from "react-native";
 
 const EditarPerfil = ({navigation}) => {
+  
+  const [name, setName] = useState('Ciro Valerio Jr');
+  const [userName, setUserName] = useState('');
+  const [email, setEmail] = useState('');
+  const [endereco, setEndereco] = useState('');
+  const [password, setPassword] = useState('');
+
+  const onRegisterPressed = async () => {
+    if (password !== confirmPassword) {
+      alert("As senhas não coincidem");
+    } else {
+        try {
+          const data = await api.post("/user/register/novamente", {
+            name: name,
+            userName: userName,
+            email: email,
+            endereco: endereco,
+            password: password,
+          });
+          if(data.status === 200){
+            console.log(data);
+            alert(data.data.message);
+            navigation.navigate("Perfil")
+          } else {
+            console.log(data);
+          };
+        } catch (error) {
+          console.log(error)
+        };
+      };
+  }
+  
   return (
     <View style={styles.container}>
 
@@ -21,7 +53,12 @@ const EditarPerfil = ({navigation}) => {
       </View>
 
       <View style={styles.nome}>
-        <Text style={styles.nomeUsuario}>Ciro Junior</Text>
+        <TextInput
+          style={styles.nomeUsuario}
+          value={name}
+          onChangeText={setName}
+          editable={false}
+        />
       </View>
 
       <View style={styles.linha}>
@@ -37,27 +74,46 @@ const EditarPerfil = ({navigation}) => {
           
           <View style={styles.divNomeUsuario}>
             <Text style={styles.TituloNomeInfo}>Nome de Usuário</Text>
-            <TextInput style={styles.TextInput}></TextInput>
+            <TextInput
+              style={styles.TextInput}
+              value={userName}
+              onChangeText={setUserName}
+            />
           </View>
 
           <View style={styles.divNomeUsuario}>
             <Text style={styles.TituloNomeInfo}>E-mail</Text>
-            <TextInput style={styles.TextInput}></TextInput>
+            <TextInput 
+              style={styles.TextInput}
+              value={email}
+              onChangeText={setEmail}
+            />
           </View>
 
           <View style={styles.divNomeUsuario}>
             <Text style={styles.TituloNomeInfo}>Endereço</Text>
-            <TextInput style={styles.TextInput}></TextInput>
+            <TextInput 
+              style={styles.TextInput}
+              value={endereco}
+              onChange={setEndereco}
+            />
           </View>
 
           <View style={styles.divNomeUsuario}>
             <Text style={styles.TituloNomeInfo}>Nova Senha</Text>
-            <TextInput style={styles.TextInput}></TextInput>
+            <TextInput 
+              style={styles.TextInput}
+              value={password}
+              onChangeText={setPassword}
+              secureTextEntry={true}
+            />
           </View>
 
 
             <View style={styles.divBotaoFinalizar} >
-              <TouchableOpacity onPress={() => navigation.navigate('Perfil')}>
+              <TouchableOpacity 
+                onPress={onRegisterPressed}
+              >
                 <Image 
                   style={styles.imagemBotaoEditar} 
                   source={require('../assets/botaoEditar.png')}/>

@@ -8,6 +8,18 @@ import api from "../api";
 
 const TelaCriarServico = ({navigation}) => {
 
+  const ResetandoValores = () => {
+    const [tipoServico, setTipoServico] = useState('');
+    const [regiao, setRegiao] = useState('');
+    const [dtDisponivel, setDTDisponivel] = useState('2023-07-07');
+    const [periodoMatutino, setPeriodoMatutino] = useState(false);
+    const [periodoVespertino, setPeriodoVespertino] = useState(false);
+    const [periodoNoturno, setPeriodoNoturno] = useState(false);
+    const [linkWhats, setLinkWhats] = useState('');
+    const [descricao, setDescricao] = useState('');
+  }
+  ResetandoValores();
+  
   const [tipoServico, setTipoServico] = useState('');
   const [regiao, setRegiao] = useState('');
   const [dtDisponivel, setDTDisponivel] = useState('2023-07-07');

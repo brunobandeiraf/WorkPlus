@@ -4,6 +4,23 @@ import verifyToken from "../config/auth.js"
 
 const user = express.Router();
 
+user.get("/find", async (req, res) => {
+
+    const users = await User.findOne(
+        { where: { userName, email, cpf }}
+    ).catch(
+        (err) => {
+            console.log("Error: ", err);
+        }
+    );
+
+    if (users){
+        return res.json({users})
+    } else {
+        return null
+    }
+});
+
 user.get("/verify", (req, res) => {
     const token = req.headers["token"];
     const authData = verifyToken(token, res);
@@ -13,7 +30,7 @@ user.post("/register", async (req, res) => {
     const { name, userName, email, password, cpf, dtNascimento } = req.body;
    
     const alreadyExistsUser = await User.findOne(
-        { where: { userName, email } }
+        { where: { userName, email, cpf } }
     ).catch((err) => console.log("Error: ", err));
    
     if(alreadyExistsUser) {
@@ -37,5 +54,6 @@ user.post("/register", async (req, res) => {
         res.json({ message: "Obrigado pelo cadastro"})
     }
 });
+
 
 export default user;

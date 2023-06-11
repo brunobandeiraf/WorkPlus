@@ -1,11 +1,11 @@
 import React, { useState, useEffect, useRef } from "react";
-import {Text, Animated,View,StyleSheet,Image,TextInput,SafeAreaView,ScrollView,TouchableOpacity, Linking
-} from "react-native";
+import {Text, Animated,View,StyleSheet,Image,TextInput,SafeAreaView,ScrollView,TouchableOpacity, Linking, FlatList } from "react-native";
 
 const whats = require('../assets/whats.png');
 const url = 'https://api.whatsapp.com/send?phone=5551984574910&text';
 
 const Home = ({navigation}) => {
+  
   const FadeInView = (props) => {
     const fadeAnim = useRef(new Animated.Value(0)).current;
   
@@ -70,70 +70,37 @@ const Home = ({navigation}) => {
   const handlePress = () => {
     Linking.openURL(url);
   };
-  return (
-    <View style={styles.container}>
-     {showMoreInfo && (
-      <FadeInViewFundo style={styles.sombra}>
-        
-      </FadeInViewFundo>
-)}
-      {showMoreInfo && (
-        
-      <FadeInView  style={styles.DivMais}>
-        <View style={styles.DentroMais}>
-        <View>
-              <TouchableOpacity onPress={handleShowMoreInfo}>
-                <Image
-                  style={{ width: 30, height: 30 }}
-                  source={require("../assets/mais.png")}
-                />
-              </TouchableOpacity>
-              
-              {showMoreInfo && (
-        <TouchableOpacity onPress={handleHideMoreInfo} style={{ position: 'absolute', top: 0, bottom: 0, left: 0, right: 0 }} />
-      )}
-    </View>
-           <View style={styles.ViewPeriudo}>  
-            </View>
-        </View>
-      </FadeInView >
-)}
- 
- 
-      <View style={styles.top}>
-        <View style={styles.divLogo}>
-          <Image style={styles.logo} source={require("../assets/logo.png")} />
-        </View>
 
-        <View style={styles.divTitulo}>
-          <Text style={styles.titulo}>WorkPlus</Text>
-        </View>
-        <View style={styles.divLogout}>
-        <TouchableOpacity onPress={() => navigation.navigate('TelaRecomendacao')}>
-          <Image
-            style={{ width: 50, height: 50, right: 10}}
-            source={require("../assets/atencao.png")}
-          />
-          </TouchableOpacity>
-        </View>
-      </View>
+  const DATAUsuarioPremiumTrabalho = [
+    {
+      id: '1',
+    },
+  ];
 
-      <View style={styles.divImputLupa}>
-        <View style={styles.divInput}>
-          <TextInput style={styles.textInput} />
-        </View>
-        <View style={styles.divLupa}>
-          <Image
-            style={styles.iconeLupa}
-            source={require("../assets/lupa.png")}
-          />
-        </View>
-      </View>
+  const DATAUsuarioPremiumServico = [
+    {
+      id: '1',
+    },
+    
+  ];
 
-      <SafeAreaView style={styles.containerPosts}>
-        <ScrollView>
+  const DATAUsuarioTrabalho = [
+    {
+      id: '1',
+    },
 
-        <View style={styles.postPremiumTrabalhador}>
+  ];
+  
+  const DATAUsuarioServico = [
+    {
+      id: '1',
+    },
+  ];
+
+
+  const PostPremiumTrabalho = ({title}) => (
+
+    <View style={styles.postPremiumTrabalhador}>
        
             <View style={styles.DivFotoUsuario}>
             <Image
@@ -195,9 +162,11 @@ const Home = ({navigation}) => {
               />
             </View>
           </View>
-          
+  );
 
-          <View style={styles.postPremiumEmpregador}>
+  const PostPremiumServico = ({title}) => (
+
+    <View style={styles.postPremiumEmpregador}>
             <View style={styles.DivFotoUsuario}>
             <Image
                 style={styles.fitaPremium}
@@ -261,9 +230,11 @@ const Home = ({navigation}) => {
               />
             </View>
           </View>
+  );
 
-
-          <View style={styles.postTrabalhador}>
+  const PostTrabalho = ({title}) => (
+    
+    <View style={styles.postTrabalhador}>
             
             <View style={styles.DivFotoUsuario}>
             <Image
@@ -324,7 +295,11 @@ const Home = ({navigation}) => {
               />
             </View>
           </View>
-          <View style={styles.postEmpregador}>
+  );
+
+  const PostServico = ({title}) => (
+
+    <View style={styles.postEmpregador}>
             <View style={styles.DivFotoUsuario}>
             <Image
                 style={styles.fitaEmpregador}
@@ -384,6 +359,100 @@ const Home = ({navigation}) => {
               />
             </View>
           </View>
+  );
+
+  return (
+    <View style={styles.container}>
+     {showMoreInfo && (
+      <FadeInViewFundo style={styles.sombra}>
+        
+      </FadeInViewFundo>
+)}
+      {showMoreInfo && (
+        
+      <FadeInView  style={styles.DivMais}>
+        <View style={styles.DentroMais}>
+        <View>
+              <TouchableOpacity onPress={handleShowMoreInfo}>
+                <Image
+                  style={{ width: 30, height: 30 }}
+                  source={require("../assets/mais.png")}
+                />
+              </TouchableOpacity>
+              
+              {showMoreInfo && (
+        <TouchableOpacity onPress={handleHideMoreInfo} style={{ position: 'absolute', top: 0, bottom: 0, left: 0, right: 0 }} />
+      )}
+    </View>
+           <View style={styles.ViewPeriudo}>  
+            </View>
+        </View>
+      </FadeInView >
+)}
+ 
+ 
+      <View style={styles.top}>
+        <View style={styles.divLogo}>
+          <Image style={styles.logo} source={require("../assets/logo.png")} />
+        </View>
+
+        <View style={styles.divTitulo}>
+          <Text style={styles.titulo}>WorkPlus</Text>
+        </View>
+        <View style={styles.divLogout}>
+        <TouchableOpacity onPress={() => navigation.navigate('TelaRecomendacao')}>
+          <Image
+            style={{ width: 50, height: 50, right: 10}}
+            source={require("../assets/atencao.png")}
+          />
+          </TouchableOpacity>
+        </View>
+      </View>
+
+      <View style={styles.divImputLupa}>
+        <View style={styles.divInput}>
+          <TextInput style={styles.textInput} />
+        </View>
+        <View style={styles.divLupa}>
+          <Image
+            style={styles.iconeLupa}
+            source={require("../assets/lupa.png")}
+          />
+        </View>
+      </View>
+
+      <SafeAreaView style={styles.containerPosts}>
+        <ScrollView>
+
+          <FlatList
+            data={DATAUsuarioPremiumTrabalho}
+            renderItem={({item}) => <PostPremiumTrabalho title={item.title} />}
+            keyExtractor={item => item.id}
+          />
+
+          <FlatList
+            data={DATAUsuarioPremiumServico}
+            renderItem={({item}) => <PostPremiumServico title={item.title} />}
+            keyExtractor={item => item.id}
+          />
+
+          <FlatList
+            data={DATAUsuarioTrabalho}
+            renderItem={({item}) => <PostTrabalho title={item.title} />}
+            keyExtractor={item => item.id}
+          />
+
+          <FlatList
+            data={DATAUsuarioServico}
+            renderItem={({item}) => <PostServico title={item.title} />}
+            keyExtractor={item => item.id}
+          />
+
+          
+
+
+          
+          
         </ScrollView>
       </SafeAreaView>
       

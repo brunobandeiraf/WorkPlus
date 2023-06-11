@@ -6,6 +6,17 @@ import api from "../api";
 
 const Cadastro = ({ navigation }) => {
   
+  const ResetandoValores = () => {
+    const [name, setName] = useState('');
+    const [userName, setUserName] = useState('');
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [confirmPassword, setConfirmPassword] = useState('');
+    const [cpf, setCpf] = useState('');
+    const [dtNascimento, setDTNascimento] = useState('2023-07-07');
+  }
+  ResetandoValores();
+
   const [name, setName] = useState('');
   const [userName, setUserName] = useState('');
   const [email, setEmail] = useState('');

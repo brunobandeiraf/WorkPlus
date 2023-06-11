@@ -8,6 +8,18 @@ import DateTimePicker from '@react-native-community/datetimepicker';
 import api from "../api";
 
 const TelaCriarTrabalho = ({ navigation }) => {
+
+  const ResetandoValores = () => {
+    const [tipoTrabalho, setTipoTrabalho] = useState('');
+    const [endereco, setEndereco] = useState('');
+    const [dtInicio, setDTInicio] = useState('2023-07-07');
+    const [periodoMatutino, setPeriodoMatutino] = useState(false);
+    const [periodoVespertino, setPeriodoVespertino] = useState(false);
+    const [periodoNoturno, setPeriodoNoturno] = useState(false);
+    const [linkWhats, setLinkWhats] = useState('');
+    const [descricao, setDescricao] = useState('');
+  }
+  ResetandoValores();
   
   const [tipoTrabalho, setTipoTrabalho] = useState('');
   const [endereco, setEndereco] = useState('');

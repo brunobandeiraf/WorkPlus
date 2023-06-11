@@ -1,8 +1,9 @@
 import React,{useState, useEffect, useRef } from 'react';
-import { Text,Animated, View, StyleSheet,Image, TextInput, SafeAreaView, ScrollView, TouchableOpacity} from 'react-native';
+import { Text,Animated, View, StyleSheet,Image, TextInput, SafeAreaView, ScrollView, FlatList, TouchableOpacity} from 'react-native';
 
 
 const Trabalho = ({navigation}) => {
+  
   const FadeInView = (props) => {
     const fadeAnim = useRef(new Animated.Value(0)).current;
   
@@ -58,59 +59,29 @@ const Trabalho = ({navigation}) => {
   const handleHideMoreInfo = () => {
     setShowMoreInfo(false);
   };
-  return (
-    <View style={styles.container}>
-       {showMoreInfo && (
-      <FadeInViewFundo style={styles.sombra}>
-        
-      </FadeInViewFundo>
-)}
-      {showMoreInfo && (
-        
-      <FadeInView  style={styles.DivMais}>
-        <View style={styles.DentroMais}>
-        <View>
-              <TouchableOpacity onPress={handleShowMoreInfo}>
-                <Image
-                  style={{ width: 30, height: 30 }}
-                  source={require("../assets/mais.png")}
-                />
-              </TouchableOpacity>
-              
-              {showMoreInfo && (
-        <TouchableOpacity onPress={handleHideMoreInfo} style={{ position: 'absolute', top: 0, bottom: 0, left: 0, right: 0 }} />
-      )}
-    </View>
-           <View style={styles.ViewPeriudo}>  
-            </View>
-        </View>
-      </FadeInView >
-)}
- 
-        <View style={styles.top}>
-          <View style={styles.divLogo}>
-            <Image
-              style={styles.logo}
-              source={require("../assets/logo.png")}
-            />
-          </View>
-          <View style={styles.divTitulo}>
-            <Text style={styles.titulo}>WorkPlus</Text>
-          </View>
-        </View>
-        <View style={styles.viewMinhasOfertas}>
-            <Text style={styles.tituloMinhasOfertas}>Meus Trabalhos</Text> 
-            <View style={styles.viewImagemEmpregador} >
-            <Image
-                style={styles.fitaEmpregador}
-                source={require("../assets/empregadorImagem.png")}
-              />
-              </View>
-        </View>
-          <SafeAreaView style = {styles.containerPosts}>
-            <ScrollView>
 
-            <View style = {styles.post}>
+
+  const DATA = [
+    {
+      id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba',
+      title: 'First Item',
+    },
+    {
+      id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f63',
+      title: 'Second Item',
+    },
+    {
+      id: '58694a0f-3da1-471f-bd96-145571e29d72',
+      title: 'Third Item',
+    },
+    {
+      id: '88694a0f-3da1-471f-bd96-145571e29d72',
+      title: 'Third Item',
+    },
+  ];
+  
+  const Item = ({title}) => (
+    <View style = {styles.post}>
               <View style = {styles.viewFoto}>
                 <View style = {styles.fotoUsuario}>
 
@@ -203,6 +174,68 @@ const Trabalho = ({navigation}) => {
             </View>
             </View>
             </View>
+  );
+
+
+  return (
+    <View style={styles.container}>
+       {showMoreInfo && (
+      <FadeInViewFundo style={styles.sombra}>
+        
+      </FadeInViewFundo>
+)}
+      {showMoreInfo && (
+        
+      <FadeInView  style={styles.DivMais}>
+        <View style={styles.DentroMais}>
+        <View>
+              <TouchableOpacity onPress={handleShowMoreInfo}>
+                <Image
+                  style={{ width: 30, height: 30 }}
+                  source={require("../assets/mais.png")}
+                />
+              </TouchableOpacity>
+              
+              {showMoreInfo && (
+        <TouchableOpacity onPress={handleHideMoreInfo} style={{ position: 'absolute', top: 0, bottom: 0, left: 0, right: 0 }} />
+      )}
+    </View>
+           <View style={styles.ViewPeriudo}>  
+            </View>
+        </View>
+      </FadeInView >
+)}
+ 
+        <View style={styles.top}>
+          <View style={styles.divLogo}>
+            <Image
+              style={styles.logo}
+              source={require("../assets/logo.png")}
+            />
+          </View>
+          <View style={styles.divTitulo}>
+            <Text style={styles.titulo}>WorkPlus</Text>
+          </View>
+        </View>
+        <View style={styles.viewMinhasOfertas}>
+            <Text style={styles.tituloMinhasOfertas}>Meus Trabalhos</Text> 
+            <View style={styles.viewImagemEmpregador} >
+            <Image
+                style={styles.fitaEmpregador}
+                source={require("../assets/empregadorImagem.png")}
+              />
+              </View>
+        </View>
+          <SafeAreaView style = {styles.containerPosts}>
+            <ScrollView>
+
+            <FlatList
+              data={DATA}
+              renderItem={({item}) => <Item title={item.title} />}
+              keyExtractor={item => item.id}
+            />
+
+
             <View style = {styles.viewCriarPosts}>
               <TouchableOpacity 
                 onPress={() => navigation.navigate('TelaCriarTrabalho')}

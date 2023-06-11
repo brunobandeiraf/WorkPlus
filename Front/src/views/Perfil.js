@@ -1,9 +1,10 @@
 import React, { useState, useEffect, useRef } from "react";
 import {
-  Text, Animated, View, StyleSheet, Image, TextInput, SafeAreaView, ScrollView, TouchableOpacity, Linking
+  Text, Animated, View, StyleSheet, Image, TextInput, SafeAreaView, ScrollView, TouchableOpacity, Linking, FlatList
 } from "react-native";
 
 const Perfil = ({ navigation }) => {
+
   const FadeInView = (props) => {
     const fadeAnim = useRef(new Animated.Value(0)).current;
 
@@ -83,6 +84,305 @@ const Perfil = ({ navigation }) => {
   };
   const whats = require('../assets/whats.png');
   const url = 'https://api.whatsapp.com/send?phone=5551984574910&text=penis';
+
+  const DATAUsuarioPremiumTrabalho = [
+    {
+      id: '1',
+    },
+  ];
+
+  const DATAUsuarioPremiumServico = [
+    {
+      id: '1',
+    },
+    
+  ];
+
+  const DATAUsuarioTrabalho = [
+    {
+      id: '1',
+    },
+    {
+      id: '2',
+    },
+    {
+      id: '3',
+    },
+  ];
+  
+  const DATAUsuarioServico = [
+    {
+      id: '1',
+    },
+    {
+      id: '2',
+    },
+  ];
+
+  // Não estão completos
+  // const PostPremiumTrabalho = ({title}) => (
+
+  //   <View style={styles.postPremiumTrabalhador}>
+       
+  //           <View style={styles.DivFotoUsuario}>
+  //           <Image
+  //               style={styles.fitaPremium}
+  //               source={require("../assets/fitaPremium.png")}
+  //             />
+  //             <Image
+  //               style={styles.fitaPremiumTrabalhador}
+  //               source={require("../assets/fitaTrabalhador.png")}
+  //             />
+  //             <View style={styles.fotoUsuario}></View>
+  //           </View>
+  //         <View style={styles.Meio}>
+            
+  //           <View style={styles.MeioEsquerda}>
+  //             <View style={styles.MeioEsquerdaCima}>
+  //               <Text style={styles.subtituloNome}>Nome</Text>
+  //               <Text style={styles.nome}>Luigi dos Santos</Text>
+  //             </View>
+
+  //             <View style={styles.MeioEsquerdaBaixo}>
+  //               <Text style={styles.subtituloTipo}>Tipo</Text>
+  //               <Text style={styles.tipo}>Marceneiro</Text>
+  //             </View>
+  //           </View>
+
+  //           <View style={styles.MeioDireta}>
+  //             <View style={styles.MeioDireitaCima}>
+  //               <Text style={styles.subtituloData}>Data</Text>
+  //               <Text style={styles.data}>27/04/2023</Text>
+  //             </View>
+
+  //             <View style={styles.MeioDireitaBaixo}>
+  //               <Text style={styles.subtituloEndereco}>Endereço</Text>
+  //               <Text style={styles.endereco}>Cachoeirinha-RS</Text>
+  //             </View>
+  //           </View>
+  //           </View>
+  //           <View style={styles.Direita}>
+             
+  //             <TouchableOpacity onPress={handlePress}>
+  //             <Image source={whats} style={{ width: 30, height: 30 }} />
+  //             </TouchableOpacity>
+  //             <View>
+  //             <TouchableOpacity onPress={handleShowMoreInfo}>
+  //               <Image
+  //                 style={{ width: 30, height: 30 }}
+  //                 source={require("../assets/mais.png")}
+  //               />
+  //             </TouchableOpacity>
+              
+  //             {showMoreInfo && (
+  //       <TouchableOpacity onPress={handleHideMoreInfo} style={{ position: 'absolute', top: 0, bottom: 0, left: 0, right: 0 }} />
+  //     )}
+  //   </View>
+  //             <Image
+  //               style={styles.usuario}
+  //               source={require("../assets/usuario.png")}
+  //             />
+  //           </View>
+  //         </View>
+  // );
+
+  // const PostPremiumServico = ({title}) => (
+
+  //   <View style={styles.postPremiumEmpregador}>
+  //           <View style={styles.DivFotoUsuario}>
+  //           <Image
+  //               style={styles.fitaPremium}
+  //               source={require("../assets/fitaPremium.png")}
+  //             />
+  //             <Image
+  //               style={styles.fitaPremiumEmpregador}
+  //               source={require("../assets/fitaEmpregador.png")}
+  //             />
+  //             <View style={styles.fotoUsuario}></View>
+  //           </View>
+  //         <View style={styles.Meio}>
+            
+  //           <View style={styles.MeioEsquerda}>
+  //             <View style={styles.MeioEsquerdaCima}>
+  //               <Text style={styles.subtituloNome}>Nome</Text>
+  //               <Text style={styles.nome}>Luigi dos Santos</Text>
+  //             </View>
+
+  //             <View style={styles.MeioEsquerdaBaixo}>
+  //               <Text style={styles.subtituloTipo}>Tipo</Text>
+  //               <Text style={styles.tipo}>Marceneiro</Text>
+  //             </View>
+  //           </View>
+
+  //           <View style={styles.MeioDireta}>
+  //             <View style={styles.MeioDireitaCima}>
+  //               <Text style={styles.subtituloData}>Data</Text>
+  //               <Text style={styles.data}>27/04/2023</Text>
+  //             </View>
+
+  //             <View style={styles.MeioDireitaBaixo}>
+  //               <Text style={styles.subtituloEndereco}>Endereço</Text>
+  //               <Text style={styles.endereco}>Cachoeirinha-RS</Text>
+  //             </View>
+  //           </View>
+  //           </View>
+  //           <View style={styles.Direita}>
+             
+  //             <TouchableOpacity onPress={handlePress}>
+  //             <Image source={whats} style={{ width: 30, height: 30 }} />
+  //             </TouchableOpacity>
+
+
+
+  //             <View>
+  //             <TouchableOpacity onPress={handleShowMoreInfo}>
+  //               <Image
+  //                 style={{ width: 30, height: 30 }}
+  //                 source={require("../assets/mais.png")}
+  //               />
+  //             </TouchableOpacity>
+              
+  //             {showMoreInfo && (
+  //       <TouchableOpacity onPress={handleHideMoreInfo} style={{ position: 'absolute', top: 0, bottom: 0, left: 0, right: 0 }} />
+  //     )}
+  //   </View>
+  //             <Image
+  //               style={styles.usuario}
+  //               source={require("../assets/usuario.png")}
+  //             />
+  //           </View>
+  //         </View>
+  // );
+
+  const PostTrabalho = ({title}) => (
+    
+    <View style={styles.postTrabalhador}>
+
+                <View style={styles.DivFotoUsuario}>
+                  <Image
+                    style={styles.fitaTrabalhador}
+                    source={require("../assets/fitaTrabalhador.png")}
+                  />
+                  <View style={styles.fotoUsuario}></View>
+                </View>
+                <View style={styles.Meio}>
+
+                  <View style={styles.MeioEsquerda}>
+                    <View style={styles.MeioEsquerdaCima}>
+                      <Text style={styles.subtituloNome}>Nome</Text>
+                      <Text style={styles.nome}>Luigi dos Santos</Text>
+                    </View>
+
+                    <View style={styles.MeioEsquerdaBaixo}>
+                      <Text style={styles.subtituloTipo}>Tipo</Text>
+                      <Text style={styles.tipo}>Marceneiro</Text>
+                    </View>
+                  </View>
+
+                  <View style={styles.MeioDireta}>
+                    <View style={styles.MeioDireitaCima}>
+                      <Text style={styles.subtituloData}>Data</Text>
+                      <Text style={styles.data}>27/04/2023</Text>
+                    </View>
+
+                    <View style={styles.MeioDireitaBaixo}>
+                      <Text style={styles.subtituloEndereco}>Endereço</Text>
+                      <Text style={styles.endereco}>Cachoeirinha-RS</Text>
+                    </View>
+                  </View>
+                </View>
+                <View style={styles.Direita}>
+
+                  <TouchableOpacity onPress={handlePress}>
+                    <Image source={whats} style={{ width: 30, height: 30 }} />
+                  </TouchableOpacity>
+
+
+
+                  <View>
+                    <TouchableOpacity onPress={handleShowMoreInfo}>
+                      <Image
+                        style={{ width: 30, height: 30 }}
+                        source={require("../assets/mais.png")}
+                      />
+                    </TouchableOpacity>
+
+                    {showMoreInfo && (
+                      <TouchableOpacity onPress={handleHideMoreInfo} style={{ position: 'absolute', top: 0, bottom: 0, left: 0, right: 0 }} />
+                    )}
+                  </View>
+                  <Image
+                    style={styles.usuario}
+                    source={require("../assets/usuario.png")}
+                  />
+                </View>
+              </View>
+  );
+
+  const PostServico = ({title}) => (
+
+    <View style={styles.postEmpregador}>
+                <View style={styles.DivFotoUsuario}>
+                  <Image
+                    style={styles.fitaEmpregador}
+                    source={require("../assets/fitaEmpregador.png")}
+                  />
+                  <View style={styles.fotoUsuario}></View>
+                </View>
+                <View style={styles.Meio}>
+
+                  <View style={styles.MeioEsquerda}>
+                    <View style={styles.MeioEsquerdaCima}>
+                      <Text style={styles.subtituloNome}>Nome</Text>
+                      <Text style={styles.nome}>Luigi dos Santos</Text>
+                    </View>
+
+                    <View style={styles.MeioEsquerdaBaixo}>
+                      <Text style={styles.subtituloTipo}>Tipo</Text>
+                      <Text style={styles.tipo}>Marceneiro</Text>
+                    </View>
+                  </View>
+
+                  <View style={styles.MeioDireta}>
+                    <View style={styles.MeioDireitaCima}>
+                      <Text style={styles.subtituloData}>Data</Text>
+                      <Text style={styles.data}>27/04/2023</Text>
+                    </View>
+
+                    <View style={styles.MeioDireitaBaixo}>
+                      <Text style={styles.subtituloEndereco}>Endereço</Text>
+                      <Text style={styles.endereco}>Cachoeirinha-RS</Text>
+                    </View>
+                  </View>
+                </View>
+                <View style={styles.Direita}>
+
+                  <TouchableOpacity onPress={handlePress}>
+                    <Image source={whats} style={{ width: 30, height: 30 }} />
+                  </TouchableOpacity>
+
+
+
+                  <View>
+                    <TouchableOpacity onPress={handleShowMoreInfo}>
+                      <Image
+                        style={{ width: 30, height: 30 }}
+                        source={require("../assets/mais.png")}
+                      />
+                    </TouchableOpacity>
+
+                    {showMoreInfo && (
+                      <TouchableOpacity onPress={handleHideMoreInfo} style={{ position: 'absolute', top: 0, bottom: 0, left: 0, right: 0 }} />
+                    )}
+                  </View>
+                  <Image
+                    style={styles.usuario}
+                    source={require("../assets/usuario.png")}
+                  />
+                </View>
+              </View>
+  );
+
   return (
     <View style={styles.container}>
       {showMoreInfo && (
@@ -194,6 +494,7 @@ const Perfil = ({ navigation }) => {
 
       <View style={styles.containerOpcoes}>
         {viewIndex === 1 && (
+
           <View style={styles.ViewInfo}>
             <View style={styles.viewTextoNome}>
               <Text style={styles.TituloNomeInfo} >Nome</Text>
@@ -225,436 +526,42 @@ const Perfil = ({ navigation }) => {
           </View>
         )}
         {viewIndex === 2 && (
+
           <SafeAreaView style={styles.ViewServicos}>
             <ScrollView>
-              <View style={styles.postTrabalhador}>
+              
+            {/* <FlatList
+              data={DATAUsuarioPremiumServico}
+              renderItem={({item}) => <PostPremiumServico title={item.title} />}
+              keyExtractor={item => item.id}
+            /> */}
 
-                <View style={styles.DivFotoUsuario}>
-                  <Image
-                    style={styles.fitaTrabalhador}
-                    source={require("../assets/fitaTrabalhador.png")}
-                  />
-                  <View style={styles.fotoUsuario}></View>
-                </View>
-                <View style={styles.Meio}>
-
-                  <View style={styles.MeioEsquerda}>
-                    <View style={styles.MeioEsquerdaCima}>
-                      <Text style={styles.subtituloNome}>Nome</Text>
-                      <Text style={styles.nome}>Luigi dos Santos</Text>
-                    </View>
-
-                    <View style={styles.MeioEsquerdaBaixo}>
-                      <Text style={styles.subtituloTipo}>Tipo</Text>
-                      <Text style={styles.tipo}>Marceneiro</Text>
-                    </View>
-                  </View>
-
-                  <View style={styles.MeioDireta}>
-                    <View style={styles.MeioDireitaCima}>
-                      <Text style={styles.subtituloData}>Data</Text>
-                      <Text style={styles.data}>27/04/2023</Text>
-                    </View>
-
-                    <View style={styles.MeioDireitaBaixo}>
-                      <Text style={styles.subtituloEndereco}>Endereço</Text>
-                      <Text style={styles.endereco}>Cachoeirinha-RS</Text>
-                    </View>
-                  </View>
-                </View>
-                <View style={styles.Direita}>
-
-                  <TouchableOpacity onPress={handlePress}>
-                    <Image source={whats} style={{ width: 30, height: 30 }} />
-                  </TouchableOpacity>
-
-
-
-                  <View>
-                    <TouchableOpacity onPress={handleShowMoreInfo}>
-                      <Image
-                        style={{ width: 30, height: 30 }}
-                        source={require("../assets/mais.png")}
-                      />
-                    </TouchableOpacity>
-
-                    {showMoreInfo && (
-                      <TouchableOpacity onPress={handleHideMoreInfo} style={{ position: 'absolute', top: 0, bottom: 0, left: 0, right: 0 }} />
-                    )}
-                  </View>
-                  <Image
-                    style={styles.usuario}
-                    source={require("../assets/usuario.png")}
-                  />
-                </View>
-              </View>
+            <FlatList
+              data={DATAUsuarioServico}
+              renderItem={({item}) => <PostServico title={item.title} />}
+              keyExtractor={item => item.id}
+            />
 
             </ScrollView>
           </SafeAreaView>
         )}
         {viewIndex === 3 && (
+
           <SafeAreaView style={styles.ViewTrabalhos}>
             <ScrollView>
-              <View style={styles.postEmpregador}>
-                <View style={styles.DivFotoUsuario}>
-                  <Image
-                    style={styles.fitaEmpregador}
-                    source={require("../assets/fitaEmpregador.png")}
-                  />
-                  <View style={styles.fotoUsuario}></View>
-                </View>
-                <View style={styles.Meio}>
 
-                  <View style={styles.MeioEsquerda}>
-                    <View style={styles.MeioEsquerdaCima}>
-                      <Text style={styles.subtituloNome}>Nome</Text>
-                      <Text style={styles.nome}>Luigi dos Santos</Text>
-                    </View>
+            {/* <FlatList
+              data={DATAUsuarioPremiumTrabalho}
+              renderItem={({item}) => <PostPremiumTrabalho title={item.title} />}
+              keyExtractor={item => item.id}
+            /> */}
 
-                    <View style={styles.MeioEsquerdaBaixo}>
-                      <Text style={styles.subtituloTipo}>Tipo</Text>
-                      <Text style={styles.tipo}>Marceneiro</Text>
-                    </View>
-                  </View>
-
-                  <View style={styles.MeioDireta}>
-                    <View style={styles.MeioDireitaCima}>
-                      <Text style={styles.subtituloData}>Data</Text>
-                      <Text style={styles.data}>27/04/2023</Text>
-                    </View>
-
-                    <View style={styles.MeioDireitaBaixo}>
-                      <Text style={styles.subtituloEndereco}>Endereço</Text>
-                      <Text style={styles.endereco}>Cachoeirinha-RS</Text>
-                    </View>
-                  </View>
-                </View>
-                <View style={styles.Direita}>
-
-                  <TouchableOpacity onPress={handlePress}>
-                    <Image source={whats} style={{ width: 30, height: 30 }} />
-                  </TouchableOpacity>
-
-
-
-                  <View>
-                    <TouchableOpacity onPress={handleShowMoreInfo}>
-                      <Image
-                        style={{ width: 30, height: 30 }}
-                        source={require("../assets/mais.png")}
-                      />
-                    </TouchableOpacity>
-
-                    {showMoreInfo && (
-                      <TouchableOpacity onPress={handleHideMoreInfo} style={{ position: 'absolute', top: 0, bottom: 0, left: 0, right: 0 }} />
-                    )}
-                  </View>
-                  <Image
-                    style={styles.usuario}
-                    source={require("../assets/usuario.png")}
-                  />
-                </View>
-              </View>
-              <View style={styles.postEmpregador}>
-                <View style={styles.DivFotoUsuario}>
-                  <Image
-                    style={styles.fitaEmpregador}
-                    source={require("../assets/fitaEmpregador.png")}
-                  />
-                  <View style={styles.fotoUsuario}></View>
-                </View>
-                <View style={styles.Meio}>
-
-                  <View style={styles.MeioEsquerda}>
-                    <View style={styles.MeioEsquerdaCima}>
-                      <Text style={styles.subtituloNome}>Nome</Text>
-                      <Text style={styles.nome}>Luigi dos Santos</Text>
-                    </View>
-
-                    <View style={styles.MeioEsquerdaBaixo}>
-                      <Text style={styles.subtituloTipo}>Tipo</Text>
-                      <Text style={styles.tipo}>Marceneiro</Text>
-                    </View>
-                  </View>
-
-                  <View style={styles.MeioDireta}>
-                    <View style={styles.MeioDireitaCima}>
-                      <Text style={styles.subtituloData}>Data</Text>
-                      <Text style={styles.data}>27/04/2023</Text>
-                    </View>
-
-                    <View style={styles.MeioDireitaBaixo}>
-                      <Text style={styles.subtituloEndereco}>Endereço</Text>
-                      <Text style={styles.endereco}>Cachoeirinha-RS</Text>
-                    </View>
-                  </View>
-                </View>
-                <View style={styles.Direita}>
-
-                  <TouchableOpacity onPress={handlePress}>
-                    <Image source={whats} style={{ width: 30, height: 30 }} />
-                  </TouchableOpacity>
-
-
-
-                  <View>
-                    <TouchableOpacity onPress={handleShowMoreInfo}>
-                      <Image
-                        style={{ width: 30, height: 30 }}
-                        source={require("../assets/mais.png")}
-                      />
-                    </TouchableOpacity>
-
-                    {showMoreInfo && (
-                      <TouchableOpacity onPress={handleHideMoreInfo} style={{ position: 'absolute', top: 0, bottom: 0, left: 0, right: 0 }} />
-                    )}
-                  </View>
-                  <Image
-                    style={styles.usuario}
-                    source={require("../assets/usuario.png")}
-                  />
-                </View>
-              </View>
-              <View style={styles.postEmpregador}>
-                <View style={styles.DivFotoUsuario}>
-                  <Image
-                    style={styles.fitaEmpregador}
-                    source={require("../assets/fitaEmpregador.png")}
-                  />
-                  <View style={styles.fotoUsuario}></View>
-                </View>
-                <View style={styles.Meio}>
-
-                  <View style={styles.MeioEsquerda}>
-                    <View style={styles.MeioEsquerdaCima}>
-                      <Text style={styles.subtituloNome}>Nome</Text>
-                      <Text style={styles.nome}>Luigi dos Santos</Text>
-                    </View>
-
-                    <View style={styles.MeioEsquerdaBaixo}>
-                      <Text style={styles.subtituloTipo}>Tipo</Text>
-                      <Text style={styles.tipo}>Marceneiro</Text>
-                    </View>
-                  </View>
-
-                  <View style={styles.MeioDireta}>
-                    <View style={styles.MeioDireitaCima}>
-                      <Text style={styles.subtituloData}>Data</Text>
-                      <Text style={styles.data}>27/04/2023</Text>
-                    </View>
-
-                    <View style={styles.MeioDireitaBaixo}>
-                      <Text style={styles.subtituloEndereco}>Endereço</Text>
-                      <Text style={styles.endereco}>Cachoeirinha-RS</Text>
-                    </View>
-                  </View>
-                </View>
-                <View style={styles.Direita}>
-
-                  <TouchableOpacity onPress={handlePress}>
-                    <Image source={whats} style={{ width: 30, height: 30 }} />
-                  </TouchableOpacity>
-
-
-
-                  <View>
-                    <TouchableOpacity onPress={handleShowMoreInfo}>
-                      <Image
-                        style={{ width: 30, height: 30 }}
-                        source={require("../assets/mais.png")}
-                      />
-                    </TouchableOpacity>
-
-                    {showMoreInfo && (
-                      <TouchableOpacity onPress={handleHideMoreInfo} style={{ position: 'absolute', top: 0, bottom: 0, left: 0, right: 0 }} />
-                    )}
-                  </View>
-                  <Image
-                    style={styles.usuario}
-                    source={require("../assets/usuario.png")}
-                  />
-                </View>
-              </View>
-              <View style={styles.postEmpregador}>
-                <View style={styles.DivFotoUsuario}>
-                  <Image
-                    style={styles.fitaEmpregador}
-                    source={require("../assets/fitaEmpregador.png")}
-                  />
-                  <View style={styles.fotoUsuario}></View>
-                </View>
-                <View style={styles.Meio}>
-
-                  <View style={styles.MeioEsquerda}>
-                    <View style={styles.MeioEsquerdaCima}>
-                      <Text style={styles.subtituloNome}>Nome</Text>
-                      <Text style={styles.nome}>Luigi dos Santos</Text>
-                    </View>
-
-                    <View style={styles.MeioEsquerdaBaixo}>
-                      <Text style={styles.subtituloTipo}>Tipo</Text>
-                      <Text style={styles.tipo}>Marceneiro</Text>
-                    </View>
-                  </View>
-
-                  <View style={styles.MeioDireta}>
-                    <View style={styles.MeioDireitaCima}>
-                      <Text style={styles.subtituloData}>Data</Text>
-                      <Text style={styles.data}>27/04/2023</Text>
-                    </View>
-
-                    <View style={styles.MeioDireitaBaixo}>
-                      <Text style={styles.subtituloEndereco}>Endereço</Text>
-                      <Text style={styles.endereco}>Cachoeirinha-RS</Text>
-                    </View>
-                  </View>
-                </View>
-                <View style={styles.Direita}>
-
-                  <TouchableOpacity onPress={handlePress}>
-                    <Image source={whats} style={{ width: 30, height: 30 }} />
-                  </TouchableOpacity>
-
-
-
-                  <View>
-                    <TouchableOpacity onPress={handleShowMoreInfo}>
-                      <Image
-                        style={{ width: 30, height: 30 }}
-                        source={require("../assets/mais.png")}
-                      />
-                    </TouchableOpacity>
-
-                    {showMoreInfo && (
-                      <TouchableOpacity onPress={handleHideMoreInfo} style={{ position: 'absolute', top: 0, bottom: 0, left: 0, right: 0 }} />
-                    )}
-                  </View>
-                  <Image
-                    style={styles.usuario}
-                    source={require("../assets/usuario.png")}
-                  />
-                </View>
-              </View>
-              <View style={styles.postEmpregador}>
-                <View style={styles.DivFotoUsuario}>
-                  <Image
-                    style={styles.fitaEmpregador}
-                    source={require("../assets/fitaEmpregador.png")}
-                  />
-                  <View style={styles.fotoUsuario}></View>
-                </View>
-                <View style={styles.Meio}>
-
-                  <View style={styles.MeioEsquerda}>
-                    <View style={styles.MeioEsquerdaCima}>
-                      <Text style={styles.subtituloNome}>Nome</Text>
-                      <Text style={styles.nome}>Luigi dos Santos</Text>
-                    </View>
-
-                    <View style={styles.MeioEsquerdaBaixo}>
-                      <Text style={styles.subtituloTipo}>Tipo</Text>
-                      <Text style={styles.tipo}>Marceneiro</Text>
-                    </View>
-                  </View>
-
-                  <View style={styles.MeioDireta}>
-                    <View style={styles.MeioDireitaCima}>
-                      <Text style={styles.subtituloData}>Data</Text>
-                      <Text style={styles.data}>27/04/2023</Text>
-                    </View>
-
-                    <View style={styles.MeioDireitaBaixo}>
-                      <Text style={styles.subtituloEndereco}>Endereço</Text>
-                      <Text style={styles.endereco}>Cachoeirinha-RS</Text>
-                    </View>
-                  </View>
-                </View>
-                <View style={styles.Direita}>
-
-                  <TouchableOpacity onPress={handlePress}>
-                    <Image source={whats} style={{ width: 30, height: 30 }} />
-                  </TouchableOpacity>
-
-
-
-                  <View>
-                    <TouchableOpacity onPress={handleShowMoreInfo}>
-                      <Image
-                        style={{ width: 30, height: 30 }}
-                        source={require("../assets/mais.png")}
-                      />
-                    </TouchableOpacity>
-
-                    {showMoreInfo && (
-                      <TouchableOpacity onPress={handleHideMoreInfo} style={{ position: 'absolute', top: 0, bottom: 0, left: 0, right: 0 }} />
-                    )}
-                  </View>
-                  <Image
-                    style={styles.usuario}
-                    source={require("../assets/usuario.png")}
-                  />
-                </View>
-              </View>
-              <View style={styles.postEmpregador}>
-                <View style={styles.DivFotoUsuario}>
-                  <Image
-                    style={styles.fitaEmpregador}
-                    source={require("../assets/fitaEmpregador.png")}
-                  />
-                  <View style={styles.fotoUsuario}></View>
-                </View>
-                <View style={styles.Meio}>
-
-                  <View style={styles.MeioEsquerda}>
-                    <View style={styles.MeioEsquerdaCima}>
-                      <Text style={styles.subtituloNome}>Nome</Text>
-                      <Text style={styles.nome}>Luigi dos Santos</Text>
-                    </View>
-
-                    <View style={styles.MeioEsquerdaBaixo}>
-                      <Text style={styles.subtituloTipo}>Tipo</Text>
-                      <Text style={styles.tipo}>Marceneiro</Text>
-                    </View>
-                  </View>
-
-                  <View style={styles.MeioDireta}>
-                    <View style={styles.MeioDireitaCima}>
-                      <Text style={styles.subtituloData}>Data</Text>
-                      <Text style={styles.data}>27/04/2023</Text>
-                    </View>
-
-                    <View style={styles.MeioDireitaBaixo}>
-                      <Text style={styles.subtituloEndereco}>Endereço</Text>
-                      <Text style={styles.endereco}>Cachoeirinha-RS</Text>
-                    </View>
-                  </View>
-                </View>
-                <View style={styles.Direita}>
-
-                  <TouchableOpacity onPress={handlePress}>
-                    <Image source={whats} style={{ width: 30, height: 30 }} />
-                  </TouchableOpacity>
-
-
-
-                  <View>
-                    <TouchableOpacity onPress={handleShowMoreInfo}>
-                      <Image
-                        style={{ width: 30, height: 30 }}
-                        source={require("../assets/mais.png")}
-                      />
-                    </TouchableOpacity>
-
-                    {showMoreInfo && (
-                      <TouchableOpacity onPress={handleHideMoreInfo} style={{ position: 'absolute', top: 0, bottom: 0, left: 0, right: 0 }} />
-                    )}
-                  </View>
-                  <Image
-                    style={styles.usuario}
-                    source={require("../assets/usuario.png")}
-                  />
-                </View>
-              </View>
+            <FlatList
+              data={DATAUsuarioTrabalho}
+              renderItem={({item}) => <PostTrabalho title={item.title} />}
+              keyExtractor={item => item.id}
+            />
+              
             </ScrollView>
           </SafeAreaView>
         )}

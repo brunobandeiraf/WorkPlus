@@ -70,6 +70,7 @@ const Login = ({ navigation }) => {
               placeholder="Senha"
               value={password}
               onChangeText={setPassword}
+              secureTextEntry={true}
             />
           </View>
           <View style={styles.viewImagemSenha}>
