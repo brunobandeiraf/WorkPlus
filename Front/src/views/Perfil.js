@@ -5,6 +5,24 @@ import {
 
 const Perfil = ({ navigation }) => {
 
+  const [name, setName] = useState("Luigi Bernado dos Santos");
+  const [userName, setUserName] = useState('Luigi dos Santos');
+  const [email, setEmail] = useState('luigisantostk@gmail.com');
+  const [password, setPassword] = useState('');
+  const [cpf, setCpf] = useState('');
+  const [endereco, setEndereco] = useState('Rua Ilha da Gralha Azul, 35')
+  const [dtNascimento, setDTNascimento] = useState('2004-01-30');
+
+  const [nameServico, setNameServico] = useState('Cesar Glufke')
+  const [tipoServico, setTipoServico] = useState('Pintor');
+  const [regiao, setRegiao] = useState('Floripa');
+  const [dtDisponivel, setDTDisponivel] = useState('2023-07-07');
+  const [periodoMatutino, setPeriodoMatutino] = useState(true);
+  const [periodoVespertino, setPeriodoVespertino] = useState(false);
+  const [periodoNoturno, setPeriodoNoturno] = useState(false);
+  const [linkWhats, setLinkWhats] = useState('48 988645111');
+  const [descricao, setDescricao] = useState('Alguma coisa');
+
   const FadeInView = (props) => {
     const fadeAnim = useRef(new Animated.Value(0)).current;
 
@@ -334,24 +352,44 @@ const Perfil = ({ navigation }) => {
                   <View style={styles.MeioEsquerda}>
                     <View style={styles.MeioEsquerdaCima}>
                       <Text style={styles.subtituloNome}>Nome</Text>
-                      <Text style={styles.nome}>Luigi dos Santos</Text>
+                      <TextInput 
+                        style={styles.nome}
+                        value={nameServico}
+                        onChangeText={setNameServico}
+                        editable={false}
+                      />
                     </View>
 
                     <View style={styles.MeioEsquerdaBaixo}>
                       <Text style={styles.subtituloTipo}>Tipo</Text>
-                      <Text style={styles.tipo}>Marceneiro</Text>
+                      <TextInput
+                        style={styles.tipo}
+                        value={tipoServico}
+                        onChangeText={setTipoServico}
+                        editable={false}
+                      />
                     </View>
                   </View>
 
                   <View style={styles.MeioDireta}>
                     <View style={styles.MeioDireitaCima}>
                       <Text style={styles.subtituloData}>Data</Text>
-                      <Text style={styles.data}>27/04/2023</Text>
+                      <TextInput 
+                        style={styles.data}
+                        value={dtDisponivel}
+                        onChangeText={setDTDisponivel}
+                        editable={false}
+                      />
                     </View>
 
                     <View style={styles.MeioDireitaBaixo}>
                       <Text style={styles.subtituloEndereco}>Endereço</Text>
-                      <Text style={styles.endereco}>Cachoeirinha-RS</Text>
+                      <TextInput 
+                        style={styles.endereco}
+                        value={endereco}
+                        onChangeText={setEndereco}
+                        editable={false}
+                      />
                     </View>
                   </View>
                 </View>
@@ -450,7 +488,12 @@ const Perfil = ({ navigation }) => {
 
 
         <View style={styles.TopNome}>
-          <Text style={styles.NomeUsuario}>Luigi dos Santos</Text>
+          <TextInput 
+            style={styles.NomeUsuario}
+            value={userName}
+            onChangeText={setUserName}
+            editable={false}
+          />
         </View>
 
 
@@ -500,28 +543,48 @@ const Perfil = ({ navigation }) => {
               <Text style={styles.TituloNomeInfo} >Nome</Text>
             </View>
             <View style={styles.ViewNomeInfo}>
-              <Text style={styles.NomeInfo} >Luigi dos Santos Bernardo</Text>
+              <TextInput 
+                style={styles.NomeInfo} 
+                value={name}
+                onChangeText={setName}
+                editable={false}
+              />
             </View>
 
             <View style={styles.viewTextoNome}>
               <Text style={styles.TituloNomeInfo} >Email</Text>
             </View>
             <View style={styles.ViewNomeInfo}>
-              <Text style={styles.NomeInfo} >luigisantostk@gmail.com</Text>
+              <TextInput 
+                style={styles.NomeInfo} 
+                value={email}
+                onChangeText={setEmail}
+                editable={false}
+              />
             </View>
 
             <View style={styles.viewTextoNome}>
               <Text style={styles.TituloNomeInfo} >Endereço</Text>
             </View>
             <View style={styles.ViewNomeInfo}>
-              <Text style={styles.NomeInfo} >Rua Ilha da Gralha Azul 35</Text>
+              <TextInput 
+                style={styles.NomeInfo} 
+                value={endereco}
+                onChangeText={setEndereco}
+                editable={false}
+              />
             </View>
 
             <View style={styles.viewTextoNome}>
               <Text style={styles.TituloNomeInfo} >Data de Nascimento</Text>
             </View>
             <View style={styles.ViewNomeInfo}>
-              <Text style={styles.NomeInfo} >30/01/2004</Text>
+              <TextInput 
+                style={styles.NomeInfo} 
+                value={dtNascimento}
+                onChangeText={setDTNascimento}
+                editable={false}
+              />
             </View>
           </View>
         )}
