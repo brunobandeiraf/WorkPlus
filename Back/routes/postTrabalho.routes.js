@@ -9,9 +9,9 @@ postTrabalho.get("/", (req, res) => {
 
  postTrabalho.post("/register", async (req, res) => {
      
-    const { tipoTrabalho, endereco, dtInicio, periodoMatutino, periodoVespertino, periodoNoturno, linkWhats, descricao } = req.body;
+    const { tipoTrabalho, endereco, dtInicio, periodoMatutino, periodoVespertino, periodoNoturno, linkWhats, descricao, dtCriacao } = req.body;
 
-    const newPostTrabalho = new PostTrabalho({ tipoTrabalho, endereco, dtInicio, periodoMatutino, periodoVespertino, periodoNoturno, linkWhats, descricao});
+    const newPostTrabalho = new PostTrabalho({ tipoTrabalho, endereco, dtInicio, periodoMatutino, periodoVespertino, periodoNoturno, linkWhats, descricao, dtCriacao});
 
     const savePostTrabalho = await newPostTrabalho.save().catch((err) => {
         console.log("Error: ", err);
@@ -25,7 +25,7 @@ postTrabalho.get("/", (req, res) => {
     res.json({ message: "Post de Trabalho enviado"});
 });
 
-postTrabalho.get("/ProcurarPorPostTrabalho", async (req, res) => {
+postTrabalho.get("/GetPostTrabalho", async (req, res) => {
     const postsTrabalho = await PostTrabalho.findAll().catch(
         (err) => {
             console.log(err)
@@ -33,7 +33,7 @@ postTrabalho.get("/ProcurarPorPostTrabalho", async (req, res) => {
     );
     
     if(postsTrabalho){
-        return res.json({postsTrabalho})
+        return res.json({postsTrabalho, message:"Posts de Trabalho Recebidos"})
     }else{
         return null
     };

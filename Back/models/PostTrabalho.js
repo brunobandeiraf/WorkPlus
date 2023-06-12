@@ -51,6 +51,10 @@ const PostTrabalho = connection.define(
             type: Sequelize.STRING,
             allowNull: false,
         },
+        dtCriacao: {
+            type: Sequelize.DATE,
+            allowNull: false
+        },
     }
 );
 

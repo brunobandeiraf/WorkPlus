@@ -25,6 +25,7 @@ const TelaCriarTrabalho = ({ navigation }) => {
   const [periodoNoturno, setPeriodoNoturno] = useState(false);
   const [linkWhats, setLinkWhats] = useState('');
   const [descricao, setDescricao] = useState('');
+  const [dtCriacao, setDTCriacao] = useState(new Date());
 
   const [date, setDate] = useState(new Date());
   const [showPicker, setShowPicker] = useState(false);
@@ -72,14 +73,15 @@ const TelaCriarTrabalho = ({ navigation }) => {
         periodoVespertino: periodoVespertino,
         periodoNoturno: periodoNoturno,
         linkWhats: linkWhats,
-        descricao: descricao
+        descricao: descricao,
+        dtCriacao: dtCriacao
       });
       if (data.status === 200) {
         console.log(data);
         alert(data.data.message);
-        navigation.navigate("Trabalho")
       } else {
         console.log(data);
+        navigation.navigate("Trabalho");
       };
     } catch (error) {
       console.log(error)
