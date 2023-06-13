@@ -79,9 +79,9 @@ const TelaCriarTrabalho = ({ navigation }) => {
       if (data.status === 200) {
         console.log(data);
         alert(data.data.message);
+        navigation.navigate("Trabalho");
       } else {
         console.log(data);
-        navigation.navigate("Trabalho");
       };
     } catch (error) {
       console.log(error)

@@ -1,6 +1,6 @@
 import React,{useState, useEffect, useRef } from 'react';
 import { Text,Animated, View, StyleSheet,Image, TextInput, SafeAreaView, ScrollView, FlatList, TouchableOpacity} from 'react-native';
-
+import api from '../api';
 
 const Trabalho = ({navigation}) => {
   
@@ -61,26 +61,20 @@ const Trabalho = ({navigation}) => {
   };
 
 
-  const DATA = [
-    {
-      id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba',
-      title: 'First Item',
-    },
-    {
-      id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f63',
-      title: 'Second Item',
-    },
-    {
-      id: '58694a0f-3da1-471f-bd96-145571e29d72',
-      title: 'Third Item',
-    },
-    {
-      id: '88694a0f-3da1-471f-bd96-145571e29d72',
-      title: 'Third Item',
-    },
-  ];
+
+
+  const [postsTrabalho, setPostsTrabalho] = useState({});
   
-  const Item = ({title}) => (
+  useEffect(() => {
+      const onScreenLoad = async () => {
+          const list = await api.get('/postTrabalho/GetPostTrabalho');
+          setPostsTrabalho(list.data.postsTrabalho)
+      }
+      onScreenLoad();
+  }, 
+  )
+  
+  const Item = () => (
     <View style = {styles.post}>
               <View style = {styles.viewFoto}>
                 <View style = {styles.fotoUsuario}>
@@ -93,7 +87,10 @@ const Trabalho = ({navigation}) => {
                   <Text style={styles.subtituloTipo}>Tipo de Serviço</Text>
                 </View>
                 <View  style = {styles.viewInfoTipoServiço}>
-                  <Text style={styles.tipo}>Pintura</Text>
+                  <Text 
+                    style={styles.tipo}
+                    value={postsTrabalho.tipoTrabalho}
+                    />
                 </View>
               </View>
               <View style = {styles.viewMeioEsquerdaMeio}>
@@ -101,7 +98,10 @@ const Trabalho = ({navigation}) => {
                   <Text style={styles.subtituloPeriodo}>Periodo</Text>
                 </View>
                 <View style = {styles.viewInfoPeriodo}>
-                  <Text style={styles.periodo}>Matutino</Text>
+                  <Text 
+                    style={styles.periodo}
+                    value={postsTrabalho.periodoMatutino}
+                  />
                 </View>
               </View>
               <View style = {styles.viewMeioEsquerdaBaixo}>
@@ -109,7 +109,10 @@ const Trabalho = ({navigation}) => {
                 <Text style={styles.subtituloRegiao}>Região</Text>
               </View>
               <View style = {styles.viewInfoRegiao}>
-                <Text style={styles.regiao}>Florianópolis-SC</Text>
+                <Text 
+                  style={styles.regiao}
+                  value={postsTrabalho.endereco}
+                />
               </View>
               </View>
               </View>
@@ -141,7 +144,10 @@ const Trabalho = ({navigation}) => {
                   <Text style={styles.subtituloDataPublicacao}>Publicação</Text>
                 </View> 
                 <View style = {styles.viewInfoPublicacao}> 
-                  <Text style={styles.dataPublicacao}>01/08/2022</Text>
+                  <Text 
+                    style={styles.dataPublicacao}
+                    value={postsTrabalho.dtCriacao}
+                  />
                 </View> 
               </View>
               </View> 
@@ -173,7 +179,7 @@ const Trabalho = ({navigation}) => {
             />
             </View>
             </View>
-            </View>
+    </View>
   );
 
 
@@ -230,7 +236,7 @@ const Trabalho = ({navigation}) => {
             <ScrollView>
 
             <FlatList
-              data={DATA}
+              data={postsTrabalho}
               renderItem={({item}) => <Item title={item.title} />}
               keyExtractor={item => item.id}
             />

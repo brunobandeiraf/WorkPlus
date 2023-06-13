@@ -248,7 +248,7 @@ const Home = ({navigation}) => {
             <View style={styles.MeioEsquerda}>
               <View style={styles.MeioEsquerdaCima}>
                 <Text style={styles.subtituloNome}>Nome</Text>
-                <Text style={styles.nome}>Luigi dos Santos</Text>
+                <Text style={styles.nome}></Text>
               </View>
 
               <View style={styles.MeioEsquerdaBaixo}>

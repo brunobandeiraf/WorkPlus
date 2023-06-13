@@ -33,7 +33,7 @@ postTrabalho.get("/GetPostTrabalho", async (req, res) => {
     );
     
     if(postsTrabalho){
-        return res.json({postsTrabalho, message:"Posts de Trabalho Recebidos"})
+        return res.json({postsTrabalho})
     }else{
         return null
     };
